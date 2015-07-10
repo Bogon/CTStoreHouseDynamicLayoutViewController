@@ -9,7 +9,7 @@
 #import "CTDynamicImageViewItem.h"
 #import "UIView+LayoutMethods.h"
 
-@interface CTDynamicImageViewItem ()
+@interface CTDynamicImageViewItem () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UIImageView *imageView;
 
@@ -20,6 +20,8 @@
 @end
 
 @implementation CTDynamicImageViewItem
+
+@synthesize isSelected = _isSelected;
 
 #pragma mark - life cycle
 - (instancetype)initWithImage:(UIImage *)image
@@ -42,6 +44,7 @@
 
 - (void)layoutSubviews
 {
+    [super layoutSubviews];
     [self.imageView leftInContainer:4 shouldResize:YES];
     [self.imageView rightInContainer:4 shouldResize:YES];
     [self.imageView topInContainer:4 shouldResize:YES];
@@ -60,37 +63,128 @@
 #pragma mark - event response
 - (void)horizontalPanGestureDidRecognized:(UIPanGestureRecognizer *)panGestureRecognizer
 {
-    CGPoint point = [panGestureRecognizer translationInView:self];
-    [panGestureRecognizer setTranslation:CGPointZero inView:self];
-    self.frame = CGRectMake(self.x, self.y, self.width + point.x, self.height);
-    if (self.delegate && [self.delegate respondsToSelector:@selector(imageViewItemDidChangedFrame:)]) {
-        [self.delegate imageViewItemDidChangedFrame:self];
+    UIGestureRecognizerState state = panGestureRecognizer.state;
+    
+    if (state == UIGestureRecognizerStateBegan || state == UIGestureRecognizerStateCancelled || state == UIGestureRecognizerStateFailed) {
+        // do nothing
+    }
+    
+    if (state == UIGestureRecognizerStateChanged) {
+        CGPoint point = [panGestureRecognizer translationInView:self];
+        [panGestureRecognizer setTranslation:CGPointZero inView:self];
+        
+        CGFloat width = self.width + point.x;
+        if (width < self.gridLength) {
+            width = self.gridLength;
+        }
+        
+        self.frame = CGRectMake(self.x, self.y, width, self.height);
+        [self checkShouldDelegate];
+    }
+    
+    if (state == UIGestureRecognizerStateEnded || state == UIGestureRecognizerStateRecognized) {
+        [self panGestureEnded];
     }
 }
 
 - (void)verticalPanGestureDidRecognized:(UIPanGestureRecognizer *)panGestureRecognizer
 {
-    CGPoint point = [panGestureRecognizer translationInView:self];
-    [panGestureRecognizer setTranslation:CGPointZero inView:self];
-    self.frame = CGRectMake(self.x, self.y, self.width, self.height + point.y);
-    if (self.delegate && [self.delegate respondsToSelector:@selector(imageViewItemDidChangedFrame:)]) {
-        [self.delegate imageViewItemDidChangedFrame:self];
+    UIGestureRecognizerState state = panGestureRecognizer.state;
+    
+    if (state == UIGestureRecognizerStateBegan || state == UIGestureRecognizerStateCancelled || state == UIGestureRecognizerStateFailed) {
+        // do nothing
+    }
+    
+    if (state == UIGestureRecognizerStateChanged) {
+        CGPoint point = [panGestureRecognizer translationInView:self];
+        [panGestureRecognizer setTranslation:CGPointZero inView:self];
+        
+        CGFloat height = self.height + point.y;
+        if (height < self.gridLength) {
+            height = self.gridLength;
+        }
+        
+        self.frame = CGRectMake(self.x, self.y, self.width, height);
+        [self checkShouldDelegate];
+    }
+    
+    if (state == UIGestureRecognizerStateEnded || state == UIGestureRecognizerStateRecognized) {
+        [self panGestureEnded];
     }
 }
 
 - (void)cornerPanGestureDidRecognized:(UIPanGestureRecognizer *)panGestureRecognizer
 {
-    CGPoint point = [panGestureRecognizer translationInView:self];
-    [panGestureRecognizer setTranslation:CGPointZero inView:self];
-    self.frame = CGRectMake(self.x, self.y, self.width + point.x, self.height + point.y);
-    if (self.delegate && [self.delegate respondsToSelector:@selector(imageViewItemDidChangedFrame:)]) {
-        [self.delegate imageViewItemDidChangedFrame:self];
+    UIGestureRecognizerState state = panGestureRecognizer.state;
+    
+    if (state == UIGestureRecognizerStateBegan || state == UIGestureRecognizerStateCancelled || state == UIGestureRecognizerStateFailed) {
+        // do nothing
+    }
+    
+    if (state == UIGestureRecognizerStateChanged) {
+        CGPoint point = [panGestureRecognizer translationInView:self];
+        [panGestureRecognizer setTranslation:CGPointZero inView:self];
+        
+        CGFloat width = self.width + point.x;
+        if (width < self.gridLength) {
+            width = self.gridLength;
+        }
+        
+        CGFloat height = self.height + point.y;
+        if (height < self.gridLength) {
+            height = self.gridLength;
+        }
+        
+        self.frame = CGRectMake(self.x, self.y, width, height);
+        [self checkShouldDelegate];
+    }
+    
+    if (state == UIGestureRecognizerStateEnded || state == UIGestureRecognizerStateRecognized) {
+        [self panGestureEnded];
     }
 }
 
 - (void)didTappedSelf:(UITapGestureRecognizer *)tapGestureRecognizer
 {
     self.isSelected = YES;
+}
+
+#pragma mark - private methods
+- (void)checkShouldDelegate
+{
+    NSInteger coordinateWidth = (NSInteger)ceil(self.frame.size.width / self.gridLength);
+    if (coordinateWidth < 2) {
+        coordinateWidth = 2;
+    }
+    NSInteger coordinateHeight = (NSInteger)ceil(self.frame.size.height / self.gridLength);
+    if (coordinateHeight < 2) {
+        coordinateHeight = 2;
+    }
+    
+    BOOL shouldDelegate = NO;
+    
+    if (coordinateWidth != self.coordinateWidth) {
+        shouldDelegate = YES;
+        self.coordinateWidth = coordinateWidth;
+    }
+    if (coordinateHeight != self.coordinateHeight) {
+        shouldDelegate = YES;
+        self.coordinateHeight = coordinateHeight;
+    }
+    
+    if (shouldDelegate) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicViewItemDidChangedSize:)]) {
+            [self.delegate dynamicViewItemDidChangedSize:self];
+        }
+    }
+}
+
+- (void)panGestureEnded
+{
+    [UIView animateWithDuration:0.3f animations:^{
+        self.frame = [self refreshFrame];
+        [self layoutIfNeeded];
+    }];
 }
 
 #pragma mark - getters and setters
@@ -187,8 +281,8 @@
     }
     
     if (shouldDelegate) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(imageViewItemDidChangedSelect:)]) {
-            [self.delegate imageViewItemDidChangedSelect:self];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicViewItemDidChangedSelect:)]) {
+            [self.delegate dynamicViewItemDidChangedSelect:self];
         }
     }
 }

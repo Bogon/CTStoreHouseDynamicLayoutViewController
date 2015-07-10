@@ -8,19 +8,32 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CTDynamicBaseViewItemDelegate;
+
 @interface CTDynamicBaseViewItem : UIView
 
 @property (nonatomic, assign) CGPoint upLeftPoint;
 @property (nonatomic, assign) CGPoint downRightPoint;
 
-@property (nonatomic, assign) NSInteger width;
-@property (nonatomic, assign) NSInteger height;
+@property (nonatomic, assign) NSInteger coordinateWidth;
+@property (nonatomic, assign) NSInteger coordinateHeight;
 
 @property (nonatomic, assign) CGFloat gridLength;
 @property (nonatomic, assign) CGFloat itemGap;
 
+@property (nonatomic, assign) BOOL isSelected;
+
+@property (nonatomic, weak) id<CTDynamicBaseViewItemDelegate> delegate;
+
 - (CGRect)refreshFrame;
 - (void)refreshCoordinator;
 - (void)makeRandomeSize;
+
+@end
+
+@protocol CTDynamicBaseViewItemDelegate <NSObject>
+
+- (void)dynamicViewItemDidChangedSize:(CTDynamicBaseViewItem *)viewItem;
+- (void)dynamicViewItemDidChangedSelect:(CTDynamicBaseViewItem *)viewItem;
 
 @end

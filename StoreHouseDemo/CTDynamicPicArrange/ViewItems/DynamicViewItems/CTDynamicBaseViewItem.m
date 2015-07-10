@@ -24,8 +24,8 @@
 {
     CGFloat x = self.upLeftPoint.x * self.gridLength + self.itemGap;
     CGFloat y = self.upLeftPoint.y * self.gridLength + self.itemGap;
-    CGFloat width = self.width * self.gridLength - self.itemGap * 2;
-    CGFloat height = self.height * self.gridLength - self.itemGap * 2;
+    CGFloat width = self.coordinateWidth * self.gridLength - self.itemGap * 2;
+    CGFloat height = self.coordinateHeight * self.gridLength - self.itemGap * 2;
     return CGRectMake(x, y, width, height);
 }
 
@@ -38,8 +38,8 @@
     
     self.upLeftPoint = CGPointMake((NSInteger)ceil(x / self.gridLength), (NSInteger)ceil(y / self.gridLength));
     self.downRightPoint = CGPointMake(self.upLeftPoint.x + (NSInteger)ceil(width / self.itemGap), self.upLeftPoint.y + (NSInteger)ceil(height / self.itemGap));
-    self.width = self.downRightPoint.y - self.upLeftPoint.y;
-    self.height = self.downRightPoint.x - self.downRightPoint.x;
+    self.coordinateWidth = self.downRightPoint.y - self.upLeftPoint.y;
+    self.coordinateHeight = self.downRightPoint.x - self.downRightPoint.x;
 }
 
 #pragma mark - getters and setters
@@ -48,19 +48,19 @@
     NSInteger width = arc4random_uniform(6);
     NSInteger height = arc4random_uniform(6);
     
-    self.width = (width < 2) ? 2 : width;
-    self.height = (height < 2) ? 2 : height;
+    self.coordinateWidth = (width < 2) ? 2 : width;
+    self.coordinateHeight = (height < 2) ? 2 : height;
 }
 
 - (CGPoint)downRightPoint
 {
-    return CGPointMake(self.upLeftPoint.x + self.width, self.upLeftPoint.y + self.height);
+    return CGPointMake(self.upLeftPoint.x + self.coordinateWidth, self.upLeftPoint.y + self.coordinateHeight);
 }
 
 - (void)setDownRightPoint:(CGPoint)downRightPoint
 {
-    self.width = downRightPoint.x - self.upLeftPoint.x;
-    self.height = downRightPoint.y - self.upLeftPoint.y;
+    self.coordinateWidth = downRightPoint.x - self.upLeftPoint.x;
+    self.coordinateHeight = downRightPoint.y - self.upLeftPoint.y;
 }
 
 @end

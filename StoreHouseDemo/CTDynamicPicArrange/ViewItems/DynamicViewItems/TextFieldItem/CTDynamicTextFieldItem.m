@@ -18,6 +18,8 @@
 
 @implementation CTDynamicTextFieldItem
 
+@synthesize isSelected = _isSelected;
+
 #pragma mark - life cycle
 - (instancetype)initWithFontStyle:(CTDynamicTextFieldItemFontStyle)style
 {
@@ -161,13 +163,13 @@
     }
     
     if (shouldDelegate) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(textFieldItemDidChangedSelect:)]) {
-            [self.delegate textFieldItemDidChangedSelect:self];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicViewItemDidChangedSelect:)]) {
+            [self.delegate dynamicViewItemDidChangedSelect:self];
         }
     }
 }
 
-- (NSInteger)width
+- (NSInteger)coordinateWidth
 {
     return 6;
 }

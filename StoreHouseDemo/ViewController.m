@@ -60,6 +60,10 @@
 - (void)didTappedShowButton:(UIButton *)button
 {
     CTDynamicPicArrangeViewController *viewController = [[CTDynamicPicArrangeViewController alloc] initWithImages:@[
+                                                                                                                    [UIImage imageNamed:@"test"],
+                                                                                                                    [UIImage imageNamed:@"test"],
+                                                                                                                    [UIImage imageNamed:@"test"],
+                                                                                                                    [UIImage imageNamed:@"test"],
                                                                                                                     [UIImage imageNamed:@"test"]
                                                                                                                     ]];
     [self presentViewController:viewController animated:YES completion:nil];
@@ -89,7 +93,6 @@
 {
     if (_imageItem == nil) {
         _imageItem = [[CTDynamicImageViewItem alloc] initWithImage:[UIImage imageNamed:@"test"]];
-        _imageItem.backgroundColor = [UIColor grayColor];
     }
     return _imageItem;
 }
@@ -98,7 +101,6 @@
 {
     if (_textFieldItem == nil) {
         _textFieldItem = [[CTDynamicTextFieldItem alloc] initWithFontStyle:CTDynamicTextFieldEditBarFontStyleHeader];
-        _textFieldItem.backgroundColor = [UIColor grayColor];
     }
     return _textFieldItem;
 }

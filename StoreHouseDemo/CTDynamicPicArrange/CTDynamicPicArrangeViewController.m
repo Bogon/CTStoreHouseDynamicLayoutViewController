@@ -18,7 +18,7 @@
 
 #import "CTDynamicLayoutCalculator.h"
 
-@interface CTDynamicPicArrangeViewController () <CTDynamicPicNavigationBarDelegate>
+@interface CTDynamicPicArrangeViewController () <CTDynamicPicNavigationBarDelegate, CTDynamicBaseViewItemDelegate>
 
 @property (nonatomic, strong) CTDynamicTextFieldEditBar *textFieldEditBar;
 @property (nonatomic, strong) CTDynamicImageEditBar *imageEditBar;
@@ -42,8 +42,8 @@
             __strong typeof(weakSelf) strongSelf = weakSelf;
             if ([image isKindOfClass:[UIImage class]]) {
                 CTDynamicImageViewItem *imageItem = [[CTDynamicImageViewItem alloc] initWithImage:image];
+                imageItem.delegate = self;
                 [imageItem makeRandomeSize];
-                imageItem.backgroundColor = [UIColor grayColor];
                 [strongSelf.scrollView addSubview:imageItem];
             }
         }];
@@ -85,6 +85,28 @@
 {
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+#pragma mark - CTDynamicBaseViewItemDelegate
+- (void)dynamicViewItemDidChangedSize:(CTDynamicBaseViewItem *)viewItem
+{
+    NSArray *viewsToAnimate = [self.calculator recalculateFromCoordinator:viewItem.upLeftPoint];
+    [UIView animateWithDuration:0.3f animations:^{
+        [viewsToAnimate enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *item, NSUInteger idx, BOOL *stop) {
+            item.frame = [item refreshFrame];
+        }];
+    }];
+}
+
+- (void)dynamicViewItemDidChangedSelect:(CTDynamicBaseViewItem *)viewItem
+{
+    if (viewItem.isSelected) {
+        [self.scrollView.subviews enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *item, NSUInteger idx, BOOL *stop) {
+            if ([item isKindOfClass:[CTDynamicBaseViewItem class]] && item != viewItem) {
+                item.isSelected = NO;
+            }
+        }];
+    }
 }
 
 #pragma mark - CTDynamicPicNavigationBarDelegate

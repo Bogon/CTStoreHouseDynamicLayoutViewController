@@ -14,24 +14,12 @@ typedef NS_ENUM(NSUInteger, CTDynamicTextFieldItemFontStyle) {
     CTDynamicTextFieldEditBarFontStyleNormal
 };
 
-@protocol CTDynamicTextFieldItemDelegate;
-
 @interface CTDynamicTextFieldItem : CTDynamicBaseViewItem
 
-@property (nonatomic, assign) BOOL isSelected;
-@property (nonatomic, assign) CTDynamicTextFieldItemFontStyle fontStyle;
-
-@property (nonatomic, weak) id<CTDynamicTextFieldItemDelegate> delegate;
 @property (nonatomic, strong, readonly) UITextField *textField;
+@property (nonatomic, assign) CTDynamicTextFieldItemFontStyle fontStyle;
 
 - (instancetype)initWithFontStyle:(CTDynamicTextFieldItemFontStyle)style;
 - (void)sizeToFit;
-
-@end
-
-@protocol CTDynamicTextFieldItemDelegate <NSObject>
-
-- (void)textFieldItemDidChangedFrame:(CTDynamicTextFieldItem *)textFieldItem;
-- (void)textFieldItemDidChangedSelect:(CTDynamicTextFieldItem *)textFieldItem;
 
 @end

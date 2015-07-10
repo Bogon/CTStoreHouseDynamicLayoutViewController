@@ -12,16 +12,7 @@
 
 @interface CTDynamicImageViewItem : CTDynamicBaseViewItem
 
-@property (nonatomic, assign) BOOL isSelected;
-@property (nonatomic, weak) id<CTDynamicImageViewItemDelegate> delegate;
-
 - (instancetype)initWithImage:(UIImage *)image;
 
 @end
 
-@protocol CTDynamicImageViewItemDelegate <NSObject>
-
-- (void)imageViewItemDidChangedFrame:(CTDynamicImageViewItem *)imageViewItem;
-- (void)imageViewItemDidChangedSelect:(CTDynamicImageViewItem *)imageViewItem;
-
-@end

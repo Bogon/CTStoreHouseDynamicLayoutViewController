@@ -7,7 +7,6 @@
 //
 
 #import "CTDynamicLayoutCalculator.h"
-#import "UIView+LayoutMethods.h"
 
 NSString * const kCTDynamicLayoutCalculatorInfoKeyView = @"kCTDynamicLayoutCalculatorInfoKeyView";
 NSString * const kCTDynamicLayoutCalculatorInfoKeyFrame = @"kCTDynamicLayoutCalculatorInfoKeyFrame";
@@ -101,8 +100,8 @@ NSString * const kCTDynamicLayoutCalculatorViewInfoKeyView = @"kCTDynamicLayoutC
 {
     NSInteger xStartIndex = viewItem.upLeftPoint.x;
     NSInteger yStartIndex = viewItem.upLeftPoint.y;
-    NSInteger xEndIndex = xStartIndex + viewItem.width;
-    NSInteger yEndIndex = yStartIndex + viewItem.height;
+    NSInteger xEndIndex = xStartIndex + viewItem.coordinateWidth;
+    NSInteger yEndIndex = yStartIndex + viewItem.coordinateHeight;
     
     for (NSInteger xIndex = xStartIndex; xStartIndex <= xEndIndex; xStartIndex++) {
         for (NSInteger yIndex = yStartIndex; yStartIndex <= yEndIndex; yStartIndex++) {
@@ -115,8 +114,8 @@ NSString * const kCTDynamicLayoutCalculatorViewInfoKeyView = @"kCTDynamicLayoutC
 - (void)markWithView:(CTDynamicBaseViewItem *)view
 {
     CGPoint upLeftCoordinator = view.upLeftPoint;
-    for (NSInteger xIndex = 0; xIndex < view.width; xIndex++) {
-        for (NSInteger yIndex = 0; yIndex < view.height; yIndex++) {
+    for (NSInteger xIndex = 0; xIndex < view.coordinateWidth; xIndex++) {
+        for (NSInteger yIndex = 0; yIndex < view.coordinateHeight; yIndex++) {
             NSValue *key = [NSValue valueWithCGPoint:CGPointMake(xIndex+upLeftCoordinator.x, yIndex+upLeftCoordinator.y)];
             self.spaceMap[key] = view;
         }
@@ -155,8 +154,12 @@ NSString * const kCTDynamicLayoutCalculatorViewInfoKeyView = @"kCTDynamicLayoutC
 - (BOOL)isFitForView:(CTDynamicBaseViewItem *)view atPoint:(CGPoint)point
 {
     
-    NSInteger xEndIndex = point.x + view.width;
-    NSInteger yEndIndex = point.y + view.height;
+    NSInteger xEndIndex = point.x + view.coordinateWidth;
+    NSInteger yEndIndex = point.y + view.coordinateHeight;
+    
+    if (xEndIndex > 6) {
+        return NO;
+    }
     
     BOOL isFit = YES;
     for (NSInteger yIndex = point.y; yIndex <= yEndIndex; yIndex++) {
@@ -208,7 +211,7 @@ NSString * const kCTDynamicLayoutCalculatorViewInfoKeyView = @"kCTDynamicLayoutC
 - (CGFloat)gridLength
 {
     if (_gridLength == 0) {
-        _gridLength = self.superView.width / 6.0f;
+        _gridLength = self.superView.frame.size.width / 6.0f;
     }
     return _gridLength;
 }
