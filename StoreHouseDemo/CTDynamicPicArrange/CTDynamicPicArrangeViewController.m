@@ -127,6 +127,16 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - event response
+- (void)didTappedScrollView:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    [self.scrollView.subviews enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *view, NSUInteger idx, BOOL *stop) {
+        if ([view isKindOfClass:[CTDynamicBaseViewItem class]]) {
+            view.isSelected = NO;
+        }
+    }];
+}
+
 #pragma mark - getters and setters
 - (CTDynamicPicNavigationBar *)navBar
 {
@@ -141,6 +151,11 @@
 {
     if (_scrollView == nil) {
         _scrollView = [[UIScrollView alloc] init];
+        
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTappedScrollView:)];
+        tapGestureRecognizer.numberOfTapsRequired = 1;
+        tapGestureRecognizer.numberOfTouchesRequired = 1;
+        [_scrollView addGestureRecognizer:tapGestureRecognizer];
     }
     return _scrollView;
 }

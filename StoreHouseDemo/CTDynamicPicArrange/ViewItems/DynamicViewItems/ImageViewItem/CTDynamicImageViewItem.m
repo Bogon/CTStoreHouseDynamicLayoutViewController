@@ -28,6 +28,7 @@
 {
     self = [super init];
     if (self) {
+        self.upLeftPoint = CGPointZero;
         self.imageView.image = image;
         [self addSubview:self.imageView];
         [self addSubview:self.horizontalDragPointView];
@@ -44,7 +45,6 @@
 
 - (void)layoutSubviews
 {
-    [super layoutSubviews];
     [self.imageView leftInContainer:4 shouldResize:YES];
     [self.imageView rightInContainer:4 shouldResize:YES];
     [self.imageView topInContainer:4 shouldResize:YES];
