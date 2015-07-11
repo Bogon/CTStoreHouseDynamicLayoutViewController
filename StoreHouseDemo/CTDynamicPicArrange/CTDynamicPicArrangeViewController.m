@@ -73,13 +73,6 @@
     [self.navBar rightInContainer:0 shouldResize:YES];
     [self.navBar topInContainer:0 shouldResize:NO];
     
-//    NSArray *viewArray = [self.calculator calculate];
-//    for (CTDynamicBaseViewItem *viewItem in viewArray) {
-//        if ([viewItem isKindOfClass:[CTDynamicBaseViewItem class]]) {
-//            viewItem.frame = [viewItem refreshFrame];
-//        }
-//    }
-    
     [self dynamicViewItemDidChangedSize:nil];
 }
 
@@ -90,6 +83,11 @@
 }
 
 #pragma mark - CTDynamicBaseViewItemDelegate
+- (void)dynamicViewItemDidChangedPosition:(CTDynamicBaseViewItem *)viewItem
+{
+    
+}
+
 - (void)dynamicViewItemDidChangedSize:(CTDynamicBaseViewItem *)viewItem
 {
     NSArray *viewsToAnimate = [self.calculator calculate];

@@ -8,28 +8,32 @@
 
 #import "CTDynamicBaseViewItem.h"
 
+@interface CTDynamicBaseViewItem ()
+
+
+@end
+
 @implementation CTDynamicBaseViewItem
 
+#pragma mark - life cycle
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         _gridLength = [UIScreen mainScreen].bounds.size.width / 6.0f;
         _itemGap = 3;
+        
         UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressDidRecognized:)];
-        longPressGestureRecognizer.numberOfTapsRequired = 1;
-        longPressGestureRecognizer.numberOfTouchesRequired = 1;
-        longPressGestureRecognizer.minimumPressDuration = 1;
         [self addGestureRecognizer:longPressGestureRecognizer];
         
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTappedSelf:)];
-        tapGestureRecognizer.numberOfTapsRequired = 1;
-        tapGestureRecognizer.numberOfTouchesRequired = 1;
+        [tapGestureRecognizer requireGestureRecognizerToFail:longPressGestureRecognizer];
         [self addGestureRecognizer:tapGestureRecognizer];
     }
     return self;
 }
 
+#pragma mark - public methods
 - (CGRect)refreshFrame
 {
     CGFloat x = self.upLeftPoint.x * self.gridLength + self.itemGap;
@@ -52,21 +56,37 @@
     self.coordinateHeight = self.downRightPoint.x - self.downRightPoint.x;
 }
 
+- (void)makeRandomeSize
+{
+//    NSInteger width = arc4random_uniform(6);
+//    NSInteger height = arc4random_uniform(6);
+//    
+//    self.coordinateWidth = (width < 2) ? 2 : width;
+//    self.coordinateHeight = (height < 2) ? 2 : height;
+    
+    self.coordinateHeight = 2;
+    self.coordinateWidth = 2;
+}
+
 #pragma mark - event response
 - (void)longPressDidRecognized:(UILongPressGestureRecognizer *)longPressRecognizer
 {
     UIGestureRecognizerState state = longPressRecognizer.state;
+    
     if (state == UIGestureRecognizerStateBegan) {
         [self activate];
     }
+    
     if (state == UIGestureRecognizerStateChanged) {
+        self.center =[longPressRecognizer locationInView:self.superview];
     }
+    
     if (state == UIGestureRecognizerStateEnded || state == UIGestureRecognizerStateRecognized) {
         [self deactivate];
     }
 }
 
-- (void)didTappedSelf:(UITapGestureRecognizer *)tapGestureRecognizer
+- (void)didTappedSelf:(UIGestureRecognizer *)gestureRecognizer
 {
     self.isSelected = YES;
 }
@@ -74,29 +94,45 @@
 #pragma mark - private methods
 - (void)activate
 {
+    self.isSelected = YES;
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicViewItemDidChangedSelect:)]) {
+        [self.delegate dynamicViewItemDidChangedSelect:self];
+    }
+
+    CGRect newFrame = self.frame;
+    newFrame.origin.x -= 5;
+    newFrame.origin.y -= 5;
+    newFrame.size.width += 10;
+    newFrame.size.height += 10;
+    
     [UIView animateWithDuration:0.3f animations:^{
         self.layer.shadowColor = [[UIColor blackColor] CGColor];
         self.layer.shadowRadius = 5;
         self.layer.shadowOpacity = 0.8;
-        self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.frame].CGPath;
-        self.frame = CGRectMake(self.frame.origin.x - 3, self.frame.origin.y - 3, self.frame.size.width + 6, self.frame.size.height + 6);
+        self.layer.shadowOffset = CGSizeZero;
+        self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
+        self.frame = newFrame;
     }];
 }
 
 - (void)deactivate
 {
+    CGRect newFrame = self.frame;
+    newFrame.origin.x += 5;
+    newFrame.origin.y += 5;
+    newFrame.size.width -= 10;
+    newFrame.size.height -= 10;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.layer.shadowColor = [[UIColor clearColor] CGColor];
+        self.layer.shadowRadius = 0;
+        self.layer.shadowOpacity = 0.0;
+        self.frame = newFrame;
+    }];
 }
 
 #pragma mark - getters and setters
-- (void)makeRandomeSize
-{
-    NSInteger width = arc4random_uniform(6);
-    NSInteger height = arc4random_uniform(6);
-    
-    self.coordinateWidth = (width < 2) ? 2 : width;
-    self.coordinateHeight = (height < 2) ? 2 : height;
-}
-
 - (CGPoint)downRightPoint
 {
     return CGPointMake(self.upLeftPoint.x + self.coordinateWidth, self.upLeftPoint.y + self.coordinateHeight);

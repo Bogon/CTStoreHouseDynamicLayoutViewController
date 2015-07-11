@@ -33,6 +33,7 @@
 
 @protocol CTDynamicBaseViewItemDelegate <NSObject>
 
+- (void)dynamicViewItemDidChangedPosition:(CTDynamicBaseViewItem *)viewItem;
 - (void)dynamicViewItemDidChangedSize:(CTDynamicBaseViewItem *)viewItem;
 - (void)dynamicViewItemDidChangedSelect:(CTDynamicBaseViewItem *)viewItem;
 
