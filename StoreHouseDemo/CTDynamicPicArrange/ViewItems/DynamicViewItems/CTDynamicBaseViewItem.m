@@ -22,6 +22,7 @@
     if (self) {
         _gridLength = [UIScreen mainScreen].bounds.size.width / 6.0f;
         _itemGap = 3;
+        self.layer.zPosition = FLT_MIN + 1;
         
         UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressDidRecognized:)];
         [self addGestureRecognizer:longPressGestureRecognizer];
@@ -157,7 +158,7 @@
         self.layer.shadowOpacity = 0.0;
         self.frame = [self refreshFrame];
     } completion:^(BOOL finished) {
-        self.layer.zPosition = -FLT_MAX;
+        self.layer.zPosition = FLT_MIN + 1;
     }];
 }
 

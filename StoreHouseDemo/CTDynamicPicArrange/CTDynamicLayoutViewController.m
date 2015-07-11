@@ -22,6 +22,7 @@
 
 @property (nonatomic, strong) CTDynamicTextFieldEditBar *textFieldEditBar;
 @property (nonatomic, strong) CTDynamicImageEditBar *imageEditBar;
+@property (nonatomic, strong) UIView *positionView;
 
 @property (nonatomic, strong) CTDynamicPicNavigationBar *navBar;
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -37,6 +38,9 @@
 {
     self = [super init];
     if (self) {
+        
+        [self.scrollView addSubview:self.positionView];
+        
         __weak typeof(self) weakSelf = self;
         [imageList enumerateObjectsUsingBlock:^(UIImage *image, NSUInteger idx, BOOL *stop) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -108,6 +112,8 @@
         frame.size.height += 40;
         frame.origin.y -= 20;
         [self.scrollView scrollRectToVisible:frame animated:YES];
+    } else {
+        self.positionView.frame = CGRectZero;
     }
 }
 
@@ -147,10 +153,12 @@
         CGRect newFrame = [viewItem refreshFrame];
         __block CGFloat maxHeight = newFrame.origin.y + newFrame.size.height;
         [viewsToAnimate enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *item, NSUInteger idx, BOOL *stop) {
-            if (item != viewItem) {
-                item.frame = [item refreshFrame];
-                if (item.bottom >= maxHeight) {
-                    maxHeight = item.bottom;
+            if ([item isKindOfClass:[CTDynamicBaseViewItem class]]) {
+                if (item != viewItem) {
+                    item.frame = [item refreshFrame];
+                    if (item.bottom >= maxHeight) {
+                        maxHeight = item.bottom;
+                    }
                 }
             }
         }];
@@ -158,6 +166,8 @@
         newFrame.size.height +=40;
         newFrame.origin.y -= 20;
         [strongSelf.scrollView scrollRectToVisible:newFrame animated:NO];
+        
+        self.positionView.frame = [viewItem refreshFrame];
     }];
 }
 
@@ -193,6 +203,16 @@
         _calculator.superView = self.scrollView;
     }
     return _calculator;
+}
+
+- (UIView *)positionView
+{
+    if (_positionView == nil) {
+        _positionView = [[UIView alloc] init];
+        _positionView.backgroundColor = [UIColor grayColor];
+        _positionView.layer.zPosition = FLT_MIN;
+    }
+    return _positionView;
 }
 
 @end
