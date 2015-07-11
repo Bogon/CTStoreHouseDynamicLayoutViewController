@@ -17,6 +17,7 @@
 @property (nonatomic, assign, readonly) CGFloat gridLength;
 
 - (NSArray *)calculate;
+- (NSArray *)calculateForView:(CTDynamicBaseViewItem *)view;
 - (void)addViews:(NSArray *)viewList;
 - (NSArray *)deleteView:(CTDynamicBaseViewItem *)view;
 

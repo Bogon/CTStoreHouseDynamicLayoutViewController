@@ -28,6 +28,7 @@
 - (CGRect)refreshFrame;
 - (void)refreshCoordinator;
 - (void)makeRandomeSize;
+- (BOOL)containsPoint:(CGPoint)point;
 
 @end
 

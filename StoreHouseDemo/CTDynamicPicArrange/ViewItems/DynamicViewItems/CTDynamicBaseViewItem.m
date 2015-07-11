@@ -65,6 +65,21 @@
     self.coordinateHeight = (height < 2) ? 2 : height;
 }
 
+- (BOOL)containsPoint:(CGPoint)point
+{
+    BOOL result = NO;
+    
+    NSInteger minX = (NSInteger)ceil(self.frame.origin.x / self.gridLength);
+    NSInteger minY = (NSInteger)ceil(self.frame.origin.y / self.gridLength);
+    NSInteger maxX = minX + self.coordinateWidth;
+    NSInteger maxY = minY + self.coordinateHeight;
+    
+    if (point.x >= minX && point.x <= maxX && point.y >= minY && point.y <= maxY) {
+        result = YES;
+    }
+    return result;
+}
+
 #pragma mark - event response
 - (void)longPressDidRecognized:(UILongPressGestureRecognizer *)longPressRecognizer
 {
@@ -76,6 +91,9 @@
     
     if (state == UIGestureRecognizerStateChanged) {
         self.center =[longPressRecognizer locationInView:self.superview];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicViewItemDidChangedPosition:)]) {
+            [self.delegate dynamicViewItemDidChangedPosition:self];
+        }
     }
     
     if (state == UIGestureRecognizerStateEnded || state == UIGestureRecognizerStateRecognized) {
@@ -116,8 +134,6 @@
 
 - (void)deactivate
 {
-    self.layer.zPosition = -FLT_MAX;
-    
     CGRect newFrame = self.frame;
     newFrame.origin.x += 5;
     newFrame.origin.y += 5;
@@ -128,7 +144,9 @@
         self.layer.shadowColor = [[UIColor clearColor] CGColor];
         self.layer.shadowRadius = 0;
         self.layer.shadowOpacity = 0.0;
-        self.frame = newFrame;
+        self.frame = [self refreshFrame];
+    } completion:^(BOOL finished) {
+        self.layer.zPosition = -FLT_MAX;
     }];
 }
 

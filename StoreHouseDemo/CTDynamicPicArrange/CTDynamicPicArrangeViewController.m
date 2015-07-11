@@ -85,31 +85,14 @@
 #pragma mark - CTDynamicBaseViewItemDelegate
 - (void)dynamicViewItemDidChangedPosition:(CTDynamicBaseViewItem *)viewItem
 {
-    
+    NSArray *viewsToAnimate = [self.calculator calculateForView:viewItem];
+    [self animateWithTargetViewItem:viewItem viewsToAnimate:viewsToAnimate];
 }
 
 - (void)dynamicViewItemDidChangedSize:(CTDynamicBaseViewItem *)viewItem
 {
     NSArray *viewsToAnimate = [self.calculator calculate];
-    __weak typeof(self) weakSelf = self;
-    [UIView animateWithDuration:0.3f animations:^{
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        
-        CGRect newFrame = [viewItem refreshFrame];
-        __block CGFloat maxHeight = newFrame.origin.y + newFrame.size.height;
-        [viewsToAnimate enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *item, NSUInteger idx, BOOL *stop) {
-            if (item != viewItem) {
-                item.frame = [item refreshFrame];
-                if (item.bottom >= maxHeight) {
-                    maxHeight = item.bottom;
-                }
-            }
-        }];
-        strongSelf.scrollView.contentSize = CGSizeMake(strongSelf.scrollView.width, maxHeight + 40);
-        newFrame.size.height +=40;
-        newFrame.origin.y -= 20;
-        [strongSelf.scrollView scrollRectToVisible:newFrame animated:NO];
-    }];
+    [self animateWithTargetViewItem:viewItem viewsToAnimate:viewsToAnimate];
 }
 
 - (void)dynamicViewItemDidChangedSelect:(CTDynamicBaseViewItem *)viewItem
@@ -151,6 +134,30 @@
         if ([view isKindOfClass:[CTDynamicBaseViewItem class]]) {
             view.isSelected = NO;
         }
+    }];
+}
+
+#pragma mark - private methods
+- (void)animateWithTargetViewItem:(CTDynamicBaseViewItem *)viewItem viewsToAnimate:(NSArray *)viewsToAnimate
+{
+    __weak typeof(self) weakSelf = self;
+    [UIView animateWithDuration:0.3f animations:^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        
+        CGRect newFrame = [viewItem refreshFrame];
+        __block CGFloat maxHeight = newFrame.origin.y + newFrame.size.height;
+        [viewsToAnimate enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *item, NSUInteger idx, BOOL *stop) {
+            if (item != viewItem) {
+                item.frame = [item refreshFrame];
+                if (item.bottom >= maxHeight) {
+                    maxHeight = item.bottom;
+                }
+            }
+        }];
+        strongSelf.scrollView.contentSize = CGSizeMake(strongSelf.scrollView.width, maxHeight + 40);
+        newFrame.size.height +=40;
+        newFrame.origin.y -= 20;
+        [strongSelf.scrollView scrollRectToVisible:newFrame animated:NO];
     }];
 }
 

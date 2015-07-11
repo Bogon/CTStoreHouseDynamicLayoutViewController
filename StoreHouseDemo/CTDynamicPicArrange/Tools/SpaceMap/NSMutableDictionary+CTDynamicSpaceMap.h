@@ -13,7 +13,7 @@
 - (void)CTDSM_addView:(CTDynamicBaseViewItem *)view;
 - (void)CTDSM_deleteView:(CTDynamicBaseViewItem *)view;
 - (void)CTDSM_cleanAll;
-- (NSArray *)CTDSM_viewsInMapOrder;
+- (NSMutableArray *)CTDSM_viewsInMapOrder;
 
 - (CTDynamicBaseViewItem *)CTDSM_viewForPoint:(CGPoint)point;
 - (CGPoint)CTDSM_pointAvailableForView:(CTDynamicBaseViewItem *)view;

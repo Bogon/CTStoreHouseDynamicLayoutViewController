@@ -69,7 +69,7 @@
     return pointAvailable;
 }
 
-- (NSArray *)CTDSM_viewsInMapOrder
+- (NSMutableArray *)CTDSM_viewsInMapOrder
 {
     NSMutableArray *viewList = [[NSMutableArray alloc] init];
     
@@ -77,7 +77,7 @@
     for (NSInteger yIndex = 0; true; yIndex++) {
         NSInteger emptyCount = 0;
         for (NSInteger xIndex = 0; xIndex < 6; xIndex++) {
-            UIView *view = self[@(xIndex)][@(yIndex)];
+            CTDynamicBaseViewItem *view = self[@(xIndex)][@(yIndex)];
             
             if (view == nil) {
                 emptyCount++;
@@ -88,6 +88,7 @@
             }
             
             if (view && ![viewList containsObject:view]) {
+                view.upLeftPoint = CGPointMake(xIndex, yIndex);
                 [viewList addObject:view];
             }
         }

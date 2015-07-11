@@ -78,9 +78,52 @@ NSString * const kCTDynamicLayoutCalculatorViewInfoKeyView = @"kCTDynamicLayoutC
     }
     [self.spaceMap CTDSM_cleanAll];
     [viewListToRecalculate enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *view, NSUInteger idx, BOOL *stop) {
-        view.upLeftPoint = [self.spaceMap CTDSM_pointAvailableForView:view];
-        [self.spaceMap CTDSM_addView:view];
+        if ([view isKindOfClass:[CTDynamicBaseViewItem class]]) {
+            view.upLeftPoint = [self.spaceMap CTDSM_pointAvailableForView:view];
+            [self.spaceMap CTDSM_addView:view];
+        }
     }];
+    return viewListToRecalculate;
+}
+
+- (NSArray *)calculateForView:(CTDynamicBaseViewItem *)view
+{
+    NSMutableDictionary *originSpaceMap = [self.spaceMap mutableCopy];
+    
+    NSMutableArray *viewListToRecalculate = [self.spaceMap CTDSM_viewsInMapOrder];
+    [viewListToRecalculate removeObject:view];
+    [self.spaceMap CTDSM_cleanAll];
+    
+    __block BOOL shouldRollback = YES;
+    [viewListToRecalculate enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *viewItem, NSUInteger idx, BOOL *stop) {
+        if ([viewItem isKindOfClass:[CTDynamicBaseViewItem class]]) {
+            if (shouldRollback) {
+                if ([view containsPoint:CGPointZero]) {
+                    view.upLeftPoint = CGPointZero;
+                    [self.spaceMap CTDSM_addView:view];
+                    shouldRollback = NO;
+                }
+            }
+            
+            viewItem.upLeftPoint = [self.spaceMap CTDSM_pointAvailableForView:viewItem];
+            [self.spaceMap CTDSM_addView:viewItem];
+            
+            if (shouldRollback) {
+                CGPoint upLeftPoint = [self.spaceMap CTDSM_pointAvailableForView:view];
+
+                if ([view containsPoint:upLeftPoint]) {
+                    view.upLeftPoint = upLeftPoint;
+                    [self.spaceMap CTDSM_addView:view];
+                    shouldRollback = NO;
+                }
+            }
+        }
+    }];
+    
+    if (shouldRollback) {
+        viewListToRecalculate = [originSpaceMap CTDSM_viewsInMapOrder];
+    }
+    
     return viewListToRecalculate;
 }
 
