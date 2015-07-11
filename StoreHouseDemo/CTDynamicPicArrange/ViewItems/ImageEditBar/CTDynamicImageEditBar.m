@@ -15,8 +15,6 @@
 @property (nonatomic, strong) UIButton *deleteButton;
 @property (nonatomic, strong) UIView *seperateLine;
 
-@property (nonatomic, assign, readwrite) BOOL isShowing;
-
 @end
 
 @implementation CTDynamicImageEditBar
@@ -36,53 +34,48 @@
 
 - (void)layoutSubviews
 {
-    if (self.isShowing) {
-        self.editButton.size = CGSizeMake(self.height - 6, self.height - 6);
-        [self.editButton leftInContainer:3 shouldResize:NO];
-        [self.editButton centerYEqualToView:self];
-        
-        [self.deleteButton sizeEqualToView:self.editButton];
-        [self.deleteButton rightInContainer:3 shouldResize:NO];
-        [self.deleteButton centerYEqualToView:self];
-        
-        self.seperateLine.size = CGSizeMake(1, self.height - 6);
-        [self.seperateLine centerYEqualToView:self];
-        [self.seperateLine centerXEqualToView:self];
-    }
+    self.editButton.size = CGSizeMake(self.height - 6, self.height - 6);
+    [self.editButton leftInContainer:3 shouldResize:NO];
+    [self.editButton centerYEqualToView:self];
+    
+    [self.deleteButton sizeEqualToView:self.editButton];
+    [self.deleteButton rightInContainer:3 shouldResize:NO];
+    [self.deleteButton centerYEqualToView:self];
+    
+    self.seperateLine.size = CGSizeMake(1, self.height - 6);
+    [self.seperateLine centerYEqualToView:self];
+    [self.seperateLine centerXEqualToView:self];
 }
 
 #pragma mark - public methods
-- (void)showInView:(UIView *)view aboveFrame:(CGRect)aboveFrame
+- (void)showInView:(UIView *)view frame:(CGRect)frame
 {
-    if (self.isShowing) {
-        return;
-    }
-    
-    self.isShowing = YES;
+    [view addSubview:self];
     
     CGFloat buttonheight = 40;
     CGFloat selfWidth = (2 * buttonheight) + 1 + 3*4;
     CGFloat selfHeight = buttonheight + 6;
     
-    self.frame = CGRectMake(aboveFrame.origin.x + aboveFrame.size.width / 2.0f, aboveFrame.origin.y, 0, 0);
-    [view addSubview:self];
+    CGRect initFrame;
+    if (frame.origin.y - selfHeight < 10) {
+        initFrame = CGRectMake(frame.origin.x + frame.size.width / 2.0f, (frame.origin.y + frame.size.height) / 2.0f, 0, 0);
+    } else {
+        initFrame = CGRectMake(frame.origin.x + frame.size.width / 2.0f, frame.origin.y - selfHeight / 2.0f, 0, 0);
+    }
+    self.frame = initFrame;
+    
     
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.8f initialSpringVelocity:1.0 options:0 animations:^{
         __strong typeof(weakSelf) strongSelf = weakSelf;
-        CGFloat targetX = aboveFrame.origin.x + aboveFrame.size.width / 2.0f - selfWidth / 2.0f;
-        CGFloat targetY = aboveFrame.origin.y - selfHeight;
-        strongSelf.frame = CGRectMake(targetX, targetY, selfWidth, selfHeight);
+        CGRect frame = CGRectMake(initFrame.origin.x - selfWidth / 2.0f, initFrame.origin.y - selfHeight / 2.0f, selfWidth, selfHeight);
+        strongSelf.frame = frame;
     } completion:nil];
 }
 
 - (void)hide
 {
-    if (!self.isShowing) {
-        return;
-    }
-    
-    self.isShowing = NO;
+    self.targetImageViewItem = nil;
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.3 animations:^{
         __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -94,6 +87,23 @@
         }
     }];
 }
+
+#pragma mark - private methods
+- (void)showMiddleInView:(UIView *)view frame:(CGRect)frame
+{
+    
+}
+
+- (void)showAboveInView:(UIView *)view frame:(CGRect)frame
+{
+    
+}
+
+- (void)showBottomInView:(UIView *)view frame:(CGRect)frame
+{
+    
+}
+
 
 #pragma mark - event response
 - (void)didTappedEditButton:(UIButton *)editButton

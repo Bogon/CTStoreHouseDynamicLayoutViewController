@@ -93,6 +93,7 @@
     
     self.isShowing = NO;
     self.editBarStyle = CTDynamicTextFieldEditBarStyleUndefined;
+    self.targetViewItem = nil;
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.3 animations:^{
         __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -184,7 +185,7 @@
     UIButton *button1 = nil;
     UIButton *button2 = nil;
     
-    if (self.textfieldItem.fontStyle == CTDynamicTextFieldEditBarFontStyleHeader) {
+    if (self.targetViewItem.fontStyle == CTDynamicTextFieldEditBarFontStyleHeader) {
         if (isCleaned) {
             [self addSubview:self.normalFontButton];
             [self addSubview:self.quoteFontButton];
@@ -192,7 +193,7 @@
         button1 = self.normalFontButton;
         button2 = self.quoteFontButton;
     }
-    if (self.textfieldItem.fontStyle == CTDynamicTextFieldEditBarFontStyleNormal) {
+    if (self.targetViewItem.fontStyle == CTDynamicTextFieldEditBarFontStyleNormal) {
         if (isCleaned) {
             [self addSubview:self.headerFontButton];
             [self addSubview:self.quoteFontButton];
@@ -200,7 +201,7 @@
         button1 = self.headerFontButton;
         button2 = self.quoteFontButton;
     }
-    if (self.textfieldItem.fontStyle == CTDynamicTextFieldEditBarFontStyleQuote) {
+    if (self.targetViewItem.fontStyle == CTDynamicTextFieldEditBarFontStyleQuote) {
         if (isCleaned) {
             [self addSubview:self.headerFontButton];
             [self addSubview:self.normalFontButton];
@@ -292,37 +293,37 @@
 
 - (void)didTappedNormalFontButton:(UIButton *)normalFontButton
 {
-    self.textfieldItem.fontStyle = CTDynamicTextFieldEditBarFontStyleNormal;
+    self.targetViewItem.fontStyle = CTDynamicTextFieldEditBarFontStyleNormal;
     [self hide];
 }
 
 - (void)didTappedHeaderFontButton:(UIButton *)headerFontButton
 {
-    self.textfieldItem.fontStyle = CTDynamicTextFieldEditBarFontStyleHeader;
+    self.targetViewItem.fontStyle = CTDynamicTextFieldEditBarFontStyleHeader;
     [self hide];
 }
 
 - (void)didTappedQuoteFontButton:(UIButton *)quoteFontButton
 {
-    self.textfieldItem.fontStyle = CTDynamicTextFieldEditBarFontStyleQuote;
+    self.targetViewItem.fontStyle = CTDynamicTextFieldEditBarFontStyleQuote;
     [self hide];
 }
 
 - (void)didTappedLeftArrangeButton:(UIButton *)leftArrangeButton
 {
-    self.textfieldItem.textField.textAlignment = NSTextAlignmentLeft;
+    self.targetViewItem.textField.textAlignment = NSTextAlignmentLeft;
     [self hide];
 }
 
 - (void)didTappedCenterArrangeButton:(UIButton *)centerArrangeButton
 {
-    self.textfieldItem.textField.textAlignment = NSTextAlignmentCenter;
+    self.targetViewItem.textField.textAlignment = NSTextAlignmentCenter;
     [self hide];
 }
 
 - (void)didTappedRightArrangeButton:(UIButton *)rightArrangeButton
 {
-    self.textfieldItem.textField.textAlignment = NSTextAlignmentRight;
+    self.targetViewItem.textField.textAlignment = NSTextAlignmentRight;
     [self hide];
 }
 

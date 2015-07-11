@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, CTDynamicTextFieldEditBarStyle) {
 
 @interface CTDynamicTextFieldEditBar : UIView
 
-@property (nonatomic, weak) CTDynamicTextFieldItem *textfieldItem;
+@property (nonatomic, weak) CTDynamicTextFieldItem *targetViewItem;
 @property (nonatomic, weak) id<CTDynamicTextFieldEditBarDelegate> delegate;
 
 @property (nonatomic, readonly, assign) CTDynamicTextFieldEditBarStyle editBarStyle;

@@ -56,6 +56,19 @@ NSString * const kCTDynamicLayoutCalculatorViewInfoKeyView = @"kCTDynamicLayoutC
 }
 
 #pragma mark - public methods
+- (NSArray *)removeView:(CTDynamicBaseViewItem *)view
+{
+    NSArray *viewListToRecalculate = self.superView.subviews;
+    [self.spaceMap CTDSM_cleanAll];
+    [viewListToRecalculate enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *view, NSUInteger idx, BOOL *stop) {
+        if ([view isKindOfClass:[CTDynamicBaseViewItem class]]) {
+            view.upLeftPoint = [self.spaceMap CTDSM_pointAvailableForView:view];
+            [self.spaceMap CTDSM_addView:view];
+        }
+    }];
+    return viewListToRecalculate;
+}
+
 - (void)addViews:(NSArray *)viewList
 {
     [viewList enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *view, NSUInteger idx, BOOL *stop) {

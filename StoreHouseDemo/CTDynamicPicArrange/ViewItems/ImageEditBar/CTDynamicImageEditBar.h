@@ -15,9 +15,8 @@
 
 @property (nonatomic, weak) id<CTDynamicImageEditBarDelegate> delegate;
 @property (nonatomic, weak) CTDynamicImageViewItem *targetImageViewItem;
-@property (nonatomic, assign, readonly) BOOL isShowing;
 
-- (void)showInView:(UIView *)view aboveFrame:(CGRect)aboveFrame;
+- (void)showInView:(UIView *)view frame:(CGRect)frame;
 - (void)hide;
 
 @end
