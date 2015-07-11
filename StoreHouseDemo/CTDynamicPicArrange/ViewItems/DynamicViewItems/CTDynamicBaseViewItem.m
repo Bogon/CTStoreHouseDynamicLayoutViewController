@@ -16,6 +16,10 @@
     if (self) {
         _gridLength = [UIScreen mainScreen].bounds.size.width / 6.0f;
         _itemGap = 3;
+        UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressDidRecognized:)];
+        longPressGestureRecognizer.numberOfTapsRequired = 1;
+        longPressGestureRecognizer.numberOfTouchesRequired = 1;
+        [self addGestureRecognizer:longPressGestureRecognizer];
     }
     return self;
 }
@@ -40,6 +44,29 @@
     self.downRightPoint = CGPointMake(self.upLeftPoint.x + (NSInteger)ceil(width / self.itemGap), self.upLeftPoint.y + (NSInteger)ceil(height / self.itemGap));
     self.coordinateWidth = self.downRightPoint.y - self.upLeftPoint.y;
     self.coordinateHeight = self.downRightPoint.x - self.downRightPoint.x;
+}
+
+#pragma mark - event response
+- (void)longPressDidRecognized:(UILongPressGestureRecognizer *)longPressRecognizer
+{
+    UIGestureRecognizerState state = longPressRecognizer.state;
+    if (state == UIGestureRecognizerStateChanged) {
+        [self activate];
+    }
+    if (state == UIGestureRecognizerStateEnded || state == UIGestureRecognizerStateRecognized) {
+        [self deactivate];
+    }
+}
+
+#pragma mark - private methods
+- (void)activate
+{
+    
+}
+
+- (void)deactivate
+{
+    
 }
 
 #pragma mark - getters and setters

@@ -65,10 +65,6 @@
 {
     UIGestureRecognizerState state = panGestureRecognizer.state;
     
-    if (state == UIGestureRecognizerStateBegan || state == UIGestureRecognizerStateCancelled || state == UIGestureRecognizerStateFailed) {
-        // do nothing
-    }
-    
     if (state == UIGestureRecognizerStateChanged) {
         CGPoint point = [panGestureRecognizer translationInView:self];
         [panGestureRecognizer setTranslation:CGPointZero inView:self];
@@ -88,10 +84,6 @@
 {
     UIGestureRecognizerState state = panGestureRecognizer.state;
     
-    if (state == UIGestureRecognizerStateBegan || state == UIGestureRecognizerStateCancelled || state == UIGestureRecognizerStateFailed) {
-        // do nothing
-    }
-    
     if (state == UIGestureRecognizerStateChanged) {
         CGPoint point = [panGestureRecognizer translationInView:self];
         [panGestureRecognizer setTranslation:CGPointZero inView:self];
@@ -110,10 +102,6 @@
 - (void)cornerPanGestureDidRecognized:(UIPanGestureRecognizer *)panGestureRecognizer
 {
     UIGestureRecognizerState state = panGestureRecognizer.state;
-    
-    if (state == UIGestureRecognizerStateBegan || state == UIGestureRecognizerStateCancelled || state == UIGestureRecognizerStateFailed) {
-        // do nothing
-    }
     
     if (state == UIGestureRecognizerStateChanged) {
         CGPoint point = [panGestureRecognizer translationInView:self];
