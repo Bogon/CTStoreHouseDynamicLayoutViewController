@@ -10,6 +10,7 @@
 		4A7156531B4F8C1C00C5FA3C /* CTDynamicImageViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A71564F1B4F8C1C00C5FA3C /* CTDynamicImageViewItem.m */; };
 		4A7156541B4F8C1C00C5FA3C /* CTDynamicTextFieldItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7156521B4F8C1C00C5FA3C /* CTDynamicTextFieldItem.m */; };
 		4A7156571B4F8C3500C5FA3C /* CTDynamicBaseViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7156561B4F8C3500C5FA3C /* CTDynamicBaseViewItem.m */; };
+		4AC196201B50D3A600A478B1 /* NSMutableDictionary+CTDynamicSpaceMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC1961F1B50D3A600A478B1 /* NSMutableDictionary+CTDynamicSpaceMap.m */; };
 		4AD6C2F51B4D18DE00D9C140 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C2F41B4D18DE00D9C140 /* main.m */; };
 		4AD6C2F81B4D18DE00D9C140 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C2F71B4D18DE00D9C140 /* AppDelegate.m */; };
 		4AD6C2FB1B4D18DE00D9C140 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C2FA1B4D18DE00D9C140 /* ViewController.m */; };
@@ -43,6 +44,8 @@
 		4A7156521B4F8C1C00C5FA3C /* CTDynamicTextFieldItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicTextFieldItem.m; sourceTree = "<group>"; };
 		4A7156551B4F8C3500C5FA3C /* CTDynamicBaseViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicBaseViewItem.h; sourceTree = "<group>"; };
 		4A7156561B4F8C3500C5FA3C /* CTDynamicBaseViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicBaseViewItem.m; sourceTree = "<group>"; };
+		4AC1961E1B50D3A600A478B1 /* NSMutableDictionary+CTDynamicSpaceMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+CTDynamicSpaceMap.h"; sourceTree = "<group>"; };
+		4AC1961F1B50D3A600A478B1 /* NSMutableDictionary+CTDynamicSpaceMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+CTDynamicSpaceMap.m"; sourceTree = "<group>"; };
 		4AD6C2EF1B4D18DE00D9C140 /* StoreHouseDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreHouseDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD6C2F31B4D18DE00D9C140 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AD6C2F41B4D18DE00D9C140 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -117,6 +120,15 @@
 				4A7156521B4F8C1C00C5FA3C /* CTDynamicTextFieldItem.m */,
 			);
 			path = TextFieldItem;
+			sourceTree = "<group>";
+		};
+		4AC1961A1B50C98900A478B1 /* SpaceMap */ = {
+			isa = PBXGroup;
+			children = (
+				4AC1961E1B50D3A600A478B1 /* NSMutableDictionary+CTDynamicSpaceMap.h */,
+				4AC1961F1B50D3A600A478B1 /* NSMutableDictionary+CTDynamicSpaceMap.m */,
+			);
+			path = SpaceMap;
 			sourceTree = "<group>";
 		};
 		4AD6C2E61B4D18DE00D9C140 = {
@@ -251,6 +263,7 @@
 		4ADF8A261B4E272E00D62805 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				4AC1961A1B50C98900A478B1 /* SpaceMap */,
 				4ADF8A281B4E274C00D62805 /* Calculator */,
 			);
 			path = Tools;
@@ -372,6 +385,7 @@
 				4AD6C32A1B4D256600D9C140 /* CTDynamicPicScrollView.m in Sources */,
 				4AD6C3311B4D282100D9C140 /* CTDynamicImageEditBar.m in Sources */,
 				4A7156531B4F8C1C00C5FA3C /* CTDynamicImageViewItem.m in Sources */,
+				4AC196201B50D3A600A478B1 /* NSMutableDictionary+CTDynamicSpaceMap.m in Sources */,
 				4ADF8A271B4E272E00D62805 /* UIView+LayoutMethods.m in Sources */,
 				4A7156541B4F8C1C00C5FA3C /* CTDynamicTextFieldItem.m in Sources */,
 				4AD6C3271B4D254100D9C140 /* CTDynamicPicNavigationBar.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "CTDynamicLayoutCalculator.h"
+#import "NSMutableDictionary+CTDynamicSpaceMap.h"
 
 NSString * const kCTDynamicLayoutCalculatorInfoKeyView = @"kCTDynamicLayoutCalculatorInfoKeyView";
 NSString * const kCTDynamicLayoutCalculatorInfoKeyFrame = @"kCTDynamicLayoutCalculatorInfoKeyFrame";
@@ -73,105 +74,16 @@ NSString * const kCTDynamicLayoutCalculatorViewInfoKeyView = @"kCTDynamicLayoutC
 
 - (NSArray *)recalculateFromCoordinator:(CGPoint)coordinatorPoint
 {
-    NSArray *viewListToRecalculate = [self viewsBelowYCoordinator:coordinatorPoint.y];
-    [viewListToRecalculate enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *viewItem, NSUInteger idx, BOOL *stop) {
-        [self removeFromMapWithView:viewItem];
+    NSArray *viewListToRecalculate = [self.spaceMap CTDSM_viewsInMapOrder];
+    if ([viewListToRecalculate count] == 0) {
+        viewListToRecalculate = self.superView.subviews;
+    }
+    [self.spaceMap CTDSM_cleanAll];
+    [viewListToRecalculate enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *view, NSUInteger idx, BOOL *stop) {
+        view.upLeftPoint = [self.spaceMap CTDSM_pointAvailableForView:view];
+        [self.spaceMap CTDSM_addView:view];
     }];
-    [self addViewItemList:viewListToRecalculate fromPoint:coordinatorPoint];
     return viewListToRecalculate;
-}
-
-#pragma mark - location methods
-
-- (NSArray *)viewsBelowYCoordinator:(NSInteger)yCoordinator
-{
-    NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
-    [self.superView.subviews enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *viewItem, NSUInteger idx, BOOL *stop) {
-        if ([viewItem isKindOfClass:[CTDynamicBaseViewItem class]]) {
-            if (viewItem.upLeftPoint.y >= yCoordinator) {
-                [mutableArray addObject:viewItem];
-            }
-        }
-    }];
-    return mutableArray;
-}
-
-- (void)removeFromMapWithView:(CTDynamicBaseViewItem *)viewItem
-{
-    NSMutableArray *keysToRemove = [[NSMutableArray alloc] init];
-    [self.spaceMap enumerateKeysAndObjectsUsingBlock:^(id key, CTDynamicBaseViewItem *item, BOOL *stop) {
-        if (viewItem == item) {
-            [keysToRemove addObject:key];
-        }
-    }];
-    [self.spaceMap removeObjectsForKeys:keysToRemove];
-}
-
-- (void)markWithView:(CTDynamicBaseViewItem *)view
-{
-    CGPoint upLeftCoordinator = view.upLeftPoint;
-    for (NSInteger xIndex = 0; xIndex < view.coordinateWidth; xIndex++) {
-        for (NSInteger yIndex = 0; yIndex < view.coordinateHeight; yIndex++) {
-            NSValue *key = [NSValue valueWithCGPoint:CGPointMake(xIndex+upLeftCoordinator.x, yIndex+upLeftCoordinator.y)];
-            self.spaceMap[key] = view;
-        }
-    }
-}
-
-- (void)addViewItemList:(NSArray *)viewItemList fromPoint:(CGPoint)fromPoint
-{
-    for (CTDynamicBaseViewItem *viewItem in viewItemList) {
-        viewItem.upLeftPoint = [self pointForView:viewItem fromPoint:fromPoint];
-        [self markWithView:viewItem];
-    }
-}
-
-- (CGPoint)pointForView:(CTDynamicBaseViewItem *)viewItem fromPoint:(CGPoint)fromPoint
-{
-    CGPoint resultUpLeftPoint;
-    
-    BOOL shouldBreak = NO;
-    for (NSInteger yIndex = fromPoint.y; true; yIndex++) {
-        for (NSInteger xIndex = 0; xIndex < 6; xIndex++) {
-            resultUpLeftPoint = CGPointMake(xIndex, yIndex);
-            if ([self isFitForView:viewItem atPoint:resultUpLeftPoint]) {
-                shouldBreak = YES;
-                break;
-            }
-        }
-        if (shouldBreak) {
-            break;
-        }
-    }
-    
-    return resultUpLeftPoint;
-}
-
-- (BOOL)isFitForView:(CTDynamicBaseViewItem *)view atPoint:(CGPoint)point
-{
-    
-    NSInteger xEndIndex = point.x + view.coordinateWidth;
-    NSInteger yEndIndex = point.y + view.coordinateHeight;
-    
-    if (xEndIndex > 6) {
-        return NO;
-    }
-    
-    BOOL isFit = YES;
-    for (NSInteger yIndex = point.y; yIndex <= yEndIndex; yIndex++) {
-        for (NSInteger xIndex = point.x; xIndex <= xEndIndex; xIndex++) {
-            NSValue *key = [NSValue valueWithCGPoint:CGPointMake(xIndex, yIndex)];
-            if (self.spaceMap[key]) {
-                isFit = NO;
-                break;
-            }
-        }
-        if (!isFit) {
-            break;
-        }
-    }
-    
-    return isFit;
 }
 
 #pragma mark - getters and setters
