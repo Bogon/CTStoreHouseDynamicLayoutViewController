@@ -98,17 +98,13 @@ NSString * const kCTDynamicLayoutCalculatorViewInfoKeyView = @"kCTDynamicLayoutC
 
 - (void)removeFromMapWithView:(CTDynamicBaseViewItem *)viewItem
 {
-    NSInteger xStartIndex = viewItem.upLeftPoint.x;
-    NSInteger yStartIndex = viewItem.upLeftPoint.y;
-    NSInteger xEndIndex = xStartIndex + viewItem.coordinateWidth;
-    NSInteger yEndIndex = yStartIndex + viewItem.coordinateHeight;
-    
-    for (NSInteger xIndex = xStartIndex; xStartIndex <= xEndIndex; xStartIndex++) {
-        for (NSInteger yIndex = yStartIndex; yStartIndex <= yEndIndex; yStartIndex++) {
-            NSValue *key = [NSValue valueWithCGPoint:CGPointMake(xIndex, yIndex)];
-            [self.spaceMap removeObjectForKey:key];
+    NSMutableArray *keysToRemove = [[NSMutableArray alloc] init];
+    [self.spaceMap enumerateKeysAndObjectsUsingBlock:^(id key, CTDynamicBaseViewItem *item, BOOL *stop) {
+        if (viewItem == item) {
+            [keysToRemove addObject:key];
         }
-    }
+    }];
+    [self.spaceMap removeObjectsForKeys:keysToRemove];
 }
 
 - (void)markWithView:(CTDynamicBaseViewItem *)view

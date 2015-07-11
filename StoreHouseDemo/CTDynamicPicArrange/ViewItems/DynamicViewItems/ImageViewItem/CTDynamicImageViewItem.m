@@ -73,12 +73,9 @@
         CGPoint point = [panGestureRecognizer translationInView:self];
         [panGestureRecognizer setTranslation:CGPointZero inView:self];
         
-        CGFloat width = self.width + point.x;
-        if (width < self.gridLength) {
-            width = self.gridLength;
-        }
-        
+        CGFloat width = [self checkWidthWithPoint:point];
         self.frame = CGRectMake(self.x, self.y, width, self.height);
+        
         [self checkShouldDelegate];
     }
     
@@ -99,12 +96,9 @@
         CGPoint point = [panGestureRecognizer translationInView:self];
         [panGestureRecognizer setTranslation:CGPointZero inView:self];
         
-        CGFloat height = self.height + point.y;
-        if (height < self.gridLength) {
-            height = self.gridLength;
-        }
-        
+        CGFloat height = [self checkHeightWithPoint:point];
         self.frame = CGRectMake(self.x, self.y, self.width, height);
+        
         [self checkShouldDelegate];
     }
     
@@ -125,15 +119,8 @@
         CGPoint point = [panGestureRecognizer translationInView:self];
         [panGestureRecognizer setTranslation:CGPointZero inView:self];
         
-        CGFloat width = self.width + point.x;
-        if (width < self.gridLength) {
-            width = self.gridLength;
-        }
-        
-        CGFloat height = self.height + point.y;
-        if (height < self.gridLength) {
-            height = self.gridLength;
-        }
+        CGFloat width = [self checkWidthWithPoint:point];
+        CGFloat height = [self checkHeightWithPoint:point];
         
         self.frame = CGRectMake(self.x, self.y, width, height);
         [self checkShouldDelegate];
@@ -150,6 +137,37 @@
 }
 
 #pragma mark - private methods
+- (CGFloat)checkWidthWithPoint:(CGPoint)point
+{
+    CGFloat minWidth = self.gridLength;
+    CGFloat maxWidth = self.gridLength * 6 - self.itemGap * 2;
+    
+    CGFloat width = self.width + point.x;
+    if (width < minWidth) {
+        width = minWidth;
+    }
+    if (width > maxWidth) {
+        width = maxWidth;
+    }
+    return width;
+}
+
+- (CGFloat)checkHeightWithPoint:(CGPoint)point
+{
+    CGFloat minHeight = self.gridLength;
+    CGFloat maxHeight = self.gridLength * 12 - self.itemGap * 2;
+    
+    CGFloat height = self.height + point.y;
+    if (height < minHeight) {
+        height = minHeight;
+    }
+    if (height > maxHeight) {
+        height = maxHeight;
+    }
+    
+    return height;
+}
+
 - (void)checkShouldDelegate
 {
     NSInteger coordinateWidth = (NSInteger)ceil(self.frame.size.width / self.gridLength);
