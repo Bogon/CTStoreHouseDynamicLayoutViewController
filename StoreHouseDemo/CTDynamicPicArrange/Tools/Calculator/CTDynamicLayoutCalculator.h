@@ -18,6 +18,6 @@
 
 - (NSArray *)calculate;
 - (void)addViews:(NSArray *)viewList;
-- (void)deleteView:(CTDynamicBaseViewItem *)view;
+- (NSArray *)deleteView:(CTDynamicBaseViewItem *)view;
 
 @end

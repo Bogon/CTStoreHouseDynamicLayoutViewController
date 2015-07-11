@@ -73,12 +73,14 @@
     [self.navBar rightInContainer:0 shouldResize:YES];
     [self.navBar topInContainer:0 shouldResize:NO];
     
-    NSArray *viewArray = [self.calculator calculate];
-    for (CTDynamicBaseViewItem *viewItem in viewArray) {
-        if ([viewItem isKindOfClass:[CTDynamicBaseViewItem class]]) {
-            viewItem.frame = [viewItem refreshFrame];
-        }
-    }
+//    NSArray *viewArray = [self.calculator calculate];
+//    for (CTDynamicBaseViewItem *viewItem in viewArray) {
+//        if ([viewItem isKindOfClass:[CTDynamicBaseViewItem class]]) {
+//            viewItem.frame = [viewItem refreshFrame];
+//        }
+//    }
+    
+    [self dynamicViewItemDidChangedSize:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -91,12 +93,20 @@
 - (void)dynamicViewItemDidChangedSize:(CTDynamicBaseViewItem *)viewItem
 {
     NSArray *viewsToAnimate = [self.calculator calculate];
+    __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.3f animations:^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        __block CGFloat maxHeight = viewItem.bottom;
         [viewsToAnimate enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *item, NSUInteger idx, BOOL *stop) {
             if (item != viewItem) {
                 item.frame = [item refreshFrame];
+                CGFloat height = item.bottom;
+                if (height >= maxHeight) {
+                    maxHeight = height;
+                }
             }
         }];
+        strongSelf.scrollView.contentSize = CGSizeMake(self.scrollView.width, maxHeight + 40);
     }];
 }
 
@@ -109,6 +119,8 @@
             }
         }];
     }
+    
+    [self.scrollView scrollRectToVisible:CGRectMake(viewItem.x, viewItem.y - 40, viewItem.width, viewItem.height + 40) animated:YES];
 }
 
 #pragma mark - CTDynamicPicNavigationBarDelegate
@@ -151,6 +163,8 @@
 {
     if (_scrollView == nil) {
         _scrollView = [[UIScrollView alloc] init];
+        _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.showsVerticalScrollIndicator = NO;
         
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTappedScrollView:)];
         tapGestureRecognizer.numberOfTapsRequired = 1;

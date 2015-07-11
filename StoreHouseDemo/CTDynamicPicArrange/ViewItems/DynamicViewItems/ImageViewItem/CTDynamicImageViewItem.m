@@ -21,8 +21,6 @@
 
 @implementation CTDynamicImageViewItem
 
-@synthesize isSelected = _isSelected;
-
 #pragma mark - life cycle
 - (instancetype)initWithImage:(UIImage *)image
 {
@@ -34,11 +32,6 @@
         [self addSubview:self.horizontalDragPointView];
         [self addSubview:self.verticalDragPointView];
         [self addSubview:self.cornerDragPointView];
-        
-        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTappedSelf:)];
-        tapGestureRecognizer.numberOfTapsRequired = 1;
-        tapGestureRecognizer.numberOfTouchesRequired = 1;
-        [self addGestureRecognizer:tapGestureRecognizer];
     }
     return self;
 }
@@ -117,11 +110,6 @@
     if (state == UIGestureRecognizerStateEnded || state == UIGestureRecognizerStateRecognized) {
         [self panGestureEnded];
     }
-}
-
-- (void)didTappedSelf:(UITapGestureRecognizer *)tapGestureRecognizer
-{
-    self.isSelected = YES;
 }
 
 #pragma mark - private methods
@@ -263,11 +251,7 @@
 
 - (void)setIsSelected:(BOOL)isSelected
 {
-    BOOL shouldDelegate = YES;
-    if (_isSelected == isSelected) {
-        shouldDelegate = NO;
-    }
-    _isSelected = isSelected;
+    [super setIsSelected:isSelected];
     if (isSelected) {
         _imageView.layer.borderWidth = 3.0f;
         self.cornerDragPointView.alpha = 1.0f;
@@ -284,12 +268,6 @@
         self.cornerDragPointView.userInteractionEnabled = NO;
         self.verticalDragPointView.userInteractionEnabled = NO;
         self.horizontalDragPointView.userInteractionEnabled = NO;
-    }
-    
-    if (shouldDelegate) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicViewItemDidChangedSelect:)]) {
-            [self.delegate dynamicViewItemDidChangedSelect:self];
-        }
     }
 }
 

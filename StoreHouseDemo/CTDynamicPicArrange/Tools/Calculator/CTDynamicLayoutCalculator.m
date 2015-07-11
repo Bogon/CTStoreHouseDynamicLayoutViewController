@@ -64,7 +64,7 @@ NSString * const kCTDynamicLayoutCalculatorViewInfoKeyView = @"kCTDynamicLayoutC
     }];
 }
 
-- (NSArray *)deleteView:(UIView *)view
+- (NSArray *)deleteView:(CTDynamicBaseViewItem *)view
 {
     [self.spaceMap CTDSM_deleteView:view];
     return [self calculate];

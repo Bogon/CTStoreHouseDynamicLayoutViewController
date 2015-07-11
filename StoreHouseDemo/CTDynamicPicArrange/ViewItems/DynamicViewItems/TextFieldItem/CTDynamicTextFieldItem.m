@@ -18,8 +18,6 @@
 
 @implementation CTDynamicTextFieldItem
 
-@synthesize isSelected = _isSelected;
-
 #pragma mark - life cycle
 - (instancetype)initWithFontStyle:(CTDynamicTextFieldItemFontStyle)style
 {
@@ -27,11 +25,6 @@
     if (self) {
         [self addSubview:self.textField];
         self.fontStyle = style;
-        
-        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTappedSelf:)];
-        tapGestureRecognizer.numberOfTapsRequired = 1;
-        tapGestureRecognizer.numberOfTouchesRequired = 1;
-        [self addGestureRecognizer:tapGestureRecognizer];
     }
     return self;
 }
@@ -68,12 +61,6 @@
         [self.textField sizeToFit];
         self.frame = CGRectMake(self.x, self.y, self.width, self.textField.height + 8);
     }
-}
-
-#pragma mark - event response
-- (void)didTappedSelf:(UITapGestureRecognizer *)tapGestureRecognizer
-{
-    self.isSelected = YES;
 }
 
 #pragma mark - private methods
@@ -149,23 +136,11 @@
 
 - (void)setIsSelected:(BOOL)isSelected
 {
-    BOOL shouldDelegate = YES;
-    if (_isSelected == isSelected) {
-        shouldDelegate = NO;
-    }
-    
-    _isSelected = isSelected;
-    
+    [super setIsSelected:isSelected];
     if (isSelected) {
         [self showDashedLine];
     } else {
         [self hideDashedLine];
-    }
-    
-    if (shouldDelegate) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicViewItemDidChangedSelect:)]) {
-            [self.delegate dynamicViewItemDidChangedSelect:self];
-        }
     }
 }
 

@@ -19,7 +19,13 @@
         UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressDidRecognized:)];
         longPressGestureRecognizer.numberOfTapsRequired = 1;
         longPressGestureRecognizer.numberOfTouchesRequired = 1;
+        longPressGestureRecognizer.minimumPressDuration = 1;
         [self addGestureRecognizer:longPressGestureRecognizer];
+        
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTappedSelf:)];
+        tapGestureRecognizer.numberOfTapsRequired = 1;
+        tapGestureRecognizer.numberOfTouchesRequired = 1;
+        [self addGestureRecognizer:tapGestureRecognizer];
     }
     return self;
 }
@@ -50,23 +56,35 @@
 - (void)longPressDidRecognized:(UILongPressGestureRecognizer *)longPressRecognizer
 {
     UIGestureRecognizerState state = longPressRecognizer.state;
-    if (state == UIGestureRecognizerStateChanged) {
+    if (state == UIGestureRecognizerStateBegan) {
         [self activate];
+    }
+    if (state == UIGestureRecognizerStateChanged) {
     }
     if (state == UIGestureRecognizerStateEnded || state == UIGestureRecognizerStateRecognized) {
         [self deactivate];
     }
 }
 
+- (void)didTappedSelf:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    self.isSelected = YES;
+}
+
 #pragma mark - private methods
 - (void)activate
 {
-    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.layer.shadowColor = [[UIColor blackColor] CGColor];
+        self.layer.shadowRadius = 5;
+        self.layer.shadowOpacity = 0.8;
+        self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.frame].CGPath;
+        self.frame = CGRectMake(self.frame.origin.x - 3, self.frame.origin.y - 3, self.frame.size.width + 6, self.frame.size.height + 6);
+    }];
 }
 
 - (void)deactivate
 {
-    
 }
 
 #pragma mark - getters and setters
@@ -88,6 +106,23 @@
 {
     self.coordinateWidth = downRightPoint.x - self.upLeftPoint.x;
     self.coordinateHeight = downRightPoint.y - self.upLeftPoint.y;
+}
+
+- (void)setIsSelected:(BOOL)isSelected
+{
+    BOOL shouldDelegate = YES;
+    if (_isSelected == isSelected) {
+        shouldDelegate = NO;
+    }
+    
+    _isSelected = isSelected;
+
+    if (shouldDelegate) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicViewItemDidChangedSelect:)]) {
+            [self.delegate dynamicViewItemDidChangedSelect:self];
+        }
+    }
+    
 }
 
 @end
