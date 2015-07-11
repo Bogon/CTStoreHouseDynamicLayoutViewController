@@ -74,6 +74,17 @@
     NSInteger maxX = minX + self.coordinateWidth;
     NSInteger maxY = minY + self.coordinateHeight;
     
+    if (minX > 0) {
+        minX--;
+    }
+    
+    if (minY > 0) {
+        minY--;
+    }
+    
+    maxX++;
+    maxY++;
+    
     if (point.x >= minX && point.x <= maxX && point.y >= minY && point.y <= maxY) {
         result = YES;
     }
