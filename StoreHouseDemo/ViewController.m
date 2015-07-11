@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "CTDynamicPicArrangeViewController.h"
+#import "CTDynamicLayoutViewController.h"
 #import "UIView+LayoutMethods.h"
 #import "CTDynamicTextFieldEditBar.h"
 #import "CTDynamicImageEditBar.h"
@@ -59,7 +59,7 @@
 #pragma mark - event response
 - (void)didTappedShowButton:(UIButton *)button
 {
-    CTDynamicPicArrangeViewController *viewController = [[CTDynamicPicArrangeViewController alloc] initWithImages:@[
+    CTDynamicLayoutViewController *viewController = [[CTDynamicLayoutViewController alloc] initWithImages:@[
                                                                                                                     [UIImage imageNamed:@"test"],
                                                                                                                     [UIImage imageNamed:@"test"],
                                                                                                                     [UIImage imageNamed:@"test"],

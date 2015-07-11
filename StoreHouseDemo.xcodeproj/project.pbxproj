@@ -18,7 +18,7 @@
 		4AD6C3001B4D18DE00D9C140 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AD6C2FF1B4D18DE00D9C140 /* Images.xcassets */; };
 		4AD6C3031B4D18DE00D9C140 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD6C3011B4D18DE00D9C140 /* LaunchScreen.xib */; };
 		4AD6C30F1B4D18DE00D9C140 /* StoreHouseDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C30E1B4D18DE00D9C140 /* StoreHouseDemoTests.m */; };
-		4AD6C31C1B4D1A0300D9C140 /* CTDynamicPicArrangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C31B1B4D1A0300D9C140 /* CTDynamicPicArrangeViewController.m */; };
+		4AD6C31C1B4D1A0300D9C140 /* CTDynamicLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C31B1B4D1A0300D9C140 /* CTDynamicLayoutViewController.m */; };
 		4AD6C3271B4D254100D9C140 /* CTDynamicPicNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C3251B4D254100D9C140 /* CTDynamicPicNavigationBar.m */; };
 		4AD6C32A1B4D256600D9C140 /* CTDynamicPicScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C3291B4D256600D9C140 /* CTDynamicPicScrollView.m */; };
 		4AD6C3311B4D282100D9C140 /* CTDynamicImageEditBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C3301B4D282100D9C140 /* CTDynamicImageEditBar.m */; };
@@ -59,8 +59,8 @@
 		4AD6C3081B4D18DE00D9C140 /* StoreHouseDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoreHouseDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD6C30D1B4D18DE00D9C140 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AD6C30E1B4D18DE00D9C140 /* StoreHouseDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreHouseDemoTests.m; sourceTree = "<group>"; };
-		4AD6C31A1B4D1A0300D9C140 /* CTDynamicPicArrangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicPicArrangeViewController.h; sourceTree = "<group>"; };
-		4AD6C31B1B4D1A0300D9C140 /* CTDynamicPicArrangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicPicArrangeViewController.m; sourceTree = "<group>"; };
+		4AD6C31A1B4D1A0300D9C140 /* CTDynamicLayoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicLayoutViewController.h; sourceTree = "<group>"; };
+		4AD6C31B1B4D1A0300D9C140 /* CTDynamicLayoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicLayoutViewController.m; sourceTree = "<group>"; };
 		4AD6C3241B4D254100D9C140 /* CTDynamicPicNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicPicNavigationBar.h; sourceTree = "<group>"; };
 		4AD6C3251B4D254100D9C140 /* CTDynamicPicNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicPicNavigationBar.m; sourceTree = "<group>"; };
 		4AD6C3281B4D256600D9C140 /* CTDynamicPicScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicPicScrollView.h; sourceTree = "<group>"; };
@@ -197,8 +197,8 @@
 				4ADF8A231B4E272E00D62805 /* Categories */,
 				4ADF8A261B4E272E00D62805 /* Tools */,
 				4AD6C3191B4D19D000D9C140 /* ViewItems */,
-				4AD6C31A1B4D1A0300D9C140 /* CTDynamicPicArrangeViewController.h */,
-				4AD6C31B1B4D1A0300D9C140 /* CTDynamicPicArrangeViewController.m */,
+				4AD6C31A1B4D1A0300D9C140 /* CTDynamicLayoutViewController.h */,
+				4AD6C31B1B4D1A0300D9C140 /* CTDynamicLayoutViewController.m */,
 			);
 			path = CTDynamicPicArrange;
 			sourceTree = "<group>";
@@ -381,7 +381,7 @@
 				4AD6C2FB1B4D18DE00D9C140 /* ViewController.m in Sources */,
 				4AD6C3371B4D284500D9C140 /* CTDynamicTextFieldEditBar.m in Sources */,
 				4A7156571B4F8C3500C5FA3C /* CTDynamicBaseViewItem.m in Sources */,
-				4AD6C31C1B4D1A0300D9C140 /* CTDynamicPicArrangeViewController.m in Sources */,
+				4AD6C31C1B4D1A0300D9C140 /* CTDynamicLayoutViewController.m in Sources */,
 				4AD6C32A1B4D256600D9C140 /* CTDynamicPicScrollView.m in Sources */,
 				4AD6C3311B4D282100D9C140 /* CTDynamicImageEditBar.m in Sources */,
 				4A7156531B4F8C1C00C5FA3C /* CTDynamicImageViewItem.m in Sources */,

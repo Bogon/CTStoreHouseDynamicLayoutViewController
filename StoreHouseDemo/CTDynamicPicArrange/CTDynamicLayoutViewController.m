@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 casa. All rights reserved.
 //
 
-#import "CTDynamicPicArrangeViewController.h"
+#import "CTDynamicLayoutViewController.h"
 #import "CTDynamicPicNavigationBar.h"
 
 #import "CTDynamicTextFieldItem.h"
@@ -18,7 +18,7 @@
 
 #import "CTDynamicLayoutCalculator.h"
 
-@interface CTDynamicPicArrangeViewController () <CTDynamicPicNavigationBarDelegate, CTDynamicBaseViewItemDelegate>
+@interface CTDynamicLayoutViewController () <CTDynamicPicNavigationBarDelegate, CTDynamicBaseViewItemDelegate>
 
 @property (nonatomic, strong) CTDynamicTextFieldEditBar *textFieldEditBar;
 @property (nonatomic, strong) CTDynamicImageEditBar *imageEditBar;
@@ -30,7 +30,7 @@
 
 @end
 
-@implementation CTDynamicPicArrangeViewController
+@implementation CTDynamicLayoutViewController
 
 #pragma mark - life cycle
 - (instancetype)initWithImages:(NSArray *)imageList

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIView+LayoutMethods.h"
 
-@interface CTDynamicPicArrangeViewController : UIViewController
+@interface CTDynamicLayoutViewController : UIViewController
 
 - (instancetype)initWithImages:(NSArray *)imageList;
 
