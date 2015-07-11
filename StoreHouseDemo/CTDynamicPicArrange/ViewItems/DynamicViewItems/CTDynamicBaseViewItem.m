@@ -116,6 +116,9 @@
 - (void)didTappedSelf:(UIGestureRecognizer *)gestureRecognizer
 {
     self.isSelected = YES;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicViewItemShowEditBar:)]) {
+        [self.delegate dynamicViewItemShowEditBar:self];
+    }
 }
 
 #pragma mark - private methods
