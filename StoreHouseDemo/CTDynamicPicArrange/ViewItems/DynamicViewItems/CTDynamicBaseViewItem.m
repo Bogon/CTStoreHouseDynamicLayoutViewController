@@ -95,6 +95,7 @@
 - (void)activate
 {
     self.isSelected = YES;
+    self.layer.zPosition = FLT_MAX;
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicViewItemDidChangedSelect:)]) {
         [self.delegate dynamicViewItemDidChangedSelect:self];
@@ -118,6 +119,8 @@
 
 - (void)deactivate
 {
+    self.layer.zPosition = -FLT_MAX;
+    
     CGRect newFrame = self.frame;
     newFrame.origin.x += 5;
     newFrame.origin.y += 5;
