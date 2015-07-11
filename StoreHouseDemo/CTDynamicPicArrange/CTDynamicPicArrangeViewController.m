@@ -96,17 +96,21 @@
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.3f animations:^{
         __strong typeof(weakSelf) strongSelf = weakSelf;
-        __block CGFloat maxHeight = viewItem.bottom;
+        
+        CGRect newFrame = [viewItem refreshFrame];
+        __block CGFloat maxHeight = newFrame.origin.y + newFrame.size.height;
         [viewsToAnimate enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *item, NSUInteger idx, BOOL *stop) {
             if (item != viewItem) {
                 item.frame = [item refreshFrame];
-                CGFloat height = item.bottom;
-                if (height >= maxHeight) {
-                    maxHeight = height;
+                if (item.bottom >= maxHeight) {
+                    maxHeight = item.bottom;
                 }
             }
         }];
-        strongSelf.scrollView.contentSize = CGSizeMake(self.scrollView.width, maxHeight + 40);
+        strongSelf.scrollView.contentSize = CGSizeMake(strongSelf.scrollView.width, maxHeight + 40);
+        newFrame.size.height +=40;
+        newFrame.origin.y -= 20;
+        [strongSelf.scrollView scrollRectToVisible:newFrame animated:NO];
     }];
 }
 
@@ -118,9 +122,12 @@
                 item.isSelected = NO;
             }
         }];
+        
+        CGRect frame = viewItem.frame;
+        frame.size.height += 40;
+        frame.origin.y -= 20;
+        [self.scrollView scrollRectToVisible:frame animated:YES];
     }
-    
-    [self.scrollView scrollRectToVisible:CGRectMake(viewItem.x, viewItem.y - 40, viewItem.width, viewItem.height + 40) animated:YES];
 }
 
 #pragma mark - CTDynamicPicNavigationBarDelegate
