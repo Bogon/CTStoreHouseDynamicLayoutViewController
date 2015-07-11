@@ -58,14 +58,11 @@
 
 - (void)makeRandomeSize
 {
-//    NSInteger width = arc4random_uniform(6);
-//    NSInteger height = arc4random_uniform(6);
-//    
-//    self.coordinateWidth = (width < 2) ? 2 : width;
-//    self.coordinateHeight = (height < 2) ? 2 : height;
+    NSInteger width = arc4random_uniform(6);
+    NSInteger height = arc4random_uniform(6);
     
-    self.coordinateHeight = 2;
-    self.coordinateWidth = 2;
+    self.coordinateWidth = (width < 2) ? 2 : width;
+    self.coordinateHeight = (height < 2) ? 2 : height;
 }
 
 #pragma mark - event response
