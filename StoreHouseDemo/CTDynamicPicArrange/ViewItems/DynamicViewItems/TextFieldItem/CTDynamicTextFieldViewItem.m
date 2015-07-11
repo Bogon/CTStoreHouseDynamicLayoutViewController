@@ -6,17 +6,17 @@
 //  Copyright (c) 2015 casa. All rights reserved.
 //
 
-#import "CTDynamicTextFieldItem.h"
+#import "CTDynamicTextFieldViewItem.h"
 #import "UIView+LayoutMethods.h"
 
-@interface CTDynamicTextFieldItem ()
+@interface CTDynamicTextFieldViewItem ()
 
 @property (nonatomic, strong, readwrite) UITextField *textField;
 @property (nonatomic, strong) CAShapeLayer *dashedLayer;
 
 @end
 
-@implementation CTDynamicTextFieldItem
+@implementation CTDynamicTextFieldViewItem
 
 #pragma mark - life cycle
 - (instancetype)initWithFontStyle:(CTDynamicTextFieldItemFontStyle)style

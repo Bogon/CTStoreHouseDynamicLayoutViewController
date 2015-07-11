@@ -9,7 +9,7 @@
 #import "CTDynamicLayoutViewController.h"
 #import "CTDynamicPicNavigationBar.h"
 
-#import "CTDynamicTextFieldItem.h"
+#import "CTDynamicTextFieldViewItem.h"
 #import "CTDynamicImageViewItem.h"
 
 #import "CTDynamicImageEditBar.h"
@@ -120,8 +120,8 @@
             [self.imageEditBar showInView:self.scrollView frame:viewItem.frame];
         }
         
-        if ([viewItem isKindOfClass:[CTDynamicTextFieldItem class]]) {
-            self.textFieldEditBar.targetViewItem = (CTDynamicTextFieldItem *)viewItem;
+        if ([viewItem isKindOfClass:[CTDynamicTextFieldViewItem class]]) {
+            self.textFieldEditBar.targetTextFieldViewItem = (CTDynamicTextFieldViewItem *)viewItem;
             [self.textFieldEditBar showInView:self.scrollView aboveFrame:viewItem.frame];
         }
     }
@@ -180,6 +180,7 @@
         }
     }];
     
+    self.positionView.frame = CGRectZero;
     [self.imageEditBar hide];
     [self.textFieldEditBar hide];
 }
@@ -190,7 +191,7 @@
     if ([viewItem isKindOfClass:[CTDynamicImageViewItem class]]) {
         [self.imageEditBar hide];
     }
-    if ([viewItem isKindOfClass:[CTDynamicTextFieldItem class]]) {
+    if ([viewItem isKindOfClass:[CTDynamicTextFieldViewItem class]]) {
         [self.textFieldEditBar hide];
     }
     __weak typeof(self) weakSelf = self;
@@ -214,10 +215,12 @@
     } completion:^(BOOL finished) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if ([viewItem isKindOfClass:[CTDynamicImageViewItem class]]) {
-            [strongSelf.imageEditBar hide];
+            strongSelf.imageEditBar.targetImageViewItem = (CTDynamicImageViewItem *)viewItem;
+            [strongSelf.imageEditBar showInView:strongSelf.scrollView frame:[viewItem refreshFrame]];
         }
-        if ([viewItem isKindOfClass:[CTDynamicTextFieldItem class]]) {
-            [strongSelf.textFieldEditBar hide];
+        if ([viewItem isKindOfClass:[CTDynamicTextFieldViewItem class]]) {
+            strongSelf.textFieldEditBar.targetTextFieldViewItem = (CTDynamicTextFieldViewItem *)viewItem;
+            [strongSelf.textFieldEditBar showInView:strongSelf.scrollView aboveFrame:[viewItem refreshFrame]];
         }
     }];
 }
@@ -271,7 +274,7 @@
     if (_imageEditBar == nil) {
         _imageEditBar = [[CTDynamicImageEditBar alloc] init];
         _imageEditBar.delegate = self;
-        _imageEditBar.layer.zPosition = FLT_MIN + 2;
+        _imageEditBar.layer.zPosition = FLT_MAX;
     }
     return _imageEditBar;
 }

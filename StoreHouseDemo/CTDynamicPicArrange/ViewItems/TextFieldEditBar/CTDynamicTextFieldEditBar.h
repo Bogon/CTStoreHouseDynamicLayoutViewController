@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CTDynamicTextFieldItem.h"
+#import "CTDynamicTextFieldViewItem.h"
 
 typedef NS_ENUM(NSUInteger, CTDynamicTextFieldEditBarStyle) {
     CTDynamicTextFieldEditBarStyleUndefined,
@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, CTDynamicTextFieldEditBarStyle) {
 
 @interface CTDynamicTextFieldEditBar : UIView
 
-@property (nonatomic, weak) CTDynamicTextFieldItem *targetViewItem;
+@property (nonatomic, weak) CTDynamicTextFieldViewItem *targetTextFieldViewItem;
 @property (nonatomic, weak) id<CTDynamicTextFieldEditBarDelegate> delegate;
 
 @property (nonatomic, readonly, assign) CTDynamicTextFieldEditBarStyle editBarStyle;

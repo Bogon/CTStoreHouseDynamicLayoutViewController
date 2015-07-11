@@ -14,7 +14,7 @@ typedef NS_ENUM(NSUInteger, CTDynamicTextFieldItemFontStyle) {
     CTDynamicTextFieldEditBarFontStyleNormal
 };
 
-@interface CTDynamicTextFieldItem : CTDynamicBaseViewItem
+@interface CTDynamicTextFieldViewItem : CTDynamicBaseViewItem
 
 @property (nonatomic, strong, readonly) UITextField *textField;
 @property (nonatomic, assign) CTDynamicTextFieldItemFontStyle fontStyle;

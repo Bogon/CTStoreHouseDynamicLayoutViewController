@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4A7156531B4F8C1C00C5FA3C /* CTDynamicImageViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A71564F1B4F8C1C00C5FA3C /* CTDynamicImageViewItem.m */; };
-		4A7156541B4F8C1C00C5FA3C /* CTDynamicTextFieldItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7156521B4F8C1C00C5FA3C /* CTDynamicTextFieldItem.m */; };
+		4A7156541B4F8C1C00C5FA3C /* CTDynamicTextFieldViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7156521B4F8C1C00C5FA3C /* CTDynamicTextFieldViewItem.m */; };
 		4A7156571B4F8C3500C5FA3C /* CTDynamicBaseViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7156561B4F8C3500C5FA3C /* CTDynamicBaseViewItem.m */; };
 		4AC196201B50D3A600A478B1 /* NSMutableDictionary+CTDynamicSpaceMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC1961F1B50D3A600A478B1 /* NSMutableDictionary+CTDynamicSpaceMap.m */; };
 		4AD6C2F51B4D18DE00D9C140 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C2F41B4D18DE00D9C140 /* main.m */; };
@@ -40,8 +40,8 @@
 /* Begin PBXFileReference section */
 		4A71564E1B4F8C1C00C5FA3C /* CTDynamicImageViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicImageViewItem.h; sourceTree = "<group>"; };
 		4A71564F1B4F8C1C00C5FA3C /* CTDynamicImageViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicImageViewItem.m; sourceTree = "<group>"; };
-		4A7156511B4F8C1C00C5FA3C /* CTDynamicTextFieldItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicTextFieldItem.h; sourceTree = "<group>"; };
-		4A7156521B4F8C1C00C5FA3C /* CTDynamicTextFieldItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicTextFieldItem.m; sourceTree = "<group>"; };
+		4A7156511B4F8C1C00C5FA3C /* CTDynamicTextFieldViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicTextFieldViewItem.h; sourceTree = "<group>"; };
+		4A7156521B4F8C1C00C5FA3C /* CTDynamicTextFieldViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicTextFieldViewItem.m; sourceTree = "<group>"; };
 		4A7156551B4F8C3500C5FA3C /* CTDynamicBaseViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicBaseViewItem.h; sourceTree = "<group>"; };
 		4A7156561B4F8C3500C5FA3C /* CTDynamicBaseViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicBaseViewItem.m; sourceTree = "<group>"; };
 		4AC1961E1B50D3A600A478B1 /* NSMutableDictionary+CTDynamicSpaceMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+CTDynamicSpaceMap.h"; sourceTree = "<group>"; };
@@ -116,8 +116,8 @@
 		4A7156501B4F8C1C00C5FA3C /* TextFieldItem */ = {
 			isa = PBXGroup;
 			children = (
-				4A7156511B4F8C1C00C5FA3C /* CTDynamicTextFieldItem.h */,
-				4A7156521B4F8C1C00C5FA3C /* CTDynamicTextFieldItem.m */,
+				4A7156511B4F8C1C00C5FA3C /* CTDynamicTextFieldViewItem.h */,
+				4A7156521B4F8C1C00C5FA3C /* CTDynamicTextFieldViewItem.m */,
 			);
 			path = TextFieldItem;
 			sourceTree = "<group>";
@@ -387,7 +387,7 @@
 				4A7156531B4F8C1C00C5FA3C /* CTDynamicImageViewItem.m in Sources */,
 				4AC196201B50D3A600A478B1 /* NSMutableDictionary+CTDynamicSpaceMap.m in Sources */,
 				4ADF8A271B4E272E00D62805 /* UIView+LayoutMethods.m in Sources */,
-				4A7156541B4F8C1C00C5FA3C /* CTDynamicTextFieldItem.m in Sources */,
+				4A7156541B4F8C1C00C5FA3C /* CTDynamicTextFieldViewItem.m in Sources */,
 				4AD6C3271B4D254100D9C140 /* CTDynamicPicNavigationBar.m in Sources */,
 				4AD6C2F81B4D18DE00D9C140 /* AppDelegate.m in Sources */,
 				4ADF8A2B1B4E276400D62805 /* CTDynamicLayoutCalculator.m in Sources */,

@@ -12,7 +12,7 @@
 #import "CTDynamicTextFieldEditBar.h"
 #import "CTDynamicImageEditBar.h"
 #import "CTDynamicImageViewItem.h"
-#import "CTDynamicTextFieldItem.h"
+#import "CTDynamicTextFieldViewItem.h"
 #import "CTDynamicLayoutCalculator.h"
 
 @interface ViewController ()
@@ -21,7 +21,7 @@
 
 @property (nonatomic, strong) CTDynamicTextFieldEditBar *editBar;
 @property (nonatomic, strong) CTDynamicImageViewItem *imageItem;
-@property (nonatomic, strong) CTDynamicTextFieldItem *textFieldItem;
+@property (nonatomic, strong) CTDynamicTextFieldViewItem *textFieldItem;
 @property (nonatomic, strong) CTDynamicLayoutCalculator *calculator;
 
 @end
@@ -102,10 +102,10 @@
     return _imageItem;
 }
 
-- (CTDynamicTextFieldItem *)textFieldItem
+- (CTDynamicTextFieldViewItem *)textFieldItem
 {
     if (_textFieldItem == nil) {
-        _textFieldItem = [[CTDynamicTextFieldItem alloc] initWithFontStyle:CTDynamicTextFieldEditBarFontStyleHeader];
+        _textFieldItem = [[CTDynamicTextFieldViewItem alloc] initWithFontStyle:CTDynamicTextFieldEditBarFontStyleHeader];
     }
     return _textFieldItem;
 }
