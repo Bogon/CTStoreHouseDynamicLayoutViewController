@@ -60,6 +60,9 @@
     
     if (state == UIGestureRecognizerStateBegan) {
         self.layer.zPosition = FLT_MAX;
+        if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicViewItemHideEditBar:)]) {
+            [self.delegate dynamicViewItemHideEditBar:self];
+        }
     }
     
     if (state == UIGestureRecognizerStateChanged) {
@@ -83,6 +86,9 @@
     
     if (state == UIGestureRecognizerStateBegan) {
         self.layer.zPosition = FLT_MAX;
+        if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicViewItemHideEditBar:)]) {
+            [self.delegate dynamicViewItemHideEditBar:self];
+        }
     }
     
     if (state == UIGestureRecognizerStateChanged) {
@@ -106,6 +112,9 @@
     
     if (state == UIGestureRecognizerStateBegan) {
         self.layer.zPosition = FLT_MAX;
+        if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicViewItemHideEditBar:)]) {
+            [self.delegate dynamicViewItemHideEditBar:self];
+        }
     }
     
     if (state == UIGestureRecognizerStateChanged) {
@@ -190,6 +199,12 @@
     [UIView animateWithDuration:0.3f animations:^{
         self.frame = [self refreshFrame];
         [self layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        if (finished) {
+            if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicViewItemShowEditBar:)]) {
+                [self.delegate dynamicViewItemShowEditBar:self];
+            }
+        }
     }];
 }
 

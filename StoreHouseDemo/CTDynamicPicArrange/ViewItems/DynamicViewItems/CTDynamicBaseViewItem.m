@@ -127,6 +127,10 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicViewItemDidChangedSelect:)]) {
         [self.delegate dynamicViewItemDidChangedSelect:self];
     }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicViewItemHideEditBar:)]) {
+        [self.delegate dynamicViewItemHideEditBar:self];
+    }
 
     CGRect newFrame = self.frame;
     newFrame.origin.x -= 5;
@@ -159,6 +163,9 @@
         self.frame = [self refreshFrame];
     } completion:^(BOOL finished) {
         self.layer.zPosition = FLT_MIN + 1;
+        if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicViewItemShowEditBar:)]) {
+            [self.delegate dynamicViewItemShowEditBar:self];
+        }
     }];
 }
 

@@ -8,11 +8,9 @@
 
 #import "CTDynamicBaseViewItem.h"
 
-@protocol CTDynamicImageViewItemDelegate;
 
 @interface CTDynamicImageViewItem : CTDynamicBaseViewItem
 
 - (instancetype)initWithImage:(UIImage *)image;
 
 @end
-

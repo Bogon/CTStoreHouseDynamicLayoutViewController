@@ -114,16 +114,28 @@
         [self.scrollView scrollRectToVisible:frame animated:YES];
         
         self.positionView.frame = viewItem.frame;
-        
-        if ([viewItem isKindOfClass:[CTDynamicImageViewItem class]]) {
-            self.imageEditBar.targetImageViewItem = (CTDynamicImageViewItem *)viewItem;
-            [self.imageEditBar showInView:self.scrollView frame:viewItem.frame];
-        }
-        
-        if ([viewItem isKindOfClass:[CTDynamicTextFieldViewItem class]]) {
-            self.textFieldEditBar.targetTextFieldViewItem = (CTDynamicTextFieldViewItem *)viewItem;
-            [self.textFieldEditBar showInView:self.scrollView aboveFrame:viewItem.frame];
-        }
+    }
+}
+
+- (void)dynamicViewItemHideEditBar:(CTDynamicBaseViewItem *)viewItem
+{
+    if ([viewItem isKindOfClass:[CTDynamicImageViewItem class]]) {
+        [self.imageEditBar hide];
+    }
+    if ([viewItem isKindOfClass:[CTDynamicTextFieldViewItem class]]) {
+        [self.textFieldEditBar hide];
+    }
+}
+
+- (void)dynamicViewItemShowEditBar:(CTDynamicBaseViewItem *)viewItem
+{
+    if ([viewItem isKindOfClass:[CTDynamicImageViewItem class]]) {
+        self.imageEditBar.targetImageViewItem = (CTDynamicImageViewItem *)viewItem;
+        [self.imageEditBar showInView:self.scrollView frame:viewItem.frame];
+    }
+    if ([viewItem isKindOfClass:[CTDynamicTextFieldViewItem class]]) {
+        self.textFieldEditBar.targetTextFieldViewItem = (CTDynamicTextFieldViewItem *)viewItem;
+        [self.textFieldEditBar showInView:self.scrollView aboveFrame:viewItem.frame];
     }
 }
 
@@ -188,12 +200,6 @@
 #pragma mark - private methods
 - (void)animateWithTargetViewItem:(CTDynamicBaseViewItem *)viewItem viewsToAnimate:(NSArray *)viewsToAnimate
 {
-    if ([viewItem isKindOfClass:[CTDynamicImageViewItem class]]) {
-        [self.imageEditBar hide];
-    }
-    if ([viewItem isKindOfClass:[CTDynamicTextFieldViewItem class]]) {
-        [self.textFieldEditBar hide];
-    }
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.3f animations:^{
         __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -212,16 +218,6 @@
         }];
         strongSelf.scrollView.contentSize = CGSizeMake(strongSelf.scrollView.width, maxHeight + 40);
         strongSelf.positionView.frame = [viewItem refreshFrame];
-    } completion:^(BOOL finished) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        if ([viewItem isKindOfClass:[CTDynamicImageViewItem class]]) {
-            strongSelf.imageEditBar.targetImageViewItem = (CTDynamicImageViewItem *)viewItem;
-            [strongSelf.imageEditBar showInView:strongSelf.scrollView frame:[viewItem refreshFrame]];
-        }
-        if ([viewItem isKindOfClass:[CTDynamicTextFieldViewItem class]]) {
-            strongSelf.textFieldEditBar.targetTextFieldViewItem = (CTDynamicTextFieldViewItem *)viewItem;
-            [strongSelf.textFieldEditBar showInView:strongSelf.scrollView aboveFrame:[viewItem refreshFrame]];
-        }
     }];
 }
 
