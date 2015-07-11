@@ -73,7 +73,7 @@
     [self.navBar rightInContainer:0 shouldResize:YES];
     [self.navBar topInContainer:0 shouldResize:NO];
     
-    NSArray *viewArray = [self.calculator recalculateFromCoordinator:CGPointZero];
+    NSArray *viewArray = [self.calculator calculate];
     for (CTDynamicBaseViewItem *viewItem in viewArray) {
         if ([viewItem isKindOfClass:[CTDynamicBaseViewItem class]]) {
             viewItem.frame = [viewItem refreshFrame];
@@ -90,7 +90,7 @@
 #pragma mark - CTDynamicBaseViewItemDelegate
 - (void)dynamicViewItemDidChangedSize:(CTDynamicBaseViewItem *)viewItem
 {
-    NSArray *viewsToAnimate = [self.calculator recalculateFromCoordinator:viewItem.upLeftPoint];
+    NSArray *viewsToAnimate = [self.calculator calculate];
     [UIView animateWithDuration:0.3f animations:^{
         [viewsToAnimate enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *item, NSUInteger idx, BOOL *stop) {
             if (item != viewItem) {

@@ -34,6 +34,15 @@
     [self removeAllObjects];
 }
 
+- (void)CTDSM_deleteView:(CTDynamicBaseViewItem *)view
+{
+    for (NSInteger yIndex = 0; yIndex < view.coordinateHeight; yIndex++) {
+        for (NSInteger xIndex = 0; xIndex < view.coordinateWidth; xIndex++) {
+            [self[@(xIndex)] removeObjectForKey:@(yIndex)];
+        }
+    }
+}
+
 - (CTDynamicBaseViewItem *)CTDSM_viewForPoint:(CGPoint)point
 {
     return self[@((NSInteger)point.x)][@((NSInteger)point.y)];
