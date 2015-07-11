@@ -102,6 +102,7 @@
 - (void)dynamicViewItemDidChangedSelect:(CTDynamicBaseViewItem *)viewItem
 {
     if (viewItem.isSelected) {
+        self.positionView.frame = viewItem.frame;
         [self.scrollView.subviews enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *item, NSUInteger idx, BOOL *stop) {
             if ([item isKindOfClass:[CTDynamicBaseViewItem class]] && item != viewItem) {
                 item.isSelected = NO;
@@ -163,10 +164,6 @@
             }
         }];
         strongSelf.scrollView.contentSize = CGSizeMake(strongSelf.scrollView.width, maxHeight + 40);
-        newFrame.size.height +=40;
-        newFrame.origin.y -= 20;
-        [strongSelf.scrollView scrollRectToVisible:newFrame animated:NO];
-        
         self.positionView.frame = [viewItem refreshFrame];
     }];
 }
