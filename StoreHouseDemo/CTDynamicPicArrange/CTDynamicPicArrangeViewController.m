@@ -93,7 +93,9 @@
     NSArray *viewsToAnimate = [self.calculator recalculateFromCoordinator:viewItem.upLeftPoint];
     [UIView animateWithDuration:0.3f animations:^{
         [viewsToAnimate enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *item, NSUInteger idx, BOOL *stop) {
-            item.frame = [item refreshFrame];
+            if (item != viewItem) {
+                item.frame = [item refreshFrame];
+            }
         }];
     }];
 }
