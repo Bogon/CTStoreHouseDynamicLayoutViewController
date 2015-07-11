@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
                     this is a dynamic layout view controller which inspired by StoreHouse
                    DESC
 
-  s.homepage     = "https://github.com/casatwy/CTStoreHouseDynamicLayoutViewController"
+  s.homepage     = "https://github.com/casatwy"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -60,7 +60,7 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-  s.platform     = :ios, "7.0"
+  s.platform     = :ios, "6.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -73,7 +73,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/casatwy/CTStoreHouseDynamicLayoutViewController.git", :tag => s.version.to_s }
+  s.source       = { :git => "git@github.com:casatwy/CTStoreHouseDynamicLayoutViewController.git", :tag => s.version.to_s }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -85,7 +85,7 @@ Pod::Spec.new do |s|
   #
 
   s.source_files  = "StoreHouseDemo/CTDynamicLayoutViewController/**/*.{h,m}"
-  s.exclude_files = "Classes/Exclude"
+  # s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
 
