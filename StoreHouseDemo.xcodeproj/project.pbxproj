@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A7156531B4F8C1C00C5FA3C /* CTDynamicImageViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A71564F1B4F8C1C00C5FA3C /* CTDynamicImageViewItem.m */; };
-		4A7156541B4F8C1C00C5FA3C /* CTDynamicTextFieldViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7156521B4F8C1C00C5FA3C /* CTDynamicTextFieldViewItem.m */; };
-		4A7156571B4F8C3500C5FA3C /* CTDynamicBaseViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7156561B4F8C3500C5FA3C /* CTDynamicBaseViewItem.m */; };
-		4AC196201B50D3A600A478B1 /* NSMutableDictionary+CTDynamicSpaceMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC1961F1B50D3A600A478B1 /* NSMutableDictionary+CTDynamicSpaceMap.m */; };
 		4AD6C2F51B4D18DE00D9C140 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C2F41B4D18DE00D9C140 /* main.m */; };
 		4AD6C2F81B4D18DE00D9C140 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C2F71B4D18DE00D9C140 /* AppDelegate.m */; };
 		4AD6C2FB1B4D18DE00D9C140 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C2FA1B4D18DE00D9C140 /* ViewController.m */; };
@@ -18,13 +14,17 @@
 		4AD6C3001B4D18DE00D9C140 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AD6C2FF1B4D18DE00D9C140 /* Images.xcassets */; };
 		4AD6C3031B4D18DE00D9C140 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD6C3011B4D18DE00D9C140 /* LaunchScreen.xib */; };
 		4AD6C30F1B4D18DE00D9C140 /* StoreHouseDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C30E1B4D18DE00D9C140 /* StoreHouseDemoTests.m */; };
-		4AD6C31C1B4D1A0300D9C140 /* CTDynamicLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C31B1B4D1A0300D9C140 /* CTDynamicLayoutViewController.m */; };
-		4AD6C3271B4D254100D9C140 /* CTDynamicPicNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C3251B4D254100D9C140 /* CTDynamicPicNavigationBar.m */; };
-		4AD6C32A1B4D256600D9C140 /* CTDynamicPicScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C3291B4D256600D9C140 /* CTDynamicPicScrollView.m */; };
-		4AD6C3311B4D282100D9C140 /* CTDynamicImageEditBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C3301B4D282100D9C140 /* CTDynamicImageEditBar.m */; };
-		4AD6C3371B4D284500D9C140 /* CTDynamicTextFieldEditBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C3361B4D284500D9C140 /* CTDynamicTextFieldEditBar.m */; };
-		4ADF8A271B4E272E00D62805 /* UIView+LayoutMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADF8A251B4E272E00D62805 /* UIView+LayoutMethods.m */; };
-		4ADF8A2B1B4E276400D62805 /* CTDynamicLayoutCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADF8A2A1B4E276400D62805 /* CTDynamicLayoutCalculator.m */; };
+		4AFFBDD91B51901F0092622A /* UIView+LayoutMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFBDB91B51901F0092622A /* UIView+LayoutMethods.m */; };
+		4AFFBDDA1B51901F0092622A /* CTDynamicLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFBDBB1B51901F0092622A /* CTDynamicLayoutViewController.m */; };
+		4AFFBDDB1B51901F0092622A /* CTDynamicLayoutCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFBDBF1B51901F0092622A /* CTDynamicLayoutCalculator.m */; };
+		4AFFBDDC1B51901F0092622A /* NSMutableDictionary+CTDynamicSpaceMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFBDC21B51901F0092622A /* NSMutableDictionary+CTDynamicSpaceMap.m */; };
+		4AFFBDDD1B51901F0092622A /* CTDynamicBaseViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFBDC61B51901F0092622A /* CTDynamicBaseViewItem.m */; };
+		4AFFBDDE1B51901F0092622A /* CTDynamicImageViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFBDC91B51901F0092622A /* CTDynamicImageViewItem.m */; };
+		4AFFBDDF1B51901F0092622A /* CTDynamicTextFieldViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFBDCC1B51901F0092622A /* CTDynamicTextFieldViewItem.m */; };
+		4AFFBDE01B51901F0092622A /* CTDynamicImageEditBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFBDCF1B51901F0092622A /* CTDynamicImageEditBar.m */; };
+		4AFFBDE11B51901F0092622A /* CTDynamicPicNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFBDD21B51901F0092622A /* CTDynamicPicNavigationBar.m */; };
+		4AFFBDE21B51901F0092622A /* CTDynamicPicScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFBDD51B51901F0092622A /* CTDynamicPicScrollView.m */; };
+		4AFFBDE31B51901F0092622A /* CTDynamicTextFieldEditBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFBDD81B51901F0092622A /* CTDynamicTextFieldEditBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,14 +38,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4A71564E1B4F8C1C00C5FA3C /* CTDynamicImageViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicImageViewItem.h; sourceTree = "<group>"; };
-		4A71564F1B4F8C1C00C5FA3C /* CTDynamicImageViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicImageViewItem.m; sourceTree = "<group>"; };
-		4A7156511B4F8C1C00C5FA3C /* CTDynamicTextFieldViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicTextFieldViewItem.h; sourceTree = "<group>"; };
-		4A7156521B4F8C1C00C5FA3C /* CTDynamicTextFieldViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicTextFieldViewItem.m; sourceTree = "<group>"; };
-		4A7156551B4F8C3500C5FA3C /* CTDynamicBaseViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicBaseViewItem.h; sourceTree = "<group>"; };
-		4A7156561B4F8C3500C5FA3C /* CTDynamicBaseViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicBaseViewItem.m; sourceTree = "<group>"; };
-		4AC1961E1B50D3A600A478B1 /* NSMutableDictionary+CTDynamicSpaceMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+CTDynamicSpaceMap.h"; sourceTree = "<group>"; };
-		4AC1961F1B50D3A600A478B1 /* NSMutableDictionary+CTDynamicSpaceMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+CTDynamicSpaceMap.m"; sourceTree = "<group>"; };
 		4AD6C2EF1B4D18DE00D9C140 /* StoreHouseDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreHouseDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD6C2F31B4D18DE00D9C140 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AD6C2F41B4D18DE00D9C140 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -59,20 +51,28 @@
 		4AD6C3081B4D18DE00D9C140 /* StoreHouseDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoreHouseDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD6C30D1B4D18DE00D9C140 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AD6C30E1B4D18DE00D9C140 /* StoreHouseDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreHouseDemoTests.m; sourceTree = "<group>"; };
-		4AD6C31A1B4D1A0300D9C140 /* CTDynamicLayoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicLayoutViewController.h; sourceTree = "<group>"; };
-		4AD6C31B1B4D1A0300D9C140 /* CTDynamicLayoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicLayoutViewController.m; sourceTree = "<group>"; };
-		4AD6C3241B4D254100D9C140 /* CTDynamicPicNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicPicNavigationBar.h; sourceTree = "<group>"; };
-		4AD6C3251B4D254100D9C140 /* CTDynamicPicNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicPicNavigationBar.m; sourceTree = "<group>"; };
-		4AD6C3281B4D256600D9C140 /* CTDynamicPicScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicPicScrollView.h; sourceTree = "<group>"; };
-		4AD6C3291B4D256600D9C140 /* CTDynamicPicScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicPicScrollView.m; sourceTree = "<group>"; };
-		4AD6C32F1B4D282100D9C140 /* CTDynamicImageEditBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicImageEditBar.h; sourceTree = "<group>"; };
-		4AD6C3301B4D282100D9C140 /* CTDynamicImageEditBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicImageEditBar.m; sourceTree = "<group>"; };
-		4AD6C3351B4D284500D9C140 /* CTDynamicTextFieldEditBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicTextFieldEditBar.h; sourceTree = "<group>"; };
-		4AD6C3361B4D284500D9C140 /* CTDynamicTextFieldEditBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicTextFieldEditBar.m; sourceTree = "<group>"; };
-		4ADF8A241B4E272E00D62805 /* UIView+LayoutMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LayoutMethods.h"; sourceTree = "<group>"; };
-		4ADF8A251B4E272E00D62805 /* UIView+LayoutMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayoutMethods.m"; sourceTree = "<group>"; };
-		4ADF8A291B4E276400D62805 /* CTDynamicLayoutCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicLayoutCalculator.h; sourceTree = "<group>"; };
-		4ADF8A2A1B4E276400D62805 /* CTDynamicLayoutCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicLayoutCalculator.m; sourceTree = "<group>"; };
+		4AFFBDB81B51901F0092622A /* UIView+LayoutMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LayoutMethods.h"; sourceTree = "<group>"; };
+		4AFFBDB91B51901F0092622A /* UIView+LayoutMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayoutMethods.m"; sourceTree = "<group>"; };
+		4AFFBDBA1B51901F0092622A /* CTDynamicLayoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicLayoutViewController.h; sourceTree = "<group>"; };
+		4AFFBDBB1B51901F0092622A /* CTDynamicLayoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicLayoutViewController.m; sourceTree = "<group>"; };
+		4AFFBDBE1B51901F0092622A /* CTDynamicLayoutCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicLayoutCalculator.h; sourceTree = "<group>"; };
+		4AFFBDBF1B51901F0092622A /* CTDynamicLayoutCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicLayoutCalculator.m; sourceTree = "<group>"; };
+		4AFFBDC11B51901F0092622A /* NSMutableDictionary+CTDynamicSpaceMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+CTDynamicSpaceMap.h"; sourceTree = "<group>"; };
+		4AFFBDC21B51901F0092622A /* NSMutableDictionary+CTDynamicSpaceMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+CTDynamicSpaceMap.m"; sourceTree = "<group>"; };
+		4AFFBDC51B51901F0092622A /* CTDynamicBaseViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicBaseViewItem.h; sourceTree = "<group>"; };
+		4AFFBDC61B51901F0092622A /* CTDynamicBaseViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicBaseViewItem.m; sourceTree = "<group>"; };
+		4AFFBDC81B51901F0092622A /* CTDynamicImageViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicImageViewItem.h; sourceTree = "<group>"; };
+		4AFFBDC91B51901F0092622A /* CTDynamicImageViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicImageViewItem.m; sourceTree = "<group>"; };
+		4AFFBDCB1B51901F0092622A /* CTDynamicTextFieldViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicTextFieldViewItem.h; sourceTree = "<group>"; };
+		4AFFBDCC1B51901F0092622A /* CTDynamicTextFieldViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicTextFieldViewItem.m; sourceTree = "<group>"; };
+		4AFFBDCE1B51901F0092622A /* CTDynamicImageEditBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicImageEditBar.h; sourceTree = "<group>"; };
+		4AFFBDCF1B51901F0092622A /* CTDynamicImageEditBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicImageEditBar.m; sourceTree = "<group>"; };
+		4AFFBDD11B51901F0092622A /* CTDynamicPicNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicPicNavigationBar.h; sourceTree = "<group>"; };
+		4AFFBDD21B51901F0092622A /* CTDynamicPicNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicPicNavigationBar.m; sourceTree = "<group>"; };
+		4AFFBDD41B51901F0092622A /* CTDynamicPicScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicPicScrollView.h; sourceTree = "<group>"; };
+		4AFFBDD51B51901F0092622A /* CTDynamicPicScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicPicScrollView.m; sourceTree = "<group>"; };
+		4AFFBDD71B51901F0092622A /* CTDynamicTextFieldEditBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicTextFieldEditBar.h; sourceTree = "<group>"; };
+		4AFFBDD81B51901F0092622A /* CTDynamicTextFieldEditBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicTextFieldEditBar.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,44 +93,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4A71564C1B4F8C1C00C5FA3C /* DynamicViewItems */ = {
-			isa = PBXGroup;
-			children = (
-				4A71564D1B4F8C1C00C5FA3C /* ImageViewItem */,
-				4A7156501B4F8C1C00C5FA3C /* TextFieldItem */,
-				4A7156551B4F8C3500C5FA3C /* CTDynamicBaseViewItem.h */,
-				4A7156561B4F8C3500C5FA3C /* CTDynamicBaseViewItem.m */,
-			);
-			path = DynamicViewItems;
-			sourceTree = "<group>";
-		};
-		4A71564D1B4F8C1C00C5FA3C /* ImageViewItem */ = {
-			isa = PBXGroup;
-			children = (
-				4A71564E1B4F8C1C00C5FA3C /* CTDynamicImageViewItem.h */,
-				4A71564F1B4F8C1C00C5FA3C /* CTDynamicImageViewItem.m */,
-			);
-			path = ImageViewItem;
-			sourceTree = "<group>";
-		};
-		4A7156501B4F8C1C00C5FA3C /* TextFieldItem */ = {
-			isa = PBXGroup;
-			children = (
-				4A7156511B4F8C1C00C5FA3C /* CTDynamicTextFieldViewItem.h */,
-				4A7156521B4F8C1C00C5FA3C /* CTDynamicTextFieldViewItem.m */,
-			);
-			path = TextFieldItem;
-			sourceTree = "<group>";
-		};
-		4AC1961A1B50C98900A478B1 /* SpaceMap */ = {
-			isa = PBXGroup;
-			children = (
-				4AC1961E1B50D3A600A478B1 /* NSMutableDictionary+CTDynamicSpaceMap.h */,
-				4AC1961F1B50D3A600A478B1 /* NSMutableDictionary+CTDynamicSpaceMap.m */,
-			);
-			path = SpaceMap;
-			sourceTree = "<group>";
-		};
 		4AD6C2E61B4D18DE00D9C140 = {
 			isa = PBXGroup;
 			children = (
@@ -152,7 +114,7 @@
 		4AD6C2F11B4D18DE00D9C140 /* StoreHouseDemo */ = {
 			isa = PBXGroup;
 			children = (
-				4AD6C3181B4D19D000D9C140 /* CTDynamicPicArrange */,
+				4AFFBDB61B51901F0092622A /* CTDynamicLayoutViewController */,
 				4AD6C2F61B4D18DE00D9C140 /* AppDelegate.h */,
 				4AD6C2F71B4D18DE00D9C140 /* AppDelegate.m */,
 				4AD6C2F91B4D18DE00D9C140 /* ViewController.h */,
@@ -191,91 +153,129 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4AD6C3181B4D19D000D9C140 /* CTDynamicPicArrange */ = {
+		4AFFBDB61B51901F0092622A /* CTDynamicLayoutViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4ADF8A231B4E272E00D62805 /* Categories */,
-				4ADF8A261B4E272E00D62805 /* Tools */,
-				4AD6C3191B4D19D000D9C140 /* ViewItems */,
-				4AD6C31A1B4D1A0300D9C140 /* CTDynamicLayoutViewController.h */,
-				4AD6C31B1B4D1A0300D9C140 /* CTDynamicLayoutViewController.m */,
+				4AFFBDB71B51901F0092622A /* Categories */,
+				4AFFBDBA1B51901F0092622A /* CTDynamicLayoutViewController.h */,
+				4AFFBDBB1B51901F0092622A /* CTDynamicLayoutViewController.m */,
+				4AFFBDBC1B51901F0092622A /* Tools */,
+				4AFFBDC31B51901F0092622A /* ViewItems */,
 			);
-			path = CTDynamicPicArrange;
+			path = CTDynamicLayoutViewController;
 			sourceTree = "<group>";
 		};
-		4AD6C3191B4D19D000D9C140 /* ViewItems */ = {
+		4AFFBDB71B51901F0092622A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				4A71564C1B4F8C1C00C5FA3C /* DynamicViewItems */,
-				4AD6C32B1B4D27EC00D9C140 /* ImageEditBar */,
-				4AD6C32D1B4D27EC00D9C140 /* TextFieldEditBar */,
-				4AD6C3231B4D254100D9C140 /* NavBar */,
-				4AD6C3261B4D254100D9C140 /* ScrollView */,
-			);
-			path = ViewItems;
-			sourceTree = "<group>";
-		};
-		4AD6C3231B4D254100D9C140 /* NavBar */ = {
-			isa = PBXGroup;
-			children = (
-				4AD6C3241B4D254100D9C140 /* CTDynamicPicNavigationBar.h */,
-				4AD6C3251B4D254100D9C140 /* CTDynamicPicNavigationBar.m */,
-			);
-			path = NavBar;
-			sourceTree = "<group>";
-		};
-		4AD6C3261B4D254100D9C140 /* ScrollView */ = {
-			isa = PBXGroup;
-			children = (
-				4AD6C3281B4D256600D9C140 /* CTDynamicPicScrollView.h */,
-				4AD6C3291B4D256600D9C140 /* CTDynamicPicScrollView.m */,
-			);
-			path = ScrollView;
-			sourceTree = "<group>";
-		};
-		4AD6C32B1B4D27EC00D9C140 /* ImageEditBar */ = {
-			isa = PBXGroup;
-			children = (
-				4AD6C32F1B4D282100D9C140 /* CTDynamicImageEditBar.h */,
-				4AD6C3301B4D282100D9C140 /* CTDynamicImageEditBar.m */,
-			);
-			path = ImageEditBar;
-			sourceTree = "<group>";
-		};
-		4AD6C32D1B4D27EC00D9C140 /* TextFieldEditBar */ = {
-			isa = PBXGroup;
-			children = (
-				4AD6C3351B4D284500D9C140 /* CTDynamicTextFieldEditBar.h */,
-				4AD6C3361B4D284500D9C140 /* CTDynamicTextFieldEditBar.m */,
-			);
-			path = TextFieldEditBar;
-			sourceTree = "<group>";
-		};
-		4ADF8A231B4E272E00D62805 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				4ADF8A241B4E272E00D62805 /* UIView+LayoutMethods.h */,
-				4ADF8A251B4E272E00D62805 /* UIView+LayoutMethods.m */,
+				4AFFBDB81B51901F0092622A /* UIView+LayoutMethods.h */,
+				4AFFBDB91B51901F0092622A /* UIView+LayoutMethods.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
 		};
-		4ADF8A261B4E272E00D62805 /* Tools */ = {
+		4AFFBDBC1B51901F0092622A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				4AC1961A1B50C98900A478B1 /* SpaceMap */,
-				4ADF8A281B4E274C00D62805 /* Calculator */,
+				4AFFBDBD1B51901F0092622A /* Calculator */,
+				4AFFBDC01B51901F0092622A /* SpaceMap */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
 		};
-		4ADF8A281B4E274C00D62805 /* Calculator */ = {
+		4AFFBDBD1B51901F0092622A /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
-				4ADF8A291B4E276400D62805 /* CTDynamicLayoutCalculator.h */,
-				4ADF8A2A1B4E276400D62805 /* CTDynamicLayoutCalculator.m */,
+				4AFFBDBE1B51901F0092622A /* CTDynamicLayoutCalculator.h */,
+				4AFFBDBF1B51901F0092622A /* CTDynamicLayoutCalculator.m */,
 			);
 			path = Calculator;
+			sourceTree = "<group>";
+		};
+		4AFFBDC01B51901F0092622A /* SpaceMap */ = {
+			isa = PBXGroup;
+			children = (
+				4AFFBDC11B51901F0092622A /* NSMutableDictionary+CTDynamicSpaceMap.h */,
+				4AFFBDC21B51901F0092622A /* NSMutableDictionary+CTDynamicSpaceMap.m */,
+			);
+			path = SpaceMap;
+			sourceTree = "<group>";
+		};
+		4AFFBDC31B51901F0092622A /* ViewItems */ = {
+			isa = PBXGroup;
+			children = (
+				4AFFBDC41B51901F0092622A /* DynamicViewItems */,
+				4AFFBDCD1B51901F0092622A /* ImageEditBar */,
+				4AFFBDD01B51901F0092622A /* NavBar */,
+				4AFFBDD31B51901F0092622A /* ScrollView */,
+				4AFFBDD61B51901F0092622A /* TextFieldEditBar */,
+			);
+			path = ViewItems;
+			sourceTree = "<group>";
+		};
+		4AFFBDC41B51901F0092622A /* DynamicViewItems */ = {
+			isa = PBXGroup;
+			children = (
+				4AFFBDC51B51901F0092622A /* CTDynamicBaseViewItem.h */,
+				4AFFBDC61B51901F0092622A /* CTDynamicBaseViewItem.m */,
+				4AFFBDC71B51901F0092622A /* ImageViewItem */,
+				4AFFBDCA1B51901F0092622A /* TextFieldItem */,
+			);
+			path = DynamicViewItems;
+			sourceTree = "<group>";
+		};
+		4AFFBDC71B51901F0092622A /* ImageViewItem */ = {
+			isa = PBXGroup;
+			children = (
+				4AFFBDC81B51901F0092622A /* CTDynamicImageViewItem.h */,
+				4AFFBDC91B51901F0092622A /* CTDynamicImageViewItem.m */,
+			);
+			path = ImageViewItem;
+			sourceTree = "<group>";
+		};
+		4AFFBDCA1B51901F0092622A /* TextFieldItem */ = {
+			isa = PBXGroup;
+			children = (
+				4AFFBDCB1B51901F0092622A /* CTDynamicTextFieldViewItem.h */,
+				4AFFBDCC1B51901F0092622A /* CTDynamicTextFieldViewItem.m */,
+			);
+			path = TextFieldItem;
+			sourceTree = "<group>";
+		};
+		4AFFBDCD1B51901F0092622A /* ImageEditBar */ = {
+			isa = PBXGroup;
+			children = (
+				4AFFBDCE1B51901F0092622A /* CTDynamicImageEditBar.h */,
+				4AFFBDCF1B51901F0092622A /* CTDynamicImageEditBar.m */,
+			);
+			path = ImageEditBar;
+			sourceTree = "<group>";
+		};
+		4AFFBDD01B51901F0092622A /* NavBar */ = {
+			isa = PBXGroup;
+			children = (
+				4AFFBDD11B51901F0092622A /* CTDynamicPicNavigationBar.h */,
+				4AFFBDD21B51901F0092622A /* CTDynamicPicNavigationBar.m */,
+			);
+			path = NavBar;
+			sourceTree = "<group>";
+		};
+		4AFFBDD31B51901F0092622A /* ScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				4AFFBDD41B51901F0092622A /* CTDynamicPicScrollView.h */,
+				4AFFBDD51B51901F0092622A /* CTDynamicPicScrollView.m */,
+			);
+			path = ScrollView;
+			sourceTree = "<group>";
+		};
+		4AFFBDD61B51901F0092622A /* TextFieldEditBar */ = {
+			isa = PBXGroup;
+			children = (
+				4AFFBDD71B51901F0092622A /* CTDynamicTextFieldEditBar.h */,
+				4AFFBDD81B51901F0092622A /* CTDynamicTextFieldEditBar.m */,
+			);
+			path = TextFieldEditBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,19 +379,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AD6C2FB1B4D18DE00D9C140 /* ViewController.m in Sources */,
-				4AD6C3371B4D284500D9C140 /* CTDynamicTextFieldEditBar.m in Sources */,
-				4A7156571B4F8C3500C5FA3C /* CTDynamicBaseViewItem.m in Sources */,
-				4AD6C31C1B4D1A0300D9C140 /* CTDynamicLayoutViewController.m in Sources */,
-				4AD6C32A1B4D256600D9C140 /* CTDynamicPicScrollView.m in Sources */,
-				4AD6C3311B4D282100D9C140 /* CTDynamicImageEditBar.m in Sources */,
-				4A7156531B4F8C1C00C5FA3C /* CTDynamicImageViewItem.m in Sources */,
-				4AC196201B50D3A600A478B1 /* NSMutableDictionary+CTDynamicSpaceMap.m in Sources */,
-				4ADF8A271B4E272E00D62805 /* UIView+LayoutMethods.m in Sources */,
-				4A7156541B4F8C1C00C5FA3C /* CTDynamicTextFieldViewItem.m in Sources */,
-				4AD6C3271B4D254100D9C140 /* CTDynamicPicNavigationBar.m in Sources */,
+				4AFFBDDC1B51901F0092622A /* NSMutableDictionary+CTDynamicSpaceMap.m in Sources */,
+				4AFFBDE21B51901F0092622A /* CTDynamicPicScrollView.m in Sources */,
 				4AD6C2F81B4D18DE00D9C140 /* AppDelegate.m in Sources */,
-				4ADF8A2B1B4E276400D62805 /* CTDynamicLayoutCalculator.m in Sources */,
+				4AFFBDE11B51901F0092622A /* CTDynamicPicNavigationBar.m in Sources */,
+				4AFFBDDE1B51901F0092622A /* CTDynamicImageViewItem.m in Sources */,
+				4AFFBDDF1B51901F0092622A /* CTDynamicTextFieldViewItem.m in Sources */,
+				4AFFBDE01B51901F0092622A /* CTDynamicImageEditBar.m in Sources */,
+				4AFFBDE31B51901F0092622A /* CTDynamicTextFieldEditBar.m in Sources */,
+				4AFFBDDD1B51901F0092622A /* CTDynamicBaseViewItem.m in Sources */,
 				4AD6C2F51B4D18DE00D9C140 /* main.m in Sources */,
+				4AFFBDD91B51901F0092622A /* UIView+LayoutMethods.m in Sources */,
+				4AFFBDDB1B51901F0092622A /* CTDynamicLayoutCalculator.m in Sources */,
+				4AFFBDDA1B51901F0092622A /* CTDynamicLayoutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
