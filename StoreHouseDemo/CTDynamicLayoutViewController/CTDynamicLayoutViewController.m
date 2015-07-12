@@ -133,10 +133,12 @@
 - (void)dynamicViewItemShowEditBar:(CTDynamicBaseViewItem *)viewItem
 {
     if ([viewItem isKindOfClass:[CTDynamicImageViewItem class]]) {
+        [self.textFieldEditBar hide];
         self.imageEditBar.targetImageViewItem = (CTDynamicImageViewItem *)viewItem;
         [self.imageEditBar showInView:self.scrollView frame:viewItem.frame];
     }
     if ([viewItem isKindOfClass:[CTDynamicTextFieldViewItem class]]) {
+        [self.imageEditBar hide];
         self.textFieldEditBar.targetTextFieldViewItem = (CTDynamicTextFieldViewItem *)viewItem;
         [self.textFieldEditBar showInView:self.scrollView aboveFrame:viewItem.frame];
     }
