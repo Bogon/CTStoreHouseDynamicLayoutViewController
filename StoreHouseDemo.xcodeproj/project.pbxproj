@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4AA57D301B52117B00767AC3 /* CTDynamicLayoutBottomBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA57D2F1B52117B00767AC3 /* CTDynamicLayoutBottomBar.m */; };
+		4AA7D7F11B522146007F4CCD /* CTDynamicHorizontalDragPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA7D7F01B522146007F4CCD /* CTDynamicHorizontalDragPointView.m */; };
+		4AA7D7F61B522186007F4CCD /* CTDynamicVerticalDragPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA7D7F51B522186007F4CCD /* CTDynamicVerticalDragPointView.m */; };
+		4AA7D7F91B52219C007F4CCD /* CTDynamicCornerDragPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA7D7F81B52219C007F4CCD /* CTDynamicCornerDragPointView.m */; };
 		4AD6C2F51B4D18DE00D9C140 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C2F41B4D18DE00D9C140 /* main.m */; };
 		4AD6C2F81B4D18DE00D9C140 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C2F71B4D18DE00D9C140 /* AppDelegate.m */; };
 		4AD6C2FB1B4D18DE00D9C140 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C2FA1B4D18DE00D9C140 /* ViewController.m */; };
@@ -41,6 +44,12 @@
 /* Begin PBXFileReference section */
 		4AA57D2E1B52117B00767AC3 /* CTDynamicLayoutBottomBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicLayoutBottomBar.h; sourceTree = "<group>"; };
 		4AA57D2F1B52117B00767AC3 /* CTDynamicLayoutBottomBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicLayoutBottomBar.m; sourceTree = "<group>"; };
+		4AA7D7EF1B522146007F4CCD /* CTDynamicHorizontalDragPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicHorizontalDragPointView.h; sourceTree = "<group>"; };
+		4AA7D7F01B522146007F4CCD /* CTDynamicHorizontalDragPointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicHorizontalDragPointView.m; sourceTree = "<group>"; };
+		4AA7D7F41B522186007F4CCD /* CTDynamicVerticalDragPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicVerticalDragPointView.h; sourceTree = "<group>"; };
+		4AA7D7F51B522186007F4CCD /* CTDynamicVerticalDragPointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicVerticalDragPointView.m; sourceTree = "<group>"; };
+		4AA7D7F71B52219C007F4CCD /* CTDynamicCornerDragPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicCornerDragPointView.h; sourceTree = "<group>"; };
+		4AA7D7F81B52219C007F4CCD /* CTDynamicCornerDragPointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicCornerDragPointView.m; sourceTree = "<group>"; };
 		4AD6C2EF1B4D18DE00D9C140 /* StoreHouseDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreHouseDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD6C2F31B4D18DE00D9C140 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AD6C2F41B4D18DE00D9C140 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -103,6 +112,43 @@
 				4AA57D2F1B52117B00767AC3 /* CTDynamicLayoutBottomBar.m */,
 			);
 			path = BottomBar;
+			sourceTree = "<group>";
+		};
+		4AA7D7EA1B522117007F4CCD /* Accessory */ = {
+			isa = PBXGroup;
+			children = (
+				4AA7D7F21B52215F007F4CCD /* CornerDragPoint */,
+				4AA7D7F31B52215F007F4CCD /* VerticalDragPoint */,
+				4AA7D7EE1B522146007F4CCD /* HorizontalDragPoint */,
+			);
+			path = Accessory;
+			sourceTree = "<group>";
+		};
+		4AA7D7EE1B522146007F4CCD /* HorizontalDragPoint */ = {
+			isa = PBXGroup;
+			children = (
+				4AA7D7EF1B522146007F4CCD /* CTDynamicHorizontalDragPointView.h */,
+				4AA7D7F01B522146007F4CCD /* CTDynamicHorizontalDragPointView.m */,
+			);
+			path = HorizontalDragPoint;
+			sourceTree = "<group>";
+		};
+		4AA7D7F21B52215F007F4CCD /* CornerDragPoint */ = {
+			isa = PBXGroup;
+			children = (
+				4AA7D7F71B52219C007F4CCD /* CTDynamicCornerDragPointView.h */,
+				4AA7D7F81B52219C007F4CCD /* CTDynamicCornerDragPointView.m */,
+			);
+			path = CornerDragPoint;
+			sourceTree = "<group>";
+		};
+		4AA7D7F31B52215F007F4CCD /* VerticalDragPoint */ = {
+			isa = PBXGroup;
+			children = (
+				4AA7D7F41B522186007F4CCD /* CTDynamicVerticalDragPointView.h */,
+				4AA7D7F51B522186007F4CCD /* CTDynamicVerticalDragPointView.m */,
+			);
+			path = VerticalDragPoint;
 			sourceTree = "<group>";
 		};
 		4AD6C2E61B4D18DE00D9C140 = {
@@ -229,10 +275,10 @@
 		4AFFBDC41B51901F0092622A /* DynamicViewItems */ = {
 			isa = PBXGroup;
 			children = (
-				4AFFBDC51B51901F0092622A /* CTDynamicBaseViewItem.h */,
-				4AFFBDC61B51901F0092622A /* CTDynamicBaseViewItem.m */,
 				4AFFBDC71B51901F0092622A /* ImageViewItem */,
 				4AFFBDCA1B51901F0092622A /* TextFieldItem */,
+				4AFFBDC51B51901F0092622A /* CTDynamicBaseViewItem.h */,
+				4AFFBDC61B51901F0092622A /* CTDynamicBaseViewItem.m */,
 			);
 			path = DynamicViewItems;
 			sourceTree = "<group>";
@@ -240,6 +286,7 @@
 		4AFFBDC71B51901F0092622A /* ImageViewItem */ = {
 			isa = PBXGroup;
 			children = (
+				4AA7D7EA1B522117007F4CCD /* Accessory */,
 				4AFFBDC81B51901F0092622A /* CTDynamicImageViewItem.h */,
 				4AFFBDC91B51901F0092622A /* CTDynamicImageViewItem.m */,
 			);
@@ -405,6 +452,9 @@
 				4AFFBDD91B51901F0092622A /* UIView+LayoutMethods.m in Sources */,
 				4AFFBDDB1B51901F0092622A /* CTDynamicLayoutCalculator.m in Sources */,
 				4AFFBDDA1B51901F0092622A /* CTDynamicLayoutViewController.m in Sources */,
+				4AA7D7F11B522146007F4CCD /* CTDynamicHorizontalDragPointView.m in Sources */,
+				4AA7D7F91B52219C007F4CCD /* CTDynamicCornerDragPointView.m in Sources */,
+				4AA7D7F61B522186007F4CCD /* CTDynamicVerticalDragPointView.m in Sources */,
 				4AA57D301B52117B00767AC3 /* CTDynamicLayoutBottomBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

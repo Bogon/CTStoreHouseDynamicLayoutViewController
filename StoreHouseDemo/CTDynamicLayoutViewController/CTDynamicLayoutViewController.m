@@ -41,9 +41,6 @@
 {
     self = [super init];
     if (self) {
-        
-        [self.scrollView addSubview:self.positionView];
-        
         __weak typeof(self) weakSelf = self;
         [imageList enumerateObjectsUsingBlock:^(UIImage *image, NSUInteger idx, BOOL *stop) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -62,9 +59,9 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.scrollView];
     [self.view addSubview:self.navBar];
     [self.view addSubview:self.bottomBar];
+    [self.view addSubview:self.scrollView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -74,18 +71,20 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
-    [self.scrollView fill];
+    [self.scrollView topInContainer:40 shouldResize:YES];
+    [self.scrollView fillWidth];
+    [self.scrollView bottomInContainer:40 shouldResize:YES];
+    
+    [self dynamicViewItemDidChangedSize:nil];
     
     self.navBar.height = 40;
     [self.navBar leftInContainer:0 shouldResize:YES];
     [self.navBar rightInContainer:0 shouldResize:YES];
     [self.navBar topInContainer:0 shouldResize:NO];
     
-    [self dynamicViewItemDidChangedSize:nil];
-    
-    self.bottomBar.height = 40.0f;
-    [self.bottomBar bottomInContainer:0 shouldResize:YES];
     [self.bottomBar fillWidth];
+    self.bottomBar.height = 40.0f;
+    [self.bottomBar bottomInContainer:0 shouldResize:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -176,6 +175,14 @@
 }
 
 #pragma mark - CTDynamicLayoutBottomBarDelegate
+- (void)bottomBar:(CTDynamicLayoutBottomBar *)bottomBar didTappedImageButton:(UIButton *)button
+{
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:imagePickerController animated:YES completion:nil];
+}
+
 - (void)bottomBar:(CTDynamicLayoutBottomBar *)bottomBar didTappedCameraButton:(UIButton *)button
 {
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
@@ -184,17 +191,30 @@
     [self presentViewController:imagePickerController animated:YES completion:nil];
 }
 
-- (void)bottomBar:(CTDynamicLayoutBottomBar *)bottomBar didTappedImageButton:(UIButton *)button
-{
-    
-}
-
 - (void)bottomBar:(CTDynamicLayoutBottomBar *)bottomBar didTappedTextFieldButton:(UIButton *)button withFontStyle:(CTDynamicTextFieldItemFontStyle)fontStyle
 {
     
 }
 
 #pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    CTDynamicImageViewItem *imageViewItem = [[CTDynamicImageViewItem alloc] initWithImage:image];
+    [imageViewItem makeRandomeSize];
+    imageViewItem.delegate = self;
+    [self.scrollView addSubview:imageViewItem];
+    [self.calculator addViews:@[imageViewItem]];
+    imageViewItem.frame = [imageViewItem refreshFrame];
+    if (imageViewItem.bottom + 60 >= self.scrollView.contentSize.height) {
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.width, imageViewItem.bottom + 60);
+    }
+    [picker dismissViewControllerAnimated:YES completion:^{
+        CGRect frame = imageViewItem.frame;
+        frame.origin.y -= 30;
+        frame.size.height += 60;
+        [self.scrollView scrollRectToVisible:frame animated:YES];
+    }];
+}
 
 #pragma mark - CTDynamicLayoutNavigationBarDelegate
 - (void)navBar:(CTDynamicLayoutNavigationBar *)navBar didTappedCancelButton:(UIButton *)button
@@ -267,6 +287,8 @@
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.showsVerticalScrollIndicator = NO;
         
+        [_scrollView addSubview:self.positionView];
+        
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTappedScrollView:)];
         tapGestureRecognizer.numberOfTapsRequired = 1;
         tapGestureRecognizer.numberOfTouchesRequired = 1;
@@ -302,6 +324,15 @@
         _imageEditBar.layer.zPosition = FLT_MAX;
     }
     return _imageEditBar;
+}
+
+- (CTDynamicLayoutBottomBar *)bottomBar
+{
+    if (_bottomBar == nil) {
+        _bottomBar = [[CTDynamicLayoutBottomBar alloc] init];
+        _bottomBar.delegate = self;
+    }
+    return _bottomBar;
 }
 
 @end

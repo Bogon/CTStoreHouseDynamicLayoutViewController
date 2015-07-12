@@ -9,13 +9,17 @@
 #import "CTDynamicImageViewItem.h"
 #import "UIView+LayoutMethods.h"
 
+#import "CTDynamicHorizontalDragPointView.h"
+#import "CTDynamicVerticalDragPointView.h"
+#import "CTDynamicCornerDragPointView.h"
+
 @interface CTDynamicImageViewItem () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UIImageView *imageView;
 
-@property (nonatomic, strong) UIView *horizontalDragPointView;
-@property (nonatomic, strong) UIView *verticalDragPointView;
-@property (nonatomic, strong) UIView *cornerDragPointView;
+@property (nonatomic, strong) CTDynamicHorizontalDragPointView *horizontalDragPointView;
+@property (nonatomic, strong) CTDynamicVerticalDragPointView *verticalDragPointView;
+@property (nonatomic, strong) CTDynamicCornerDragPointView *cornerDragPointView;
 
 @end
 
@@ -38,17 +42,20 @@
 
 - (void)layoutSubviews
 {
-    [self.imageView leftInContainer:4 shouldResize:YES];
-    [self.imageView rightInContainer:4 shouldResize:YES];
-    [self.imageView topInContainer:4 shouldResize:YES];
-    [self.imageView bottomInContainer:4 shouldResize:YES];
+    [self.imageView leftInContainer:5 shouldResize:YES];
+    [self.imageView rightInContainer:5 shouldResize:YES];
+    [self.imageView topInContainer:5 shouldResize:YES];
+    [self.imageView bottomInContainer:5 shouldResize:YES];
     
+    self.horizontalDragPointView.size = CGSizeMake(20, self.gridLength);
     [self.horizontalDragPointView rightInContainer:0 shouldResize:NO];
     [self.horizontalDragPointView centerYEqualToView:self];
     
+    self.verticalDragPointView.size = CGSizeMake(self.gridLength, 20);
     [self.verticalDragPointView bottomInContainer:0 shouldResize:NO];
     [self.verticalDragPointView centerXEqualToView:self];
     
+    self.cornerDragPointView.size = CGSizeMake(self.gridLength / 2.0f + 20, self.gridLength / 2.0f + 20);
     [self.cornerDragPointView rightInContainer:0 shouldResize:NO];
     [self.cornerDragPointView bottomInContainer:0 shouldResize:NO];
 }
@@ -222,13 +229,10 @@
     return _imageView;
 }
 
-- (UIView *)horizontalDragPointView
+- (CTDynamicHorizontalDragPointView *)horizontalDragPointView
 {
     if (_horizontalDragPointView == nil) {
-        _horizontalDragPointView = [[UIView alloc] init];
-        _horizontalDragPointView.size = CGSizeMake(12, 12);
-        _horizontalDragPointView.layer.cornerRadius = 6.0f;
-        _horizontalDragPointView.backgroundColor = [UIColor blueColor];
+        _horizontalDragPointView = [[CTDynamicHorizontalDragPointView alloc] init];
         _horizontalDragPointView.alpha = 0.0f;
         _horizontalDragPointView.userInteractionEnabled = NO;
         
@@ -240,13 +244,10 @@
     return _horizontalDragPointView;
 }
 
-- (UIView *)verticalDragPointView
+- (CTDynamicVerticalDragPointView *)verticalDragPointView
 {
     if (_verticalDragPointView == nil) {
-        _verticalDragPointView = [[UIView alloc] init];
-        [_verticalDragPointView sizeEqualToView:self.horizontalDragPointView];
-        _verticalDragPointView.layer.cornerRadius = self.horizontalDragPointView.layer.cornerRadius;
-        _verticalDragPointView.backgroundColor = [UIColor blueColor];
+        _verticalDragPointView = [[CTDynamicVerticalDragPointView alloc] init];
         _verticalDragPointView.alpha = 0.0f;
         _verticalDragPointView.userInteractionEnabled = NO;
         
@@ -258,13 +259,10 @@
     return _verticalDragPointView;
 }
 
-- (UIView *)cornerDragPointView
+- (CTDynamicCornerDragPointView *)cornerDragPointView
 {
     if (_cornerDragPointView == nil) {
-        _cornerDragPointView = [[UIView alloc] init];
-        [_cornerDragPointView sizeEqualToView:self.horizontalDragPointView];
-        _cornerDragPointView.layer.cornerRadius = self.horizontalDragPointView.layer.cornerRadius;
-        _cornerDragPointView.backgroundColor = [UIColor blueColor];
+        _cornerDragPointView = [[CTDynamicCornerDragPointView alloc] init];
         _cornerDragPointView.alpha = 0.0f;
         _cornerDragPointView.userInteractionEnabled = NO;
         
