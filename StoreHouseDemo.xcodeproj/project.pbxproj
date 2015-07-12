@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4AA57D301B52117B00767AC3 /* CTDynamicLayoutBottomBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA57D2F1B52117B00767AC3 /* CTDynamicLayoutBottomBar.m */; };
 		4AD6C2F51B4D18DE00D9C140 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C2F41B4D18DE00D9C140 /* main.m */; };
 		4AD6C2F81B4D18DE00D9C140 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C2F71B4D18DE00D9C140 /* AppDelegate.m */; };
 		4AD6C2FB1B4D18DE00D9C140 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C2FA1B4D18DE00D9C140 /* ViewController.m */; };
@@ -22,7 +23,7 @@
 		4AFFBDDE1B51901F0092622A /* CTDynamicImageViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFBDC91B51901F0092622A /* CTDynamicImageViewItem.m */; };
 		4AFFBDDF1B51901F0092622A /* CTDynamicTextFieldViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFBDCC1B51901F0092622A /* CTDynamicTextFieldViewItem.m */; };
 		4AFFBDE01B51901F0092622A /* CTDynamicImageEditBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFBDCF1B51901F0092622A /* CTDynamicImageEditBar.m */; };
-		4AFFBDE11B51901F0092622A /* CTDynamicPicNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFBDD21B51901F0092622A /* CTDynamicPicNavigationBar.m */; };
+		4AFFBDE11B51901F0092622A /* CTDynamicLayoutNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFBDD21B51901F0092622A /* CTDynamicLayoutNavigationBar.m */; };
 		4AFFBDE21B51901F0092622A /* CTDynamicPicScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFBDD51B51901F0092622A /* CTDynamicPicScrollView.m */; };
 		4AFFBDE31B51901F0092622A /* CTDynamicTextFieldEditBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFBDD81B51901F0092622A /* CTDynamicTextFieldEditBar.m */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4AA57D2E1B52117B00767AC3 /* CTDynamicLayoutBottomBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicLayoutBottomBar.h; sourceTree = "<group>"; };
+		4AA57D2F1B52117B00767AC3 /* CTDynamicLayoutBottomBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicLayoutBottomBar.m; sourceTree = "<group>"; };
 		4AD6C2EF1B4D18DE00D9C140 /* StoreHouseDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreHouseDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD6C2F31B4D18DE00D9C140 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AD6C2F41B4D18DE00D9C140 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -67,8 +70,8 @@
 		4AFFBDCC1B51901F0092622A /* CTDynamicTextFieldViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicTextFieldViewItem.m; sourceTree = "<group>"; };
 		4AFFBDCE1B51901F0092622A /* CTDynamicImageEditBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicImageEditBar.h; sourceTree = "<group>"; };
 		4AFFBDCF1B51901F0092622A /* CTDynamicImageEditBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicImageEditBar.m; sourceTree = "<group>"; };
-		4AFFBDD11B51901F0092622A /* CTDynamicPicNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicPicNavigationBar.h; sourceTree = "<group>"; };
-		4AFFBDD21B51901F0092622A /* CTDynamicPicNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicPicNavigationBar.m; sourceTree = "<group>"; };
+		4AFFBDD11B51901F0092622A /* CTDynamicLayoutNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicLayoutNavigationBar.h; sourceTree = "<group>"; };
+		4AFFBDD21B51901F0092622A /* CTDynamicLayoutNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicLayoutNavigationBar.m; sourceTree = "<group>"; };
 		4AFFBDD41B51901F0092622A /* CTDynamicPicScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicPicScrollView.h; sourceTree = "<group>"; };
 		4AFFBDD51B51901F0092622A /* CTDynamicPicScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicPicScrollView.m; sourceTree = "<group>"; };
 		4AFFBDD71B51901F0092622A /* CTDynamicTextFieldEditBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicTextFieldEditBar.h; sourceTree = "<group>"; };
@@ -93,6 +96,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4AA57D2D1B5210FB00767AC3 /* BottomBar */ = {
+			isa = PBXGroup;
+			children = (
+				4AA57D2E1B52117B00767AC3 /* CTDynamicLayoutBottomBar.h */,
+				4AA57D2F1B52117B00767AC3 /* CTDynamicLayoutBottomBar.m */,
+			);
+			path = BottomBar;
+			sourceTree = "<group>";
+		};
 		4AD6C2E61B4D18DE00D9C140 = {
 			isa = PBXGroup;
 			children = (
@@ -157,10 +169,10 @@
 			isa = PBXGroup;
 			children = (
 				4AFFBDB71B51901F0092622A /* Categories */,
-				4AFFBDBA1B51901F0092622A /* CTDynamicLayoutViewController.h */,
-				4AFFBDBB1B51901F0092622A /* CTDynamicLayoutViewController.m */,
 				4AFFBDBC1B51901F0092622A /* Tools */,
 				4AFFBDC31B51901F0092622A /* ViewItems */,
+				4AFFBDBA1B51901F0092622A /* CTDynamicLayoutViewController.h */,
+				4AFFBDBB1B51901F0092622A /* CTDynamicLayoutViewController.m */,
 			);
 			path = CTDynamicLayoutViewController;
 			sourceTree = "<group>";
@@ -204,6 +216,7 @@
 		4AFFBDC31B51901F0092622A /* ViewItems */ = {
 			isa = PBXGroup;
 			children = (
+				4AA57D2D1B5210FB00767AC3 /* BottomBar */,
 				4AFFBDC41B51901F0092622A /* DynamicViewItems */,
 				4AFFBDCD1B51901F0092622A /* ImageEditBar */,
 				4AFFBDD01B51901F0092622A /* NavBar */,
@@ -254,8 +267,8 @@
 		4AFFBDD01B51901F0092622A /* NavBar */ = {
 			isa = PBXGroup;
 			children = (
-				4AFFBDD11B51901F0092622A /* CTDynamicPicNavigationBar.h */,
-				4AFFBDD21B51901F0092622A /* CTDynamicPicNavigationBar.m */,
+				4AFFBDD11B51901F0092622A /* CTDynamicLayoutNavigationBar.h */,
+				4AFFBDD21B51901F0092622A /* CTDynamicLayoutNavigationBar.m */,
 			);
 			path = NavBar;
 			sourceTree = "<group>";
@@ -382,7 +395,7 @@
 				4AFFBDDC1B51901F0092622A /* NSMutableDictionary+CTDynamicSpaceMap.m in Sources */,
 				4AFFBDE21B51901F0092622A /* CTDynamicPicScrollView.m in Sources */,
 				4AD6C2F81B4D18DE00D9C140 /* AppDelegate.m in Sources */,
-				4AFFBDE11B51901F0092622A /* CTDynamicPicNavigationBar.m in Sources */,
+				4AFFBDE11B51901F0092622A /* CTDynamicLayoutNavigationBar.m in Sources */,
 				4AFFBDDE1B51901F0092622A /* CTDynamicImageViewItem.m in Sources */,
 				4AFFBDDF1B51901F0092622A /* CTDynamicTextFieldViewItem.m in Sources */,
 				4AFFBDE01B51901F0092622A /* CTDynamicImageEditBar.m in Sources */,
@@ -392,6 +405,7 @@
 				4AFFBDD91B51901F0092622A /* UIView+LayoutMethods.m in Sources */,
 				4AFFBDDB1B51901F0092622A /* CTDynamicLayoutCalculator.m in Sources */,
 				4AFFBDDA1B51901F0092622A /* CTDynamicLayoutViewController.m in Sources */,
+				4AA57D301B52117B00767AC3 /* CTDynamicLayoutBottomBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,7 +532,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = StoreHouseDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -529,7 +543,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = StoreHouseDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

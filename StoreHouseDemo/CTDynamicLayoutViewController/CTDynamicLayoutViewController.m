@@ -7,7 +7,9 @@
 //
 
 #import "CTDynamicLayoutViewController.h"
-#import "CTDynamicPicNavigationBar.h"
+
+#import "CTDynamicLayoutNavigationBar.h"
+#import "CTDynamicLayoutBottomBar.h"
 
 #import "CTDynamicTextFieldViewItem.h"
 #import "CTDynamicImageViewItem.h"
@@ -18,13 +20,14 @@
 
 #import "CTDynamicLayoutCalculator.h"
 
-@interface CTDynamicLayoutViewController () <CTDynamicPicNavigationBarDelegate, CTDynamicBaseViewItemDelegate, CTDynamicImageEditBarDelegate>
+@interface CTDynamicLayoutViewController () <CTDynamicLayoutNavigationBarDelegate, CTDynamicBaseViewItemDelegate, CTDynamicImageEditBarDelegate, CTDynamicLayoutBottomBarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) CTDynamicTextFieldEditBar *textFieldEditBar;
 @property (nonatomic, strong) CTDynamicImageEditBar *imageEditBar;
 @property (nonatomic, strong) UIView *positionView;
 
-@property (nonatomic, strong) CTDynamicPicNavigationBar *navBar;
+@property (nonatomic, strong) CTDynamicLayoutNavigationBar *navBar;
+@property (nonatomic, strong) CTDynamicLayoutBottomBar *bottomBar;
 @property (nonatomic, strong) UIScrollView *scrollView;
 
 @property (nonatomic, strong) CTDynamicLayoutCalculator *calculator;
@@ -60,7 +63,8 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.scrollView];
-//    [self.scrollView addSubview:self.navBar];
+    [self.view addSubview:self.navBar];
+    [self.view addSubview:self.bottomBar];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -78,6 +82,10 @@
     [self.navBar topInContainer:0 shouldResize:NO];
     
     [self dynamicViewItemDidChangedSize:nil];
+    
+    self.bottomBar.height = 40.0f;
+    [self.bottomBar bottomInContainer:0 shouldResize:YES];
+    [self.bottomBar fillWidth];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -109,8 +117,8 @@
         }];
         
         CGRect frame = viewItem.frame;
-        frame.size.height += 40;
-        frame.origin.y -= 20;
+        frame.size.height += 60;
+        frame.origin.y -= 30;
         [self.scrollView scrollRectToVisible:frame animated:YES];
         
         self.positionView.frame = viewItem.frame;
@@ -163,22 +171,43 @@
                 }
             }
         }];
-        strongSelf.scrollView.contentSize = CGSizeMake(strongSelf.scrollView.width, maxHeight + 40);
+        strongSelf.scrollView.contentSize = CGSizeMake(strongSelf.scrollView.width, maxHeight + 60);
     }];
 }
 
-#pragma mark - CTDynamicPicNavigationBarDelegate
-- (void)navBar:(CTDynamicPicNavigationBar *)navBar didTappedCancelButton:(UIButton *)button
+#pragma mark - CTDynamicLayoutBottomBarDelegate
+- (void)bottomBar:(CTDynamicLayoutBottomBar *)bottomBar didTappedCameraButton:(UIButton *)button
+{
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [self presentViewController:imagePickerController animated:YES completion:nil];
+}
+
+- (void)bottomBar:(CTDynamicLayoutBottomBar *)bottomBar didTappedImageButton:(UIButton *)button
+{
+    
+}
+
+- (void)bottomBar:(CTDynamicLayoutBottomBar *)bottomBar didTappedTextFieldButton:(UIButton *)button withFontStyle:(CTDynamicTextFieldItemFontStyle)fontStyle
+{
+    
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+#pragma mark - CTDynamicLayoutNavigationBarDelegate
+- (void)navBar:(CTDynamicLayoutNavigationBar *)navBar didTappedCancelButton:(UIButton *)button
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)navBar:(CTDynamicPicNavigationBar *)navBar didTappedPublishButton:(UIButton *)button
+- (void)navBar:(CTDynamicLayoutNavigationBar *)navBar didTappedPublishButton:(UIButton *)button
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)navBar:(CTDynamicPicNavigationBar *)navBar didTappedSaveButton:(UIButton *)button
+- (void)navBar:(CTDynamicLayoutNavigationBar *)navBar didTappedSaveButton:(UIButton *)button
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -216,16 +245,16 @@
                 }
             }
         }];
-        strongSelf.scrollView.contentSize = CGSizeMake(strongSelf.scrollView.width, maxHeight + 40);
+        strongSelf.scrollView.contentSize = CGSizeMake(strongSelf.scrollView.width, maxHeight + 60);
         strongSelf.positionView.frame = [viewItem refreshFrame];
     }];
 }
 
 #pragma mark - getters and setters
-- (CTDynamicPicNavigationBar *)navBar
+- (CTDynamicLayoutNavigationBar *)navBar
 {
     if (_navBar == nil) {
-        _navBar = [[CTDynamicPicNavigationBar alloc] init];
+        _navBar = [[CTDynamicLayoutNavigationBar alloc] init];
         _navBar.delegate = self;
     }
     return _navBar;

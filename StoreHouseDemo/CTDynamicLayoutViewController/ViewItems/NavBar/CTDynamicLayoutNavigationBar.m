@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 casa. All rights reserved.
 //
 
-#import "CTDynamicPicNavigationBar.h"
+#import "CTDynamicLayoutNavigationBar.h"
 #import "UIView+LayoutMethods.h"
 
-@interface CTDynamicPicNavigationBar ()
+@interface CTDynamicLayoutNavigationBar ()
 
 @property (nonatomic, strong) UIButton *cancelButton;
 @property (nonatomic, strong) UIButton *saveButton;
@@ -17,7 +17,7 @@
 
 @end
 
-@implementation CTDynamicPicNavigationBar
+@implementation CTDynamicLayoutNavigationBar
 
 #pragma mark - life cycle
 - (instancetype)init
