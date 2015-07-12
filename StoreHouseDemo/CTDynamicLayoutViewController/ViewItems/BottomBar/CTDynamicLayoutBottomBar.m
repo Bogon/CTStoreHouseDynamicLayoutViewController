@@ -8,12 +8,15 @@
 
 #import "CTDynamicLayoutBottomBar.h"
 #import "UIView+LayoutMethods.h"
+#import "CTDynamicFontStylePicker.h"
 
-@interface CTDynamicLayoutBottomBar ()
+@interface CTDynamicLayoutBottomBar () <CTDynamicFontStylePickerDelegate>
 
 @property (nonatomic, strong) UIButton *imageButton;
 @property (nonatomic, strong) UIButton *cameraButton;
 @property (nonatomic, strong) UIButton *textFieldButton;
+
+@property (nonatomic, strong) CTDynamicFontStylePicker *fontStylePicker;
 
 @end
 
@@ -48,6 +51,21 @@
     [self.textFieldButton centerYEqualToView:self.textFieldButton];
 }
 
+#pragma mark - public methods
+- (void)hidePopup
+{
+    [self.fontStylePicker hide];
+}
+
+#pragma mark - CTDynamicFontStylePickerDelegate
+- (void)fontStylePicker:(CTDynamicFontStylePicker *)picker didPickedFontStyle:(CTDynamicTextFieldItemFontStyle)fontStyle
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(bottomBar:didTappedTextFieldButton:withFontStyle:)]) {
+        [self.delegate bottomBar:self didTappedTextFieldButton:self.textFieldButton withFontStyle:fontStyle];
+    }
+    [picker hide];
+}
+
 #pragma mark - event response
 - (void)didTappedImageButton:(UIButton *)imageButton
 {
@@ -65,7 +83,7 @@
 
 - (void)didTappedTextFieldButton:(UIButton *)textFieldButton
 {
-    // do nothing
+    [self.fontStylePicker showInView:self.superview forView:textFieldButton];
 }
 
 #pragma mark - getters and setters
@@ -100,6 +118,15 @@
         [_textFieldButton addTarget:self action:@selector(didTappedTextFieldButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _textFieldButton;
+}
+
+- (CTDynamicFontStylePicker *)fontStylePicker
+{
+    if (_fontStylePicker == nil) {
+        _fontStylePicker = [[CTDynamicFontStylePicker alloc] init];
+        _fontStylePicker.delegate = self;
+    }
+    return _fontStylePicker;
 }
 
 @end

@@ -20,7 +20,7 @@
 
 #import "CTDynamicLayoutCalculator.h"
 
-@interface CTDynamicLayoutViewController () <CTDynamicLayoutNavigationBarDelegate, CTDynamicBaseViewItemDelegate, CTDynamicImageEditBarDelegate, CTDynamicLayoutBottomBarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface CTDynamicLayoutViewController () <CTDynamicLayoutNavigationBarDelegate, CTDynamicBaseViewItemDelegate, CTDynamicImageEditBarDelegate, CTDynamicLayoutBottomBarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CTDynamicTextFieldEditBarDelegate>
 
 @property (nonatomic, strong) CTDynamicTextFieldEditBar *textFieldEditBar;
 @property (nonatomic, strong) CTDynamicImageEditBar *imageEditBar;
@@ -97,13 +97,13 @@
 - (void)dynamicViewItemDidChangedPosition:(CTDynamicBaseViewItem *)viewItem
 {
     NSArray *viewsToAnimate = [self.calculator calculateForView:viewItem];
-    [self animateWithTargetViewItem:viewItem viewsToAnimate:viewsToAnimate];
+    [self animateWithTargetViewItem:viewItem viewsToAnimate:viewsToAnimate completion:nil];
 }
 
 - (void)dynamicViewItemDidChangedSize:(CTDynamicBaseViewItem *)viewItem
 {
     NSArray *viewsToAnimate = [self.calculator calculate];
-    [self animateWithTargetViewItem:viewItem viewsToAnimate:viewsToAnimate];
+    [self animateWithTargetViewItem:viewItem viewsToAnimate:viewsToAnimate completion:nil];
 }
 
 - (void)dynamicViewItemDidChangedSelect:(CTDynamicBaseViewItem *)viewItem
@@ -126,12 +126,8 @@
 
 - (void)dynamicViewItemHideEditBar:(CTDynamicBaseViewItem *)viewItem
 {
-    if ([viewItem isKindOfClass:[CTDynamicImageViewItem class]]) {
-        [self.imageEditBar hide];
-    }
-    if ([viewItem isKindOfClass:[CTDynamicTextFieldViewItem class]]) {
-        [self.textFieldEditBar hide];
-    }
+    [self.imageEditBar hide];
+    [self.textFieldEditBar hide];
 }
 
 - (void)dynamicViewItemShowEditBar:(CTDynamicBaseViewItem *)viewItem
@@ -174,6 +170,36 @@
     }];
 }
 
+#pragma mark - CTDynamicTextFieldEditBarDelegate
+- (void)textFieldEditBar:(CTDynamicTextFieldEditBar *)editBar didTappedDeleteButton:(UIButton *)deleteButton
+{
+    [editBar.targetTextFieldViewItem removeFromSuperview];
+    [editBar hide];
+    self.positionView.frame = CGRectZero;
+    NSArray *viewsToAnimate = [self.calculator removeView:editBar.targetTextFieldViewItem];
+    __weak typeof(self) weakSelf = self;
+    [UIView animateWithDuration:0.3f animations:^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        __block CGFloat maxHeight = 0;
+        [viewsToAnimate enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *item, NSUInteger idx, BOOL *stop) {
+            if ([item isKindOfClass:[CTDynamicBaseViewItem class]]) {
+                item.frame = [item refreshFrame];
+                if (item.bottom >= maxHeight) {
+                    maxHeight = item.bottom;
+                }
+            }
+        }];
+        strongSelf.scrollView.contentSize = CGSizeMake(strongSelf.scrollView.width, maxHeight + 60);
+    }];
+}
+
+- (void)textFieldEditBar:(CTDynamicTextFieldEditBar *)editBar didTappedEditButton:(UIButton *)editButton
+{
+    [editBar hide];
+    editBar.targetTextFieldViewItem.textField.userInteractionEnabled = YES;
+    [editBar.targetTextFieldViewItem.textField becomeFirstResponder];
+}
+
 #pragma mark - CTDynamicLayoutBottomBarDelegate
 - (void)bottomBar:(CTDynamicLayoutBottomBar *)bottomBar didTappedImageButton:(UIButton *)button
 {
@@ -193,7 +219,21 @@
 
 - (void)bottomBar:(CTDynamicLayoutBottomBar *)bottomBar didTappedTextFieldButton:(UIButton *)button withFontStyle:(CTDynamicTextFieldItemFontStyle)fontStyle
 {
+    [self dynamicViewItemHideEditBar:nil];
+    CTDynamicTextFieldViewItem *textFieldViewItem = [[CTDynamicTextFieldViewItem alloc] initWithFontStyle:fontStyle];
+    textFieldViewItem.coordinateHeight = 1;
+    textFieldViewItem.delegate = self;
+    [self.scrollView addSubview:textFieldViewItem];
     
+    CGPoint currentPoint = CGPointMake(0, (NSInteger)floor((self.scrollView.contentOffset.y + self.scrollView.height / 2.0f) / self.calculator.gridLength));
+    NSArray *viewsToAnimate = [self.calculator addView:textFieldViewItem nearPoint:currentPoint];
+    [self animateWithTargetViewItem:nil viewsToAnimate:viewsToAnimate completion:^(BOOL finished) {
+        if (finished) {
+            textFieldViewItem.isSelected = YES;
+            self.textFieldEditBar.targetTextFieldViewItem = textFieldViewItem;
+            [self.textFieldEditBar showInView:self.scrollView aboveFrame:[textFieldViewItem refreshFrame]];
+        }
+    }];
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -244,10 +284,11 @@
     self.positionView.frame = CGRectZero;
     [self.imageEditBar hide];
     [self.textFieldEditBar hide];
+    [self.bottomBar hidePopup];
 }
 
 #pragma mark - private methods
-- (void)animateWithTargetViewItem:(CTDynamicBaseViewItem *)viewItem viewsToAnimate:(NSArray *)viewsToAnimate
+- (void)animateWithTargetViewItem:(CTDynamicBaseViewItem *)viewItem viewsToAnimate:(NSArray *)viewsToAnimate completion:(void(^)(BOOL finished))completion
 {
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.3f animations:^{
@@ -267,7 +308,7 @@
         }];
         strongSelf.scrollView.contentSize = CGSizeMake(strongSelf.scrollView.width, maxHeight + 60);
         strongSelf.positionView.frame = [viewItem refreshFrame];
-    }];
+    } completion:completion];
 }
 
 #pragma mark - getters and setters
@@ -324,6 +365,16 @@
         _imageEditBar.layer.zPosition = FLT_MAX;
     }
     return _imageEditBar;
+}
+
+- (CTDynamicTextFieldEditBar *)textFieldEditBar
+{
+    if (_textFieldEditBar == nil) {
+        _textFieldEditBar = [[CTDynamicTextFieldEditBar alloc] init];
+        _textFieldEditBar.delegate = self;
+        _textFieldEditBar.layer.zPosition = FLT_MAX;
+    }
+    return _textFieldEditBar;
 }
 
 - (CTDynamicLayoutBottomBar *)bottomBar

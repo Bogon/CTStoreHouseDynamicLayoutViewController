@@ -140,6 +140,19 @@ NSString * const kCTDynamicLayoutCalculatorViewInfoKeyView = @"kCTDynamicLayoutC
     return viewListToRecalculate;
 }
 
+- (NSArray *)addView:(CTDynamicBaseViewItem *)view nearPoint:(CGPoint)coordinatePoint
+{
+    NSMutableArray *viewList = [self.spaceMap CTDSM_ViewsBelowPoint:coordinatePoint];
+    [viewList enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *viewItem, NSUInteger idx, BOOL *stop) {
+        if ([viewItem isKindOfClass:[CTDynamicBaseViewItem class]]) {
+            [self.spaceMap CTDSM_deleteView:viewItem];
+        }
+    }];
+    [viewList insertObject:view atIndex:0];
+    [self addViews:viewList];
+    return viewList;
+}
+
 #pragma mark - getters and setters
 - (NSMutableDictionary *)spaceMap
 {

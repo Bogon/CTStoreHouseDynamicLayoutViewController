@@ -38,7 +38,7 @@
 {
     for (NSInteger yIndex = 0; yIndex < view.coordinateHeight; yIndex++) {
         for (NSInteger xIndex = 0; xIndex < view.coordinateWidth; xIndex++) {
-            [self[@(xIndex)] removeObjectForKey:@(yIndex)];
+            [self[@(xIndex+view.upLeftPoint.x)] removeObjectForKey:@(yIndex+view.upLeftPoint.y)];
         }
     }
 }
@@ -71,28 +71,30 @@
 
 - (NSMutableArray *)CTDSM_viewsInMapOrder
 {
+    return [self CTDSM_ViewsBelowPoint:CGPointZero];
+}
+
+- (NSMutableArray *)CTDSM_ViewsBelowPoint:(CGPoint)point
+{
     NSMutableArray *viewList = [[NSMutableArray alloc] init];
     
-    BOOL shoulBreak = NO;
-    for (NSInteger yIndex = 0; true; yIndex++) {
+    BOOL shouldBreak = NO;
+    for (NSInteger yIndex = point.y; true; yIndex++) {
         NSInteger emptyCount = 0;
         for (NSInteger xIndex = 0; xIndex < 6; xIndex++) {
             CTDynamicBaseViewItem *view = self[@(xIndex)][@(yIndex)];
-            
             if (view == nil) {
                 emptyCount++;
                 if (emptyCount >= 6) {
-                    shoulBreak = YES;
+                    shouldBreak = YES;
                     break;
                 }
             }
-            
             if (view && ![viewList containsObject:view]) {
-                view.upLeftPoint = CGPointMake(xIndex, yIndex);
                 [viewList addObject:view];
             }
         }
-        if (shoulBreak) {
+        if (shouldBreak) {
             break;
         }
     }

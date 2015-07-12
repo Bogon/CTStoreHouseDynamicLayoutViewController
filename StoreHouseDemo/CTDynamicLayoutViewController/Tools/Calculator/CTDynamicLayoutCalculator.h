@@ -18,8 +18,11 @@
 
 - (NSArray *)calculate;
 - (NSArray *)calculateForView:(CTDynamicBaseViewItem *)view;
+
 - (NSArray *)removeView:(CTDynamicBaseViewItem *)view;
-- (void)addViews:(NSArray *)viewList;
 - (NSArray *)deleteView:(CTDynamicBaseViewItem *)view;
+
+- (void)addViews:(NSArray *)viewList;
+- (NSArray *)addView:(CTDynamicBaseViewItem *)view nearPoint:(CGPoint)coordinatePoint;
 
 @end

@@ -15,6 +15,8 @@
 
 @property (nonatomic, weak) id<CTDynamicLayoutBottomBarDelegate> delegate;
 
+- (void)hidePopup;
+
 @end
 
 @protocol CTDynamicLayoutBottomBarDelegate <NSObject>

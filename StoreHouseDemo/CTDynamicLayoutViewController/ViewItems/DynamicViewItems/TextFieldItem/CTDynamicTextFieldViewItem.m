@@ -9,7 +9,7 @@
 #import "CTDynamicTextFieldViewItem.h"
 #import "UIView+LayoutMethods.h"
 
-@interface CTDynamicTextFieldViewItem ()
+@interface CTDynamicTextFieldViewItem () <UITextFieldDelegate>
 
 @property (nonatomic, strong, readwrite) UITextField *textField;
 @property (nonatomic, strong) CAShapeLayer *dashedLayer;
@@ -25,6 +25,7 @@
     if (self) {
         [self addSubview:self.textField];
         self.fontStyle = style;
+        self.backgroundColor = [UIColor grayColor];
     }
     return self;
 }
@@ -36,6 +37,8 @@
     [self.textField topInContainer:4 shouldResize:YES];
     [self.textField bottomInContainer:4 shouldResize:YES];
 }
+
+#pragma mark - UITextFieldDelegate
 
 #pragma mark - public methods
 - (void)sizeToFit
@@ -109,6 +112,8 @@
     if (_textField == nil) {
         _textField = [[UITextField alloc] init];
         _textField.userInteractionEnabled = NO;
+        _textField.delegate = self;
+        _textField.text = @"testtest";
     }
     return _textField;
 }

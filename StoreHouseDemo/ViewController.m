@@ -53,6 +53,10 @@
                                                                                                             [UIImage imageNamed:@"test"],
                                                                                                             [UIImage imageNamed:@"test"],
                                                                                                             [UIImage imageNamed:@"test"],
+                                                                                                            [UIImage imageNamed:@"test"],
+                                                                                                            [UIImage imageNamed:@"test"],
+                                                                                                            [UIImage imageNamed:@"test"],
+                                                                                                            [UIImage imageNamed:@"test"],
                                                                                                             [UIImage imageNamed:@"test"]
                                                                                                             ]];
     [self presentViewController:viewController animated:YES completion:nil];

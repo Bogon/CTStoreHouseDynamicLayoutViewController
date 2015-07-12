@@ -11,6 +11,7 @@
 		4AA7D7F11B522146007F4CCD /* CTDynamicHorizontalDragPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA7D7F01B522146007F4CCD /* CTDynamicHorizontalDragPointView.m */; };
 		4AA7D7F61B522186007F4CCD /* CTDynamicVerticalDragPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA7D7F51B522186007F4CCD /* CTDynamicVerticalDragPointView.m */; };
 		4AA7D7F91B52219C007F4CCD /* CTDynamicCornerDragPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA7D7F81B52219C007F4CCD /* CTDynamicCornerDragPointView.m */; };
+		4AA7D8081B52550E007F4CCD /* CTDynamicFontStylePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA7D8071B52550E007F4CCD /* CTDynamicFontStylePicker.m */; };
 		4AD6C2F51B4D18DE00D9C140 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C2F41B4D18DE00D9C140 /* main.m */; };
 		4AD6C2F81B4D18DE00D9C140 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C2F71B4D18DE00D9C140 /* AppDelegate.m */; };
 		4AD6C2FB1B4D18DE00D9C140 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6C2FA1B4D18DE00D9C140 /* ViewController.m */; };
@@ -50,6 +51,8 @@
 		4AA7D7F51B522186007F4CCD /* CTDynamicVerticalDragPointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicVerticalDragPointView.m; sourceTree = "<group>"; };
 		4AA7D7F71B52219C007F4CCD /* CTDynamicCornerDragPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicCornerDragPointView.h; sourceTree = "<group>"; };
 		4AA7D7F81B52219C007F4CCD /* CTDynamicCornerDragPointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicCornerDragPointView.m; sourceTree = "<group>"; };
+		4AA7D8061B52550E007F4CCD /* CTDynamicFontStylePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDynamicFontStylePicker.h; sourceTree = "<group>"; };
+		4AA7D8071B52550E007F4CCD /* CTDynamicFontStylePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDynamicFontStylePicker.m; sourceTree = "<group>"; };
 		4AD6C2EF1B4D18DE00D9C140 /* StoreHouseDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreHouseDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD6C2F31B4D18DE00D9C140 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AD6C2F41B4D18DE00D9C140 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -108,6 +111,7 @@
 		4AA57D2D1B5210FB00767AC3 /* BottomBar */ = {
 			isa = PBXGroup;
 			children = (
+				4AA7D8041B52550E007F4CCD /* Accessory */,
 				4AA57D2E1B52117B00767AC3 /* CTDynamicLayoutBottomBar.h */,
 				4AA57D2F1B52117B00767AC3 /* CTDynamicLayoutBottomBar.m */,
 			);
@@ -149,6 +153,23 @@
 				4AA7D7F51B522186007F4CCD /* CTDynamicVerticalDragPointView.m */,
 			);
 			path = VerticalDragPoint;
+			sourceTree = "<group>";
+		};
+		4AA7D8041B52550E007F4CCD /* Accessory */ = {
+			isa = PBXGroup;
+			children = (
+				4AA7D8051B52550E007F4CCD /* FontStylePicker */,
+			);
+			path = Accessory;
+			sourceTree = "<group>";
+		};
+		4AA7D8051B52550E007F4CCD /* FontStylePicker */ = {
+			isa = PBXGroup;
+			children = (
+				4AA7D8061B52550E007F4CCD /* CTDynamicFontStylePicker.h */,
+				4AA7D8071B52550E007F4CCD /* CTDynamicFontStylePicker.m */,
+			);
+			path = FontStylePicker;
 			sourceTree = "<group>";
 		};
 		4AD6C2E61B4D18DE00D9C140 = {
@@ -454,6 +475,7 @@
 				4AFFBDDA1B51901F0092622A /* CTDynamicLayoutViewController.m in Sources */,
 				4AA7D7F11B522146007F4CCD /* CTDynamicHorizontalDragPointView.m in Sources */,
 				4AA7D7F91B52219C007F4CCD /* CTDynamicCornerDragPointView.m in Sources */,
+				4AA7D8081B52550E007F4CCD /* CTDynamicFontStylePicker.m in Sources */,
 				4AA7D7F61B522186007F4CCD /* CTDynamicVerticalDragPointView.m in Sources */,
 				4AA57D301B52117B00767AC3 /* CTDynamicLayoutBottomBar.m in Sources */,
 			);
