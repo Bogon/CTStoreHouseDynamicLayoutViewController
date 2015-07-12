@@ -33,7 +33,6 @@
 
 // style
 @property (nonatomic, readwrite, assign) CTDynamicTextFieldEditBarStyle editBarStyle;
-@property (nonatomic, readwrite, assign) BOOL isShowing;
 
 @end
 
@@ -52,46 +51,64 @@
 
 - (void)layoutSubviews
 {
-    if (self.isShowing) {
-        [self switchToStyle:self.editBarStyle];
-    }
+    [self switchToStyle:self.editBarStyle];
 }
 
 #pragma mark - public methods
-- (void)showInView:(UIView *)view aboveFrame:(CGRect)aboveFrame
+- (void)showInView:(UIView *)view atFrame:(CGRect)frame
 {
-    if (self.isShowing) {
-        return;
-    }
-
-    self.isShowing = YES;
-    
-    CGFloat buttonheight = 40;
-    CGFloat selfWidth = (4 * buttonheight) + 3 + 3*8;
-    CGFloat selfHeight = buttonheight + 6;
-    
-    self.frame = CGRectMake(aboveFrame.origin.x + aboveFrame.size.width / 2.0f, aboveFrame.origin.y, 0, 0);
-    self.alpha = 0.0f;
+#warning can not show edit bar
     [self switchToStyle:CTDynamicTextFieldEditBarStyleDefault];
+    CGFloat selfWidth = (4 * 40) + 3 + 3*8;
+    CGFloat selfHeight = 40 + 6;
+    
+    CGRect initFrame;
+    if (frame.origin.y - selfHeight < 10) {
+        initFrame = CGRectMake(frame.origin.x + frame.size.width / 2.0f, (frame.origin.y + frame.size.height) / 2.0f, 0, 0);
+    } else {
+        initFrame = CGRectMake(frame.origin.x + frame.size.width / 2.0f, frame.origin.y - selfHeight / 2.0f, 0, 0);
+    }
+    self.frame = initFrame;
     [view addSubview:self];
     
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.8f initialSpringVelocity:1.0 options:0 animations:^{
         __strong typeof(weakSelf) strongSelf = weakSelf;
-        CGFloat targetX = aboveFrame.origin.x + aboveFrame.size.width / 2.0f - selfWidth / 2.0f;
-        CGFloat targetY = aboveFrame.origin.y - selfHeight;
-        strongSelf.frame = CGRectMake(targetX, targetY, selfWidth, selfHeight);
-        strongSelf.alpha = 1.0f;
-    } completion:nil];
+        CGRect frame = CGRectMake(initFrame.origin.x - selfWidth / 2.0f, initFrame.origin.y - selfHeight / 2.0f, selfWidth, selfHeight);
+        strongSelf.frame = frame;
+        [strongSelf layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        NSLog(@"%@", strongSelf);
+    }];
 }
+
+/*
+ [view addSubview:self];
+ 
+ CGFloat buttonheight = 40;
+ CGFloat selfWidth = (2 * buttonheight) + 1 + 3*4;
+ CGFloat selfHeight = buttonheight + 6;
+ 
+ CGRect initFrame;
+ if (frame.origin.y - selfHeight < 10) {
+ initFrame = CGRectMake(frame.origin.x + frame.size.width / 2.0f, (frame.origin.y + frame.size.height) / 2.0f, 0, 0);
+ } else {
+ initFrame = CGRectMake(frame.origin.x + frame.size.width / 2.0f, frame.origin.y - selfHeight / 2.0f, 0, 0);
+ }
+ self.frame = initFrame;
+ 
+ 
+ __weak typeof(self) weakSelf = self;
+ [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.8f initialSpringVelocity:1.0 options:0 animations:^{
+ __strong typeof(weakSelf) strongSelf = weakSelf;
+ CGRect frame = CGRectMake(initFrame.origin.x - selfWidth / 2.0f, initFrame.origin.y - selfHeight / 2.0f, selfWidth, selfHeight);
+ strongSelf.frame = frame;
+ } completion:nil];
+ */
 
 - (void)hide
 {
-    if (!self.isShowing) {
-        return;
-    }
-    
-    self.isShowing = NO;
     self.editBarStyle = CTDynamicTextFieldEditBarStyleUndefined;
     self.targetTextFieldViewItem = nil;
     __weak typeof(self) weakSelf = self;

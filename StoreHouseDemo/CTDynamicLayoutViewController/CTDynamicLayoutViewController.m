@@ -140,14 +140,14 @@
     if ([viewItem isKindOfClass:[CTDynamicTextFieldViewItem class]]) {
         [self.imageEditBar hide];
         self.textFieldEditBar.targetTextFieldViewItem = (CTDynamicTextFieldViewItem *)viewItem;
-        [self.textFieldEditBar showInView:self.scrollView aboveFrame:viewItem.frame];
+        [self.textFieldEditBar showInView:self.scrollView atFrame:viewItem.frame];
     }
 }
 
 #pragma mark - CTDynamicImageEditBarDelegate
 - (void)imageEditBar:(CTDynamicImageEditBar *)imageEditBar didTappedEditButton:(UIButton *)button
 {
-    // do nothing
+#warning todo
 }
 
 - (void)imageEditBar:(CTDynamicImageEditBar *)imageEditBar didTappedDeleteButton:(UIButton *)button
@@ -197,6 +197,7 @@
 
 - (void)textFieldEditBar:(CTDynamicTextFieldEditBar *)editBar didTappedEditButton:(UIButton *)editButton
 {
+#warning can not show keyboard
     [editBar hide];
     editBar.targetTextFieldViewItem.textField.userInteractionEnabled = YES;
     [editBar.targetTextFieldViewItem.textField becomeFirstResponder];
@@ -233,7 +234,7 @@
         if (finished) {
             textFieldViewItem.isSelected = YES;
             self.textFieldEditBar.targetTextFieldViewItem = textFieldViewItem;
-            [self.textFieldEditBar showInView:self.scrollView aboveFrame:[textFieldViewItem refreshFrame]];
+            [self dynamicViewItemShowEditBar:textFieldViewItem];
         }
     }];
 }

@@ -26,9 +26,8 @@ typedef NS_ENUM(NSUInteger, CTDynamicTextFieldEditBarStyle) {
 @property (nonatomic, weak) id<CTDynamicTextFieldEditBarDelegate> delegate;
 
 @property (nonatomic, readonly, assign) CTDynamicTextFieldEditBarStyle editBarStyle;
-@property (nonatomic, readonly, assign) BOOL isShowing;
 
-- (void)showInView:(UIView *)view aboveFrame:(CGRect)aboveFrame;
+- (void)showInView:(UIView *)view atFrame:(CGRect)frame;
 - (void)hide;
 
 @end
