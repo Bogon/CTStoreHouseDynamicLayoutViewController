@@ -128,6 +128,8 @@
 {
     [self.imageEditBar hide];
     [self.textFieldEditBar hide];
+    self.textFieldEditBar.targetTextFieldViewItem.textField.userInteractionEnabled = NO;
+    [self.textFieldEditBar.targetTextFieldViewItem.textField resignFirstResponder];
 }
 
 - (void)dynamicViewItemShowEditBar:(CTDynamicBaseViewItem *)viewItem
@@ -169,7 +171,6 @@
 
 - (void)textFieldEditBar:(CTDynamicTextFieldEditBar *)editBar didTappedEditButton:(UIButton *)editButton
 {
-#warning can not show keyboard
     [editBar hide];
     editBar.targetTextFieldViewItem.textField.userInteractionEnabled = YES;
     [editBar.targetTextFieldViewItem.textField becomeFirstResponder];
@@ -257,9 +258,8 @@
     }];
     
     self.positionView.frame = CGRectZero;
-    [self.imageEditBar hide];
-    [self.textFieldEditBar hide];
     [self.bottomBar hidePopup];
+    [self dynamicViewItemHideEditBar:nil];
 }
 
 #pragma mark - private methods

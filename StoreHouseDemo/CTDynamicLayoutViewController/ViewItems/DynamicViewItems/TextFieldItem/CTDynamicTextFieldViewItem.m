@@ -82,6 +82,8 @@
         [self.dashedLayer removeFromSuperlayer];
         self.dashedLayer = nil;
     }
+    self.textField.userInteractionEnabled = NO;
+    [self.textField resignFirstResponder];
 }
 
 - (CAShapeLayer *)dashedBorderWithColor:(CGColorRef)color frameSize:(CGSize)frameSize

@@ -82,9 +82,7 @@
 
 - (void)hide
 {
-    [self.targetTextFieldViewItem.textField resignFirstResponder];
     self.editBarStyle = CTDynamicTextFieldEditBarStyleUndefined;
-    self.targetTextFieldViewItem.textField.userInteractionEnabled = NO;
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.3 animations:^{
         __strong typeof(weakSelf) strongSelf = weakSelf;
