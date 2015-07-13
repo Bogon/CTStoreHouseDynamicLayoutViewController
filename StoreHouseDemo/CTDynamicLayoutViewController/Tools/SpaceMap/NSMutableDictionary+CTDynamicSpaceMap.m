@@ -79,6 +79,7 @@
     NSMutableArray *viewList = [[NSMutableArray alloc] init];
     
     BOOL shouldBreak = NO;
+    NSInteger emptyRowCount = 0;
     for (NSInteger yIndex = point.y; true; yIndex++) {
         NSInteger emptyCount = 0;
         for (NSInteger xIndex = 0; xIndex < 6; xIndex++) {
@@ -86,7 +87,11 @@
             if (view == nil) {
                 emptyCount++;
                 if (emptyCount >= 6) {
-                    shouldBreak = YES;
+                    emptyRowCount++;
+                    if (emptyRowCount > 12) {
+                        emptyRowCount = 0;
+                        shouldBreak = YES;
+                    }
                     break;
                 }
             }
