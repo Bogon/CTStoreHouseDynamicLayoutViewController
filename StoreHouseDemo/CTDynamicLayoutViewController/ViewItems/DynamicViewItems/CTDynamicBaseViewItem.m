@@ -50,7 +50,7 @@
     CGFloat y = self.frame.origin.y;
     CGFloat width = self.frame.size.width;
     CGFloat height = self.frame.size.height;
-    
+
     self.upLeftPoint = CGPointMake((NSInteger)ceil(x / self.gridLength), (NSInteger)ceil(y / self.gridLength));
     self.downRightPoint = CGPointMake(self.upLeftPoint.x + (NSInteger)ceil(width / self.itemGap), self.upLeftPoint.y + (NSInteger)ceil(height / self.itemGap));
     self.coordinateWidth = self.downRightPoint.y - self.upLeftPoint.y;
