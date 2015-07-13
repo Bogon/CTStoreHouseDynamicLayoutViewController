@@ -230,9 +230,8 @@
     NSArray *viewsToAnimate = [self.calculator addView:textFieldViewItem nearPoint:currentPoint];
     [self animateWithTargetViewItem:nil viewsToAnimate:viewsToAnimate completion:^(BOOL finished) {
         if (finished) {
-            textFieldViewItem.isSelected = YES;
             self.textFieldEditBar.targetTextFieldViewItem = textFieldViewItem;
-            [self dynamicViewItemShowEditBar:textFieldViewItem];
+            textFieldViewItem.isSelected = YES;
         }
     }];
 }

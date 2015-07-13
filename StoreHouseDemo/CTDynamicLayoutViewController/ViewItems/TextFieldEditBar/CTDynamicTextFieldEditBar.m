@@ -45,6 +45,7 @@
     if (self) {
         self.backgroundColor = [UIColor blueColor];
         self.editBarStyle = CTDynamicTextFieldEditBarStyleUndefined;
+        self.layer.zPosition = FLT_MAX;
     }
     return self;
 }
