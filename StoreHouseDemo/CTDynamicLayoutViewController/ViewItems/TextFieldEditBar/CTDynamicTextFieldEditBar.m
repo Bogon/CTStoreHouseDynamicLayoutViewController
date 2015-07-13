@@ -110,7 +110,6 @@
 - (void)hide
 {
     self.editBarStyle = CTDynamicTextFieldEditBarStyleUndefined;
-    self.targetTextFieldViewItem = nil;
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.3 animations:^{
         __strong typeof(weakSelf) strongSelf = weakSelf;

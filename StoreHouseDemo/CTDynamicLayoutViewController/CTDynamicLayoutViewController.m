@@ -174,7 +174,6 @@
 #pragma mark - CTDynamicTextFieldEditBarDelegate
 - (void)textFieldEditBar:(CTDynamicTextFieldEditBar *)editBar didTappedDeleteButton:(UIButton *)deleteButton
 {
-    [editBar.targetTextFieldViewItem removeFromSuperview];
     [editBar hide];
     self.positionView.frame = CGRectZero;
     NSArray *viewsToAnimate = [self.calculator removeView:editBar.targetTextFieldViewItem];

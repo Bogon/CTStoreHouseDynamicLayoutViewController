@@ -102,6 +102,7 @@
     }
     
     if (state == UIGestureRecognizerStateChanged) {
+        self.layer.zPosition = FLT_MAX;
         self.center =[longPressRecognizer locationInView:self.superview];
         if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicViewItemDidChangedPosition:)]) {
             [self.delegate dynamicViewItemDidChangedPosition:self];
