@@ -203,6 +203,7 @@
 
 - (void)panGestureEnded
 {
+    self.layer.zPosition = FLT_MIN + 1;
     [UIView animateWithDuration:0.3f animations:^{
         self.frame = [self refreshFrame];
         [self layoutIfNeeded];

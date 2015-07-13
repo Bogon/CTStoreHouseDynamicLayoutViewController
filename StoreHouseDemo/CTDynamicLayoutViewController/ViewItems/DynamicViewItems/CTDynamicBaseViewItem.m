@@ -154,6 +154,8 @@
 
 - (void)deactivate
 {
+    self.layer.zPosition = FLT_MIN + 1;
+    
     CGRect newFrame = self.frame;
     newFrame.origin.x += 5;
     newFrame.origin.y += 5;
@@ -166,7 +168,6 @@
         self.layer.shadowOpacity = 0.0;
         self.frame = [self refreshFrame];
     } completion:^(BOOL finished) {
-        self.layer.zPosition = FLT_MIN + 1;
         if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicViewItemShowEditBar:)]) {
             [self.delegate dynamicViewItemShowEditBar:self];
         }
