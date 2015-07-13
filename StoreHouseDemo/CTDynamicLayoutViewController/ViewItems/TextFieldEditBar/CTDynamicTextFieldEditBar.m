@@ -76,16 +76,14 @@
     [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.8f initialSpringVelocity:1.0 options:0 animations:^{
         __strong typeof(weakSelf) strongSelf = weakSelf;
         CGRect frame = CGRectMake(initFrame.origin.x - selfWidth / 2.0f, initFrame.origin.y - selfHeight / 2.0f, selfWidth, selfHeight);
+        strongSelf.alpha = 1.0f;
         strongSelf.frame = frame;
-        [strongSelf layoutIfNeeded];
-    } completion:^(BOOL finished) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        NSLog(@"%@", strongSelf);
-    }];
+    } completion:nil];
 }
 
 - (void)hide
 {
+    [self.targetTextFieldViewItem.textField resignFirstResponder];
     self.editBarStyle = CTDynamicTextFieldEditBarStyleUndefined;
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.3 animations:^{

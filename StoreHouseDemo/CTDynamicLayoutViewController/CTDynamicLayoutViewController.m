@@ -232,6 +232,7 @@
         if (finished) {
             self.textFieldEditBar.targetTextFieldViewItem = textFieldViewItem;
             textFieldViewItem.isSelected = YES;
+            [self dynamicViewItemShowEditBar:textFieldViewItem];
         }
     }];
 }
