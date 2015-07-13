@@ -155,20 +155,7 @@
     [imageEditBar hide];
     self.positionView.frame = CGRectZero;
     NSArray *viewsToAnimate = [self.calculator removeView:imageEditBar.targetImageViewItem];
-    __weak typeof(self) weakSelf = self;
-    [UIView animateWithDuration:0.3f animations:^{
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        __block CGFloat maxHeight = 0;
-        [viewsToAnimate enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *item, NSUInteger idx, BOOL *stop) {
-            if ([item isKindOfClass:[CTDynamicBaseViewItem class]]) {
-                item.frame = [item refreshFrame];
-                if (item.bottom >= maxHeight) {
-                    maxHeight = item.bottom;
-                }
-            }
-        }];
-        strongSelf.scrollView.contentSize = CGSizeMake(strongSelf.scrollView.width, maxHeight + 60);
-    }];
+    [self animateWithTargetViewItem:nil viewsToAnimate:viewsToAnimate completion:nil];
 }
 
 #pragma mark - CTDynamicTextFieldEditBarDelegate
@@ -177,26 +164,13 @@
     [editBar hide];
     self.positionView.frame = CGRectZero;
     NSArray *viewsToAnimate = [self.calculator removeView:editBar.targetTextFieldViewItem];
-    __weak typeof(self) weakSelf = self;
-    [UIView animateWithDuration:0.3f animations:^{
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        __block CGFloat maxHeight = 0;
-        [viewsToAnimate enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *item, NSUInteger idx, BOOL *stop) {
-            if ([item isKindOfClass:[CTDynamicBaseViewItem class]]) {
-                item.frame = [item refreshFrame];
-                if (item.bottom >= maxHeight) {
-                    maxHeight = item.bottom;
-                }
-            }
-        }];
-        strongSelf.scrollView.contentSize = CGSizeMake(strongSelf.scrollView.width, maxHeight + 60);
-    }];
+    [self animateWithTargetViewItem:nil viewsToAnimate:viewsToAnimate completion:nil];
 }
 
 - (void)textFieldEditBar:(CTDynamicTextFieldEditBar *)editBar didTappedEditButton:(UIButton *)editButton
 {
 #warning can not show keyboard
-//    [editBar hide];
+    [editBar hide];
     editBar.targetTextFieldViewItem.textField.userInteractionEnabled = YES;
     [editBar.targetTextFieldViewItem.textField becomeFirstResponder];
 }
@@ -225,7 +199,7 @@
     textFieldViewItem.coordinateHeight = 1;
     textFieldViewItem.delegate = self;
     [self.scrollView addSubview:textFieldViewItem];
-    
+
     CGPoint currentPoint = CGPointMake(0, (NSInteger)floor((self.scrollView.contentOffset.y + self.scrollView.height / 2.0f) / self.calculator.gridLength));
     NSArray *viewsToAnimate = [self.calculator addView:textFieldViewItem nearPoint:currentPoint];
     [self animateWithTargetViewItem:nil viewsToAnimate:viewsToAnimate completion:^(BOOL finished) {
