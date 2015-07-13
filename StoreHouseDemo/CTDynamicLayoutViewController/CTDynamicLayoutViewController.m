@@ -196,7 +196,7 @@
 - (void)textFieldEditBar:(CTDynamicTextFieldEditBar *)editBar didTappedEditButton:(UIButton *)editButton
 {
 #warning can not show keyboard
-    [editBar hide];
+//    [editBar hide];
     editBar.targetTextFieldViewItem.textField.userInteractionEnabled = YES;
     [editBar.targetTextFieldViewItem.textField becomeFirstResponder];
 }

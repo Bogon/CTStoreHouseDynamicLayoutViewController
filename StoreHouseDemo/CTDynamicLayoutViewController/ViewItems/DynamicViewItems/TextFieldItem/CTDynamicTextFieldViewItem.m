@@ -71,8 +71,8 @@
 {
     if (!self.dashedLayer.superlayer) {
         self.dashedLayer = nil;
-        self.dashedLayer = [self dashedBorderWithColor:[[UIColor blueColor] CGColor] frameSize:self.textField.size];
-        [self.textField.layer addSublayer:self.dashedLayer];
+        self.dashedLayer = [self dashedBorderWithColor:[[UIColor blueColor] CGColor] frameSize:self.size];
+        [self.layer addSublayer:self.dashedLayer];
     }
 }
 
@@ -88,17 +88,17 @@
 {
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
 
-    CGRect shapeRect = CGRectMake(0.0f, 0.0f, frameSize.width, frameSize.height);
+    CGRect shapeRect = CGRectMake(6.0f, 6.0f, frameSize.width - 12, frameSize.height - 12);
     [shapeLayer setBounds:shapeRect];
     [shapeLayer setPosition:CGPointMake(frameSize.width/2,frameSize.height/2)];
 
     [shapeLayer setFillColor:[[UIColor clearColor] CGColor]];
     [shapeLayer setStrokeColor:color];
-    [shapeLayer setLineWidth:3.0f];
+    [shapeLayer setLineWidth:2.0f];
     [shapeLayer setLineJoin:kCALineJoinRound];
     [shapeLayer setLineDashPattern:
-     [NSArray arrayWithObjects:[NSNumber numberWithInt:3],
-      [NSNumber numberWithInt:3],
+     [NSArray arrayWithObjects:[NSNumber numberWithInt:2],
+      [NSNumber numberWithInt:4],
       nil]];
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:shapeRect cornerRadius:0];
     [shapeLayer setPath:path.CGPath];

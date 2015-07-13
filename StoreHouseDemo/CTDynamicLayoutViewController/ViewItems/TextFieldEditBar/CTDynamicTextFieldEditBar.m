@@ -58,7 +58,6 @@
 #pragma mark - public methods
 - (void)showInView:(UIView *)view atFrame:(CGRect)frame
 {
-#warning can not show edit bar
     [self switchToStyle:CTDynamicTextFieldEditBarStyleDefault];
     CGFloat selfWidth = (4 * 40) + 3 + 3*8;
     CGFloat selfHeight = 40 + 6;
@@ -85,6 +84,7 @@
 {
     [self.targetTextFieldViewItem.textField resignFirstResponder];
     self.editBarStyle = CTDynamicTextFieldEditBarStyleUndefined;
+    self.targetTextFieldViewItem.textField.userInteractionEnabled = NO;
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.3 animations:^{
         __strong typeof(weakSelf) strongSelf = weakSelf;
