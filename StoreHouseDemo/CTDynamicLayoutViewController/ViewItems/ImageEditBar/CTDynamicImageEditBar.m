@@ -75,7 +75,6 @@
 
 - (void)hide
 {
-    self.targetImageViewItem = nil;
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.3 animations:^{
         __strong typeof(weakSelf) strongSelf = weakSelf;

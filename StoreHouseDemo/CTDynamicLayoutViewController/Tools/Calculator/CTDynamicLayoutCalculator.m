@@ -58,7 +58,9 @@ NSString * const kCTDynamicLayoutCalculatorViewInfoKeyView = @"kCTDynamicLayoutC
 #pragma mark - public methods
 - (NSArray *)removeView:(CTDynamicBaseViewItem *)view
 {
-    NSArray *viewListToRecalculate = self.superView.subviews;
+    [view removeFromSuperview];
+    [self.spaceMap CTDSM_deleteView:view];
+    NSArray *viewListToRecalculate = [self.spaceMap CTDSM_viewsInMapOrder];
     [self.spaceMap CTDSM_cleanAll];
     [viewListToRecalculate enumerateObjectsUsingBlock:^(CTDynamicBaseViewItem *view, NSUInteger idx, BOOL *stop) {
         if ([view isKindOfClass:[CTDynamicBaseViewItem class]]) {

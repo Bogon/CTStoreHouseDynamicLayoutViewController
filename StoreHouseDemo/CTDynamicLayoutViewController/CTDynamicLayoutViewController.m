@@ -152,7 +152,6 @@
 
 - (void)imageEditBar:(CTDynamicImageEditBar *)imageEditBar didTappedDeleteButton:(UIButton *)button
 {
-    [imageEditBar.targetImageViewItem removeFromSuperview];
     [imageEditBar hide];
     self.positionView.frame = CGRectZero;
     NSArray *viewsToAnimate = [self.calculator removeView:imageEditBar.targetImageViewItem];
